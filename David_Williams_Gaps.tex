@@ -98,7 +98,42 @@
     David Williams 著 "Probability with Martingales"。
   \end{abstract}
 
-  \section{ここから}
+  \section{Chapter 6}
   \subsection{65ページ9行目}
-  $c_1U_1 + c_2U_2 \sim c_1V_1 + c_2V_2$について。
+    $c_1U_1 + c_2U_2 \sim c_1V_1 + c_2V_2$について。\\
+    \begin{align*}
+      &\{x \mid (c_1U_1 + c_2U_2)(x) \neq (c_1V_1 + c_2V_2)(x)\} \\
+      \Leftrightarrow &\{x \mid (c_1U_1 + c_2U_2)(x) - (c_1V_1 + c_2V_2)(x) \neq 0\} =: A
+    \end{align*}
+    の測度が$0$であることを示せばよい。
+    明らかに、
+    \[
+      c_1U_1 \sim c_1V_1, c_2U_2 \sim c_2V_2
+    \]
+    である。したがって、
+    \begin{align*}
+      A_1 := \{x \mid c_1U_1(x) \neq c_1V_1\} \\
+      A_2 := \{x \mid c_2U_2(x) \neq c_2V_2\}
+    \end{align*}
+    の測度はそれぞれ$0$である
+    \footnote{別に$A_1$などと名前を付けなくてもいいが(むしろ名前を付けない方がわかりやすい。)、紙面のスペースの都合上名前を付けている。}。
+    このとき、次が成立。
+    \[
+      A \subset A_1 \cup A_2
+    \]
+    背理法で示す。上式の右辺から任意に$x$を取る。$x \notin A_1 \cup A_2$、つまり、
+    \[
+      x \in A_1^c \cap A_2^c
+    \]
+    と仮定する。このとき、$c_1U_1(x) = c_1V_1(x), c_2U_2(x) = c_2V_2(x)$であるから、
+    \[
+      (c_1U_1 + c_2U_2)(x) - (c_1V_1 + c_2V_2)(x) = 0\
+    \]
+    より、矛盾する。また、
+    \begin{multline*}
+      A = \{x \mid (c_1U_1 + c_2U_2)(x) - (c_1V_1 + c_2V_2)(x) < 0\} \\
+      \cup \{x \mid (c_1U_1 + c_2U_2)(x) - (c_1V_1 + c_2V_2)(x) > 0\}
+    \end{multline*}
+    であるから、$A$は可測集合。したがって、測度の単調性より、$A$の測度は$0$。
+
 \end{document}
