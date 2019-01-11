@@ -1,0 +1,104 @@
+\documentclass[11pt, a4paper]{jsarticle}
+    \usepackage{amsmath}
+    \usepackage{amsthm}
+    \usepackage[psamsfonts]{amssymb}
+    \usepackage[dvipdfmx]{graphicx}
+    \usepackage[dvipdfmx]{color}
+    \usepackage{color}
+    \usepackage{ascmac}
+    \usepackage{amsfonts}
+    \usepackage{mathrsfs}
+    \usepackage{amssymb}
+    \usepackage{graphicx}
+    \usepackage{fancybox}
+    \usepackage{enumerate}
+    \usepackage{verbatim}
+    \usepackage{subfigure}
+    \usepackage{proof}
+
+
+    %
+    \theoremstyle{definition}
+    %
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    %ここにないパッケージを入れる人は，必ずここに記載すること．
+    %
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    %ここからはコード表です．
+    %
+   \newtheorem{axiom}{公理}[section]
+    \newtheorem{defn}{定義}[section]
+    \newtheorem{thm}{定理}[section]
+    \newtheorem{prop}[thm]{命題}
+    \newtheorem{lem}[thm]{補題}
+    \newtheorem{cor}[thm]{系}
+    \newtheorem{ex}{例}[section]
+    \newtheorem{claim}{主張}[section]
+    \newtheorem{property}{性質}[section]
+    \newtheorem{attention}{注意}[section]
+    \newtheorem{question}{問}[section]
+    \newtheorem{prob}{問題}[section]
+    \newtheorem{consideration}{考察}[section]
+    \newtheorem{Alert}{警告}[section]
+    \newtheorem{Rem}{注意}[section]
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    %
+    %定義や定理等に番号をつけたくない場合（例えば定理1.1等）は以下のコードを使ってください．
+    %但し，例えば\Axiom*{}としてしまうと番号が付いてしまうので，必ず　\begin{Axiom*}　\end{Axiom*}の形で使ってください．
+    \newtheorem*{axiom*}{公理}
+    \newtheorem*{def*}{定義}
+    \newtheorem*{thm*}{定理}
+    \newtheorem*{prop*}{命題}
+    \newtheorem*{lem*}{補題}
+    \newtheorem*{ex*}{例}
+    \newtheorem*{cor*}{系}
+    \newtheorem*{claim*}{主張}
+    \newtheorem*{property*}{性質}
+    \newtheorem*{attention*}{注意}
+    \newtheorem*{question*}{問}
+    \newtheorem*{prob*}{問題}
+    \newtheorem*{consideration*}{考察}
+    \newtheorem*{alert*}{警告}
+    \newtheorem*{rem*}{注意}
+    \renewcommand{\proofname}{\bfseries 証明}
+    %
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    %英語で定義や定理を書きたい場合こっちのコードを使うこと．
+    \newtheorem{Axiom+}{Axiom}
+    \newtheorem{Definition+}{Definition}
+    \newtheorem{Theorem+}{Theorem}
+    \newtheorem{Proposition+}{Proposition}
+    \newtheorem{Lemma+}{Lemma}
+    \newtheorem{Example+}{Example}
+    \newtheorem{Corollary+}{Corollary}
+    \newtheorem{Claim+}{Claim}
+    \newtheorem{Property+}{Property}
+    \newtheorem{Attention+}{Attention}
+    \newtheorem{Question+}{Question}
+    \newtheorem{Problem+}{Problem}
+    \newtheorem{Consideration+}{Consideration}
+    \newtheorem{Alert+}{Alert}
+    %
+    %
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    %数
+    \newcommand{\NN}{{\mathbb{N}}} %自然数全体，
+    \newcommand{\ZZ}{{\mathbb{Z}}} %整数環
+    \newcommand{\QQ}{{\mathbb{Q}}} %有理数体
+    \newcommand{\RR}{{\mathbb{R}}} %実数体
+    \newcommand{\CC}{{\mathbb{C}}} %複素数体
+    \title{Probability with Martingales のギャップとかメモ}
+    \author{Twitter : @skbtkey}
+    \date{}
+
+\begin{document}
+  \maketitle
+  \begin{abstract}
+    タイトル通り。ネットの海からこれを見つけ出した方は参考にしていただけると嬉しい。
+    David Williams 著 "Probability with Martingales"。
+  \end{abstract}
+
+  \section{ここから}
+  \subsection{65ページ9行目}
+  $c_1U_1 + c_2U_2 \sim c_1V_1 + c_2V_2$について。
+\end{document}
