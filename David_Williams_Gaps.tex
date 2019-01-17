@@ -136,4 +136,29 @@
     \end{multline*}
     であるから、$A$は可測集合。したがって、測度の単調性より、$A$の測度は$0$。
 
+  \subsection{65ページ10行目}
+    $U_n \to U$より、
+    $N \in \NN$が存在して、
+    $n \ge N \Rightarrow ||U_n - U|| < \varepsilon \quad (\forall \varepsilon > 0)$
+    である。
+    $U_n \sim V_n, U \sim V$より、$||V_N - V|| < \varepsilon$が分かる。
+
+  \subsection{67ページ10行目から12行目}
+    (ii) $\Rightarrow$ (i)について。(逆向きは本の中で証明されています。)
+
+    任意の$Z \in \mathcal{K}$を取ると、$||X - Z|| \ge ||X - Y|| + \alpha$となることを示すとよい。
+    ここで、$\alpha > 0$である。
+    しかし、$Z$として$Y + tZ \quad (t \in \RR)$とすればよい。
+    これは$\mathcal{L}^p$の線形性のためである。
+    なんとなれば、
+    $Z = \frac{-Y+ W}{t} \quad (\forall Z \in \mathcal{K})$とすればよい。
+    $\langle X - Y, Z \rangle = \mathbf{E}[(X - Y)Z] = 0$
+    即ち、$\mathbf{E}[XY] = \mathbf{E}[YZ]$が成り立つことに注意して、
+    $||X - Y - tZ||$を計算すると分かる。
+
+
+
+
+
+
 \end{document}
