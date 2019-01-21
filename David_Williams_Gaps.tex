@@ -87,6 +87,8 @@
     \newcommand{\QQ}{{\mathbb{Q}}} %有理数体
     \newcommand{\RR}{{\mathbb{R}}} %実数体
     \newcommand{\CC}{{\mathbb{C}}} %複素数体
+    \newcommand{\PP}{{\mathbb{P}}} %確率測度
+    \newcommand{\EE}{{\mathbf{E}}} %期待値
     \title{Probability with Martingales のギャップとかメモ}
     \author{Twitter : @skbtkey}
     \date{}
@@ -99,7 +101,7 @@
   \end{abstract}
 
   \section{Chapter 6}
-  \subsection{65ページ9行目}
+    \subsection{65ページ9行目}
     $c_1U_1 + c_2U_2 \sim c_1V_1 + c_2V_2$について。\\
     \begin{align*}
       &\{x \mid (c_1U_1 + c_2U_2)(x) \neq (c_1V_1 + c_2V_2)(x)\} \\
@@ -136,25 +138,70 @@
     \end{multline*}
     であるから、$A$は可測集合。したがって、測度の単調性より、$A$の測度は$0$。
 
-  \subsection{65ページ10行目}
-    $U_n \to U$より、
-    $N \in \NN$が存在して、
-    $n \ge N \Rightarrow ||U_n - U|| < \varepsilon \quad (\forall \varepsilon > 0)$
-    である。
-    $U_n \sim V_n, U \sim V$より、$||V_N - V|| < \varepsilon$が分かる。
+    \subsection{65ページ10行目}
+      $U_n \to U$より、
+      $N \in \NN$が存在して、
+      $n \ge N \Rightarrow ||U_n - U|| < \varepsilon \quad (\forall \varepsilon > 0)$
+      である。
+      $U_n \sim V_n, U \sim V$より、$||V_N - V|| < \varepsilon$が分かる。
 
-  \subsection{67ページ10行目から12行目}
-    (ii) $\Rightarrow$ (i)について。(逆向きは本の中で証明されています。)
+    \subsection{67ページ10行目から12行目}
+      (ii) $\Rightarrow$ (i)について。(逆向きは本の中で証明されています。)
 
-    任意の$Z \in \mathcal{K}$を取ると、$||X - Z|| \ge ||X - Y|| + \alpha$となることを示すとよい。
-    ここで、$\alpha > 0$である。
-    しかし、$Z$として$Y + tZ \quad (t \in \RR)$とすればよい。
-    これは$\mathcal{L}^p$の線形性のためである。
-    なんとなれば、
-    $Z = \frac{-Y+ W}{t} \quad (\forall W \in \mathcal{K})$とすればよい。
-    $\langle X - Y, Z \rangle = \mathbf{E}[(X - Y)Z] = 0$
-    即ち、$\mathbf{E}[XY] = \mathbf{E}[YZ]$が成り立つことに注意して、
-    $||X - Y - tZ||^2$を計算すると分かる\footnote{2乗しないと計算しにくい。}。
+      任意の$Z \in \mathcal{K}$を取ると、$||X - Z|| \ge ||X - Y|| + \alpha$となることを示すとよい。
+      ここで、$\alpha > 0$である。
+      しかし、$Z$として$Y + tZ \quad (t \in \RR)$とすればよい。
+      これは$\mathcal{L}^p$の線形性のためである。
+      なんとなれば、
+      $Z = \frac{-Y+ W}{t} \quad (\forall W \in \mathcal{K})$とすればよい。
+      $\langle X - Y, Z \rangle = \mathbf{E}[(X - Y)Z] = 0$
+      即ち、$\mathbf{E}[XY] = \mathbf{E}[YZ]$が成り立つことに注意して、
+      $||X - Y - tZ||^2$を計算すると分かる\footnote{2乗しないと計算しにくい。}。
+
+  \section{Chapter 7}
+    \subsection{大数の法則を証明する前の補題}
+      \begin{prop*}
+        $S_k$-値確率変数列$(X_k)_{k = 1,2,\cdots, n}$は独立で、
+        $g_k \colon S_k \to S_k^{\prime}$
+        は
+        $\mathcal{S}_k$-可測関数とする。
+        このとき、$Y_k = g_k(X_k)$とおけば、$(Y_k)_k$は独立。
+      \end{prop*}
+      \begin{proof}
+        $A_k^{\prime} \in \mathcal{S}_k^{\prime}$とする。
+        \[
+          \{Y_k \in A_k^{\prime}\} = \{X_k \in g_k^{-1}(A_k^{\prime})\}
+        \]
+        であり、$g_k$の可測性から、
+        \[
+          g_k^{-1}(A_k^{\prime}) \in \mathcal{S}_k
+        \]
+        であることから、
+        \[
+          \{X_k \in g_k^{-1}(A_k^{\prime})\} \in \sigma(X_k)
+        \]
+        よって、
+        \begin{align*}
+          \PP \left(\bigcap_{k=1}^{n} (Y_k \in A_k^{\prime})\right) &= \PP \left((\bigcap_{k=1}^{n} (X_k \in g_k^{-1}(A_k^{\prime}))\right) \\
+          &= \Pi_{k=1}^n \PP(X_k \in g_k^{-1}(A_k^{\prime}) \\
+          &= \Pi_{k=1}^n \PP(Y_k \in A_k^{\prime})
+        \end{align*}
+      \end{proof}
+
+      \begin{lem*}
+        $X,Y,Z,W$は独立なr.v.とする。
+        このとき、$(X,Y^n),(XY^2,Z),(XY,ZW),(X^2,Y^2)$はそれぞれ独立。
+      \end{lem*}
+      \begin{proof}
+        確率変数の独立性は合成によって保たれることに注意する。
+
+        $(X,Y^n)$に関しては、
+        \begin{align*}
+          f &\colon x \mapsto x \\
+          g &\colon x \mapsto x^n
+        \end{align*}
+        として、$X = f(X), Y^n = g(Y)$と見れば、補題より独立と分かる。
+      \end{proof}
 
 
 
