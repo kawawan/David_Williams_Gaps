@@ -89,6 +89,7 @@
     \newcommand{\CC}{{\mathbb{C}}} %複素数体
     \newcommand{\PP}{{\mathbb{P}}} %確率測度
     \newcommand{\EE}{{\mathbf{E}}} %期待値
+    \newcommand{\BB}{{\mathcal{B}}} %ボレル可測集合
     \title{Probability with Martingales のギャップとかメモ}
     \author{Twitter : @skbtkey}
     \date{}
@@ -183,9 +184,93 @@
         よって、
         \begin{align*}
           \PP \left(\bigcap_{k=1}^{n} (Y_k \in A_k^{\prime})\right) &= \PP \left((\bigcap_{k=1}^{n} (X_k \in g_k^{-1}(A_k^{\prime}))\right) \\
-          &= \Pi_{k=1}^n \PP(X_k \in g_k^{-1}(A_k^{\prime}) \\
-          &= \Pi_{k=1}^n \PP(Y_k \in A_k^{\prime})
+          &= \prod_{k=1}^n \PP(X_k \in g_k^{-1}(A_k^{\prime}) \\
+          &= \prod_{k=1}^n \PP(Y_k \in A_k^{\prime})
         \end{align*}
+      \end{proof}
+
+      \begin{cor*}
+        $(X_k)_{k = 1,2,\cdots, n}$が$\RR$-値独立確率変数の列とする。
+        $g = g(x_1, x_2, \cdots, x_i)$は$\RR^i \to \RR$のボレル可測関数とする。
+        ただし、$i < n$。
+        このとき、$Y := g(X_1, X_2, \cdots, X_i)$とおけば、
+        $Y, X_{i+1}, \cdots, X_n$は独立。
+      \end{cor*}
+      \begin{proof}
+        $X = (X_1, \cdots, X_i)$は$\RR^i$-値確率変数であり、
+        $X, X_{i+1}, \cdots, X_{n}$
+        は独立である。まずはこれを示す。
+        $A \in \BB(\RR^i), A_{i+1}, \cdots, A_n \in \BB(\RR)$について、
+        \begin{equation}\label{2-1}
+          \PP(X \in A, X_{i+1} \in A_{i+1}, \cdots, X_n \in A_n) = \PP(X \in A)\prod_{j = i+1}^n \PP(X_j \in A_j)
+        \end{equation}
+        が成立することを言えばよい。そこで、
+        \[
+          \mathcal{L} = \{A \subset \RR^i \mid (\ref{2-1})\text{が成立}\}
+        \]
+        と定義する。$\mathcal{L}$は$\lambda$-systemである。
+        明らかに$\Omega \in \mathcal{L}$である。
+        次に、$A,B \in \mathcal{L}, A \subset B$とすると、
+        $\PP(X \in B-A) = \PP(X \in B) - \PP(X \in A)$であることに注意すれば、
+        \begin{align*}
+          &\PP(X \in B-A, X_{i+1} \in A_{i+1}, \cdots, X_n \in A_n) \\
+          =& \PP(X \in B, X_{i+1} \in A_{i+1}, \cdots, X_n \in A_n) - \PP(X \in A, X_{i+1} \in A_{i+1}, \cdots, X_n \in A_n) \\
+          =& \PP(X \in B)\prod_{j = i+1}^n \PP(X_j \in A_j) - \PP(X \in A)\prod_{j = i+1}^n \PP(X_j \in A_j) \\
+          =& \left( \PP(X \in B) - \PP(X \in A) \right)\prod_{j = i+1}^n \PP(X_j \in A_j) \\
+          =& \PP(X \in B - A) \prod_{j = i+1}^n \PP(X_j \in A_j)
+        \end{align*}
+        なので、$B - A \in \mathcal{L}$。
+        最後に、$A_n \in \mathcal{L} \quad (n = 1, 2, \cdots)$で、$A_n \uparrow A$とする。
+        $X \in A$とすれば、$\exists m \in \NN \quad s.t. \quad X \in A_m$なので、
+        そのような自然数で最小のものを$m$とする\footnote{自然数全体の部分集合は必ず最小限を持つ}。
+        集合列$(A_n)$は包含関係に関して単調増加であるため、すべての$N \ge m$に対して、
+        \[
+          \{X \in A_m\} = \{X \in A_N\}
+        \]
+        が成立する。したがって当然
+        \[
+          \{X \in A_m\} = \bigcup_{k=N}^{\infty}\{X \in A_k\} = \{X \in A\}
+        \]
+        よって、
+        \[
+          \PP(X \in A_m) = \PP(X \in A)
+        \]
+        よって次のように計算ができる。
+        \begin{align*}
+          &\PP(X \in A, X_{i+1} \in A_{i+1}, \cdots, X_n \in A_n) \\
+          =&\PP(X \in A_m, X_{i+1} \in A_{i+1}, \cdots, X_n \in A_n) \\
+          =&\PP(X \in A_m)\prod_{j = i+1}^n \PP(X_j \in A_j) \\
+          =&\PP(X \in A)\prod_{j = i+1}^n \PP(X_j \in A_j)
+        \end{align*}
+        これにより、$A \in \mathcal{L}$であることが分かる。
+        以上より$\mathcal{L}$は$\lambda$-system。
+
+        さて、
+        $\mathcal{P} = \{A_1 \times \cdots \times A_i \mid A_k \in \BB(\RR) , k = 1, 2, \cdots, i\}$
+        は$\pi$-systemであり、$A \in \mathcal{P}$とすれば、直積の定義より
+        \[
+          X \in A \Leftrightarrow X_1 \in A_1, \cdots, X_i \in A_i
+        \]
+        より、
+        \[
+          \{X \in A\} = \{X_1 \in A_1\} \cap \cdots \cap \{X_i \in A_i\}
+        \]
+        仮定から$X_1 ,\cdots , X_n$は独立なので
+        \begin{align*}
+            &\PP(X \in A ,X_{i+1} \in A_{i+1}, \cdots, X_n \in A_n) \\
+            =& \prod_{k=1}^n\PP(X_k) \\
+            =& \PP(X_1 \in A_1, \cdots, X_i \in A_i)\prod_{k=i+1}^n\PP(X_k \in A_k) \\
+            =& \PP(X \in A)\prod_{k=i+1}^n\PP(X_k)
+        \end{align*}
+        と計算できるから、$A \in \mathcal{L}$がわかる。
+        したがって$\mathcal{P} \subset \mathcal{L}$である。
+        よって、$\pi$-$\lambda$定理より、
+        \[
+          \mathcal{L} \supset \sigma(\mathcal{P}) = \BB(\RR^i)
+        \]
+        以上により、$X, X_{i+1}, \cdots, X_n$は独立であることが分かった。
+
+        あとは先の命題を適用すればよい。
       \end{proof}
 
       \begin{lem*}
@@ -200,7 +285,27 @@
           f &\colon x \mapsto x \\
           g &\colon x \mapsto x^n
         \end{align*}
-        として、$X = f(X), Y^n = g(Y)$と見れば、補題より独立と分かる。
+        として、$X = f(X), Y^n = g(Y)$と見る。
+
+        $(XY^2,Z)$に関しては、
+        \begin{align*}
+          f &\colon (x, y) \mapsto xy^2 \\
+          g &\colon x \mapsto x
+        \end{align*}
+        として、$XY^2 = f(X,Y), Z = g(Z)$として見る。
+
+        $(XY,ZW)$に関しては、
+        \begin{align*}
+          f \colon (x, y) \mapsto xy
+        \end{align*}
+        として$XY = f(X,Y)$とみれば、$XY,Z,W$は独立。
+        もう一度$ZW = f(Z,W)$とみれば、$XY,ZW$は独立。
+
+        $(X^2,Y^2)$に関しては、
+        \begin{align*}
+          f \colon x \mapsto x^2
+        \end{align*}
+        として$X^2 = f(X), Y^2 = f(Y)$として見る。
       \end{proof}
 
 
