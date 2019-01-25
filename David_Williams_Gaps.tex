@@ -90,6 +90,8 @@
     \newcommand{\PP}{{\mathbb{P}}} %確率測度
     \newcommand{\EE}{{\mathbf{E}}} %期待値
     \newcommand{\BB}{{\mathcal{B}}} %ボレル可測集合
+    \newcommand{\Var}{{\text{Var}}} %Varianve
+    \newcommand{\Cov}{{\text{Cov}}} %Covariance
     \title{Probability with Martingales のギャップとかメモ}
     \author{Twitter : @skbtkey}
     \date{}
@@ -103,41 +105,41 @@
 
   \section{Chapter 6}
     \subsection{65ページ9行目}
-    $c_1U_1 + c_2U_2 \sim c_1V_1 + c_2V_2$について。\\
-    \begin{align*}
-      &\{x \mid (c_1U_1 + c_2U_2)(x) \neq (c_1V_1 + c_2V_2)(x)\} \\
-      \Leftrightarrow &\{x \mid (c_1U_1 + c_2U_2)(x) - (c_1V_1 + c_2V_2)(x) \neq 0\} =: A
-    \end{align*}
-    の測度が$0$であることを示せばよい。
-    明らかに、
-    \[
-      c_1U_1 \sim c_1V_1, c_2U_2 \sim c_2V_2
-    \]
-    である。したがって、
-    \begin{align*}
-      A_1 := \{x \mid c_1U_1(x) \neq c_1V_1(x)\} \\
-      A_2 := \{x \mid c_2U_2(x) \neq c_2V_2(x)\}
-    \end{align*}
-    の測度はそれぞれ$0$である
-    \footnote{別に$A_1$などと名前を付けなくてもいいが(むしろ名前を付けない方がわかりやすい。)、紙面のスペースの都合上名前を付けている。}。
-    このとき、次が成立。
-    \[
-      A \subset A_1 \cup A_2
-    \]
-    背理法で示す。上式の左辺から任意に$x$を取る。$x \notin A_1 \cup A_2$、つまり、
-    \[
-      x \in A_1^c \cap A_2^c
-    \]
-    と仮定する。このとき、$c_1U_1(x) = c_1V_1(x), c_2U_2(x) = c_2V_2(x)$であるから、
-    \[
-      (c_1U_1 + c_2U_2)(x) - (c_1V_1 + c_2V_2)(x) = 0\
-    \]
-    より、矛盾する。また、
-    \begin{multline*}
-      A = \{x \mid (c_1U_1 + c_2U_2)(x) - (c_1V_1 + c_2V_2)(x) < 0\} \\
-      \cup \{x \mid (c_1U_1 + c_2U_2)(x) - (c_1V_1 + c_2V_2)(x) > 0\}
-    \end{multline*}
-    であるから、$A$は可測集合。したがって、測度の単調性より、$A$の測度は$0$。
+      $c_1U_1 + c_2U_2 \sim c_1V_1 + c_2V_2$について。\\
+      \begin{align*}
+        &\{x \mid (c_1U_1 + c_2U_2)(x) \neq (c_1V_1 + c_2V_2)(x)\} \\
+        \Leftrightarrow &\{x \mid (c_1U_1 + c_2U_2)(x) - (c_1V_1 + c_2V_2)(x) \neq 0\} =: A
+      \end{align*}
+      の測度が$0$であることを示せばよい。
+      明らかに、
+      \[
+        c_1U_1 \sim c_1V_1, c_2U_2 \sim c_2V_2
+      \]
+      である。したがって、
+      \begin{align*}
+        A_1 := \{x \mid c_1U_1(x) \neq c_1V_1(x)\} \\
+        A_2 := \{x \mid c_2U_2(x) \neq c_2V_2(x)\}
+      \end{align*}
+      の測度はそれぞれ$0$である
+      \footnote{別に$A_1$などと名前を付けなくてもいいが(むしろ名前を付けない方がわかりやすい。)、紙面のスペースの都合上名前を付けている。}。
+      このとき、次が成立。
+      \[
+        A \subset A_1 \cup A_2
+      \]
+      背理法で示す。上式の左辺から任意に$x$を取る。$x \notin A_1 \cup A_2$、つまり、
+      \[
+        x \in A_1^c \cap A_2^c
+        \]
+      と仮定する。このとき、$c_1U_1(x) = c_1V_1(x), c_2U_2(x) = c_2V_2(x)$であるから、
+      \[
+        (c_1U_1 + c_2U_2)(x) - (c_1V_1 + c_2V_2)(x) = 0\
+      \]
+      より、矛盾する。また、
+      \begin{multline*}
+        A = \{x \mid (c_1U_1 + c_2U_2)(x) - (c_1V_1 + c_2V_2)(x) < 0\} \\
+        \cup \{x \mid (c_1U_1 + c_2U_2)(x) - (c_1V_1 + c_2V_2)(x) > 0\}
+      \end{multline*}
+      であるから、$A$は可測集合。したがって、測度の単調性より、$A$の測度は$0$。
 
     \subsection{65ページ10行目}
       $U_n \to U$より、
@@ -147,17 +149,94 @@
       $U_n \sim V_n, U \sim V$より、$||V_N - V|| < \varepsilon$が分かる。
 
     \subsection{67ページ10行目から12行目}
-      (ii) $\Rightarrow$ (i)について。(逆向きは本の中で証明されています。)
+      \subsubsection{(ii) $\Rightarrow$ (i)について。}
+        (逆向きは本の中で証明されています。)
 
-      任意の$Z \in \mathcal{K}$を取ると、$||X - Z|| \ge ||X - Y|| + \alpha$となることを示すとよい。
-      ここで、$\alpha > 0$である。
-      しかし、$Z$として$Y + tZ \quad (t \in \RR)$とすればよい。
-      これは$\mathcal{L}^p$の線形性のためである。
-      なんとなれば、
-      $Z = \frac{-Y+ W}{t} \quad (\forall W \in \mathcal{K})$とすればよい。
-      $\langle X - Y, Z \rangle = \mathbf{E}[(X - Y)Z] = 0$
-      即ち、$\mathbf{E}[XY] = \mathbf{E}[YZ]$が成り立つことに注意して、
-      $||X - Y - tZ||^2$を計算すると分かる\footnote{2乗しないと計算しにくい。}。
+        任意の$Z \in \mathcal{K}$を取ると、$||X - Z|| \ge ||X - Y|| + \alpha$となることを示すとよい。
+        ここで、$\alpha > 0$である。
+        しかし、$Z$として$Y + tZ \quad (t \in \RR)$とすればよい。
+        これは$\mathcal{L}^p$の線形性のためである。
+        なんとなれば、
+        $Z = \frac{-Y+ W}{t} \quad (\forall W \in \mathcal{K})$とすればよい。
+        $\langle X - Y, Z \rangle = \mathbf{E}[(X - Y)Z] = 0$
+        即ち、$\mathbf{E}[XY] = \mathbf{E}[YZ]$が成り立つことに注意して、
+        $||X - Y - tZ||^2$を計算すると分かる\footnote{2乗しないと計算しにくい。}。
+
+      \subsubsection{$||Y - Y^{\prime}|| = 0$について。}
+        \begin{align*}
+          E[(X - Y)(Y - Y^{\prime})] = 0\\
+          E[(X - Y^{\prime})(Y - Y^{\prime})] = 0
+        \end{align*}
+        という式をそれぞれ期待値の中身を展開して引き算すると、
+        \[
+          E[(Y - Y^{\prime})^2] = 0
+        \]
+        という式が求められるから$Y = Y^{\prime}\quad (a.s.)$。
+
+    \subsection{70ページ8,9行目}
+      \subsubsection{$(\mathbf{P}(u))^q \leq \mathbf{P}(u^q)$について。}
+        記号が見慣れなくてよくわからないが、
+        $\mathbf{P}$は直前で確率測度であると示しているから、
+        $\mathbf{P}(u)$とは$\mathbf{P}$による$u$の期待値である。
+        凸関数$c(x) = x ^q$を考えると、この不等式はイェンゼンの不等式を
+        用いるとすぐに従うことが分かる。
+        そのためには、イェンゼンの不等式を用いるための条件を満たしているかを
+        確認しよう。
+        $u$の定義は$f(s) = 0$の部分で$u(s) = 0$なので、
+        下記の計算には本当は$1_{\{f(s) > 0\}}$を書いておくべき。
+
+      \subsubsection{$\mathbf{P}(u^q) < \infty$であること}
+        Chapter 5で見たように、$f,h$を可測関数、$\mu$を測度とすれば、
+        \[
+          (hf)\mu = h(f\mu)
+        \]
+        が成立していた。これを用いる。また、$\frac{1}{p} + \frac{1}{q} = 1$にも注意しておく。
+        \begin{align*}
+          \mathbf{P}(u^q) &= \frac{h^q}{f^{q(p-1)}}\frac{f^p\mu}{\mu(f^p)}
+          = \frac{h^q}{f^p}\frac{f^p\mu}{\mu(f^p)}
+          = \frac{h^q}{f^p}f^p \frac{\mu}{\mu(f^p)} \\
+          &= h^q \frac{\mu}{\mu(f^p)} = \frac{h^q}{\mu(f^p)}\mu
+          =\frac{1}{\mu(f^p)}\int h^q d\mu < \infty
+        \end{align*}
+
+      \subsubsection{$\mathbf{P}(u) < \infty$について}
+        ヤングの不等式を用いる。
+        \[
+          ab \leq \frac{a^p}{p} + \frac{b^q}{q}
+        \]
+        \begin{align*}
+          \mathbf{P}(u)
+          = \frac{h}{f^{p-1}}\frac{f^p\mu}{\mu(f^p)}
+          &= hf\frac{\mu}{\mu(f^p)}
+          = \frac{hf}{\mu(f^p)}\mu \\
+          &\leq \frac{1}{\mu(f^p)} \left( \frac{f^p}{p} + \frac{h^q}{q} \right) \mu
+          < \infty
+        \end{align*}
+
+      \subsubsection{ヘルダーの不等式の証明}
+        $(\mathbf{P}(u))^q \leq \mathbf{P}(u^q)$を展開する。
+        ここでも$\frac{1}{p} + \frac{1}{q} = 1$を適宜変形して利用する。
+        \begin{align*}
+          \left( \frac{h}{\mu(f^{(p-1)}} 1_{\{f(s) > 0\}} \frac{f^p \mu}{\mu(f^p)} \right)^q
+          &\leq
+          \frac{h^q}{f^{q(p-1)}}1_{\{f(s) > 0\}}\frac{f^p}{\mu(f^p)} \\
+          \left(\frac{1}{\mu(f^p)}\right)^q (hf\mu)^q
+          &\leq
+          \left(\frac{1}{\mu(f^p)}\right) \left(h^q\frac{f^p}{f^{q(p-1)}}1_{\{f(s) > 0\}}\mu \right)\\
+          (hf\mu)^q
+          &\leq
+          (\mu(f^p))^{q-1} \left(h^q \frac{f^p}{f^p}1_{\{f(s) > 0\}} \mu\right)\\
+          (hf\mu)^q
+          &\leq
+          (\mu(f^p))^{\frac{q}{p}}(h^q \mu) \\
+          (hf\mu)
+          &\leq
+          (\mu(f^p))^{\frac{1}{p}}(h^q\mu)^{\frac{1}{q}} \\
+          \int fh d\mu
+          &\leq
+          \left(\int f^p d\mu \right)^{\frac{1}{p}} \left(\int h^q d\mu \right)^{\frac{1}{q}}
+        \end{align*}
+        通常の$\log$を使う証明じゃないの面白いね。
 
   \section{Chapter 7}
     \subsection{大数の法則を証明する前の補題}
@@ -308,6 +387,27 @@
         として$X^2 = f(X), Y^2 = f(Y)$として見る。
       \end{proof}
 
+    \subsection{73ページ下から3行目}
+      まあ明らかなんだけど、さすがにそのまま引き算して証明できるほど明らかではない。
+
+      $1_{\{|X - \mu| > c\}}$を考えよう。
+      \[
+        \PP(|X - \mu| > c) = \EE[1_{\{|X - \mu| > c\}}]
+      \]
+      であり、
+      \[
+        1_{\{|X - \mu| > c\}} < \frac{(X - \mu)^2}{c^2}
+      \]
+      が成立することに注意すると、両辺を積分して、
+      \begin{align*}
+        \int 1_{\{|X - \mu| > c\}} d\PP &\leq \int \frac{(X - \mu)^2}{c^2} d\PP \\
+        \PP(|X - \mu| > c) & \leq \frac{1}{c^2}\EE[(X - \mu)^2] \\
+        c^2 \PP(|X - \mu| > c) & \leq \EE[(X - \mu)^2] = \Var(X)\
+      \end{align*}
+
+    \subsection{74ページ(a)の2行上}
+      $f$が有界なのは$f$が閉区間上の連続関数だから。
+      位相空間でよくあるお話だけどただ単に「$f$は有界である」と書かれるのはちょっと...。
 
 
 
