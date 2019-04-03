@@ -410,7 +410,97 @@
       位相空間でよくあるお話だけどただ単に「$f$は有界である」と書かれるのはちょっと...。
 
   \section{Chapter 8}
-    眠いし疲れたので明日
+    眠いし疲れたので明日。
+    なんか書かなきゃいけないことあったはずなんだけど、
+    ちょっと忘れたよ。
+
+  \section{Chapter 9}
+    \subsection{$E[X;G]$という書き方について}
+      Chapter 5で実は定義されています。
+      \[
+        E[X;G] := \int X 1_G d\PP = \int_G X d\PP
+      \]
+
+    \subsection{86ページ3行目}
+      \[
+        \{ Y > \tilde{Y} + \frac{1}{n} \} \uparrow
+        \{ Y > \tilde{Y}\}
+      \]
+      とは、
+      \[
+        \bigcup_{n}\{ Y > \tilde{Y} + \frac{1}{n} \} =
+        \{ Y > \tilde{Y}\}
+      \]
+      よって、
+      \[
+        \sum_n \PP(Y > \tilde{Y} + \frac{1}{n})
+        \ge
+        \PP \left(\bigcup_{n}\{ Y > \tilde{Y} + \frac{1}{n} \} \right)
+        \ge
+        \PP(Y > \tilde{Y})
+        > 0
+      \]
+      であることに注意する。
+
+    \subsection{86ページ下から6行目}
+      \underline{almost surely}で$Y_n$が非負かつ、$n$に関して単調増加であることを示すことに気を付ける。
+      \subsubsection{$0 \leq Y_n$(a.s.) について}
+        $F := \{ Y_n < 0 \}$について考える。
+        $Y_n$は$\mathcal{G}$可測なので、
+        $F$は$\mathcal{G}$可測集合となる。
+        $Y_n$が$X_n$の条件付き期待値であることと、
+        非負の可測関数を確立測度で積分するとその値は非負になることに気をつければ、以下のように計算することができる。
+        \begin{align*}
+          \int_F Y_n d\PP &= \int_F X_n d\PP \\
+          &\ge 0
+        \end{align*}
+        一方、
+        \[
+          \int_F Y_n d\PP = \int_{\Omega} Y_n 1_F d\PP
+        \]
+        だから、
+        \[
+          \int_{\Omega} Y_n 1_F d\PP \ge 0
+        \]
+        となる。
+        さて、
+        \[
+          Y_n 1_F(\omega) \leq 0 \quad (\forall \omega \in \Omega)
+        \]
+        だから、
+        \[
+          \int_{\Omega} Y_n 1_F d\PP \leq 0
+        \]
+        よって、
+        \[
+          \int_{\Omega} Y_n 1_F d\PP = 0
+        \]
+        これから、
+        \[
+          \int_{\Omega} -Y_n 1_F d\PP = 0
+        \]
+        51ページのLEMMA(b)を用いると
+        \[
+          \PP(F) = 0
+        \]
+        が分かる。
+
+      \subsubsection{$Y_n \uparrow$(a.s.)について}
+        前小小節とほぼ同じ。
+        $s < r$として、$G := \{ Y_s > Y_r \}$
+        上で$X_s,X_r$をそれぞれ積分する。
+        そしてそれらを引き算する。
+
+    \subsection{86ページ下から3行目$Y_n \uparrow Y$(a.s)について}
+      分からないから助けて。
+
+
+
+
+
+
+
+
 
 
 
