@@ -494,7 +494,7 @@
     \subsection{86ページ下から3行目$Y_n \uparrow Y$(a.s)について}
       上極限の扱い分かってない人みたいになった。
 
-      各店収束することを示すから、$\omega \in \Omega$を一つ固定する。
+      各点収束することを示すから、$\omega \in \Omega$を一つ固定する。
       \subsubsection{$\limsup_{n \to \infty}{Y_n(\omega)} = \infty$のとき}
         \[
           \limsup_{n \to \infty}{Y_n(\omega)} = \inf_{n \ge 1} \sup_{\nu \ge n} Y_{\nu}(\omega)
@@ -525,6 +525,37 @@
         \[
           \forall K >0 , \exists m \in \NN \quad s.t. \quad Y_m(\omega) > K
         \]
+        これは、数列$(Y_n(\omega))$が正の無限大に発散することの定義そのものである。
+        したがって、
+        \[
+          \lim_{n \to \infty} Y_n(\omega) = \infty
+        \]
+
+      \subsubsection{$\limsup_{n \to \infty}{Y_n(\omega)} = \alpha < \infty$のとき}
+        定義より、
+        \[
+          \limsup_{n \to \infty}{Y_n(\omega)} = \inf_{n \ge 1} \sup_{\nu \ge n} Y_{\nu}(\omega)
+        \]
+        であるが、$Y_{n}(\omega)$は$n$に関する単調増加列なので、
+        各$b_n$の値は全て等しい。ただし、
+        \[
+          b_n = \sup_{\nu \ge n} Y_{\nu}(\omega)
+        \]
+        したがって、
+        \[
+          \inf_{n \ge 1} \sup_{\nu \ge n} Y_{\nu}(\omega) = \sup_{n \ge 1}Y_n(\omega)
+        \]
+        つまり、
+        \[
+          \sup_{n \ge 1}Y_n(\omega) = \alpha
+        \]
+        であることが分かる。
+        よって、$Y_n(\omega)$は上限が$\alpha$の単調増加な数列なので
+        \[
+          \lim_{n \to \infty}Y_n(\omega) = \alpha
+        \]
+
+
 
 
 
