@@ -492,7 +492,42 @@
         そしてそれらを引き算する。
 
     \subsection{86ページ下から3行目$Y_n \uparrow Y$(a.s)について}
-      分からないから助けて。
+      上極限の扱い分かってない人みたいになった。
+
+      各店収束することを示すから、$\omega \in \Omega$を一つ固定する。
+      \subsubsection{$\limsup_{n \to \infty}{Y_n(\omega)} = \infty$のとき}
+        \[
+          \limsup_{n \to \infty}{Y_n(\omega)} = \inf_{n \ge 1} \sup_{\nu \ge n} Y_{\nu}(\omega)
+        \]
+        である(定義)。見やすさのために、新たに
+        \[
+          a_n = \sup_{\nu \ge n} Y_{\nu}(\omega)
+        \]
+        とおく。すると、
+        \[
+          \inf_{n \ge 1} a_n
+        \]
+        となる。
+        探索範囲が狭まっているので$a_n$は単調減少列であることに注意する。
+        仮定より、
+        \[
+          \inf_{n \ge 1} a_n = \infty
+        \]
+        だから、
+        \[
+          a_n = \infty \quad (\forall n)
+        \]
+        つまり、とりわけ$n=1$に関して
+        \[
+          \sup_{\nu \ge 1} Y_{\nu}(\omega) = \infty
+        \]
+        これはつぎのように書ける。
+        \[
+          \forall K >0 , \exists m \in \NN \quad s.t. \quad Y_m(\omega) > K
+        \]
+
+
+
 
 
 
