@@ -421,6 +421,45 @@
         E[X;G] := \int X 1_G d\PP = \int_G X d\PP
       \]
 
+    \subsection{条件付き期待値の別の書き方について}
+      積分の形での定義を、指示関数(定義関数)を使って書き換えたものが次の書き方。
+      \begin{defn}
+        $Y$が$X$の$\mathcal{G}$での条件付き期待値であるとは、
+        任意の$G \in \mathcal{G}$に対して次が成立すること。
+        \[
+          E[X1_G ] = E[Y1_G]
+        \]
+        が成り立つこと。
+      \end{defn}
+      これは次のように書き換えられる。
+      \begin{defn}
+        $Y$が$X$の$\mathcal{G}$での条件付き期待値であるとは、
+        任意の上に有界な非負の$\mathcal{G}$-可測関数$Z$に対して次が成立すること。
+        \[
+          E[XZ] = E[YZ]
+        \]
+        が成り立つこと。
+      \end{defn}
+
+      後者の定義から前者の定義が導かれるのは自明。
+      前者の定義から後者の定義を導く。
+      $(Z_n)$は$Z$に各点収束する単調増加な単関数の列とする。
+      単関数は指示関数の有限個の和で表すことができるから、
+      \[
+        E[XZ_n] = E[YZ_n]
+      \]
+      が成り立つ。したがって、
+      \[
+        \lim_{n \to \infty} E[XZ_n] = \lim_{n \to \infty} E[YZ_n]
+      \]
+      が成り立つ。単調収束定理より、
+      \begin{align*}
+        E[\lim_{n \to \infty} XZ_n] &= E[\lim_{n \to \infty} YZ_n] \\
+        E[XZ] &= E[YZ]
+      \end{align*}
+      がなりたつ。
+      ($E[XZ_n],E[YZ_n]$がそれぞれ単調増加な可測関数列であることは後述の補題\ref{lem1}を参照)
+
     \subsection{86ページ3行目}
       \[
         \{ Y > \tilde{Y} + \frac{1}{n} \} \uparrow
@@ -554,6 +593,21 @@
         \[
           \lim_{n \to \infty}Y_n(\omega) = \alpha
         \]
+
+    \subsection{89ページ(f),(g)の証明について}
+      \subsubsection{(f)について}
+      次の補題が必要。
+      \begin{lem}\label{lem1}
+        $0 \leq X \leq Y$なる確率変数について、
+        \[
+          E[X \mid \mathcal{G}] \leq E[Y \mid \mathcal{G}]
+        \]
+      \end{lem}
+
+      \begin{proof}
+        $Z = E[X \mid \mathcal{G}, W = E[Y \mid \mathcal{G}]$とする。
+        $\{W < Z\}$の確率が$0$であることを証明すればいい。
+      \end{proof}
 
 
 
