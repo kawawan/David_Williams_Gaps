@@ -104,6 +104,55 @@
     David Williams 著 "Probability with Martingales"。
   \end{abstract}
 
+  \section{Chapter 1}
+    \subsection{16ページExercise}
+      $C_1\cap C_2\not\in\mathcal{C}$となる$C_1, C_2\in\mathcal{C}$の具体例を示す。\\
+      $a_n(C) := \frac{\#\{k\in C; k\leq n\}}{n}$
+      とする。このとき、$2\NN\in\mathcal{C}$であることを示す。
+      \begin{align*}
+        a_n(2\NN) = \left \{
+        \begin{array}{cc}
+          \frac{1}{2} & n\in 2\NN\\
+          \frac{(n-1)}{2 n} & \mathrm{else}
+        \end{array}
+        \right.
+      \end{align*}
+      となるので、
+      \begin{align*}
+        \sup_{n\leq k} a_k(2\NN) &= \frac{1}{2}\\
+        \inf_{n\leq k} a_k(2\NN) &= \frac{n-1}{2n}
+      \end{align*}
+      で、それぞれの極限は
+      \begin{align*}
+        \lim_{n\to\infty}\sup_{n\leq k} a_k(2\NN) &= \frac{1}{2}\\
+        \lim_{n\to\infty}\inf_{n\leq k} a_k(2\NN) &= \lim_{n\to\infty}\frac{n-1}{2n} = \frac{1}{2}
+      \end{align*}
+      すなわち、
+      \[
+        \lim_{n\to\infty} a_n(2\NN) = \frac{1}{2}
+      \]
+      となり収束するので、$2\NN\in\mathcal{C}$。
+
+      次に、$C$を次のように構成する。$n = 0,1,2,\ldots$について、
+      \begin{itemize}
+        \item $[2^{2n}, 2^{2n + 1})$に含まれる奇数の元は$C$の元である
+        \item $[2^{2n}, 2^{2n + 1})$に含まれる偶数の元は$C$の元である
+        \item それ以外の元は$C$に含まれない
+      \end{itemize}
+      とする。この時、$F = \{1,2,5,7,8,10,\ldots\}$と構成されていくが、
+      これは明らかに$a_n(C)\to\frac{1}{2}\ (n\to\infty)$となる(証明は前述とほぼ同じ)。
+      
+      このとき、$F := 2\NN\cap C\not\in \mathcal{C}$であることを示す。\\
+      $F$の定義を書き直すと、
+      \[
+        F = \{k\in2\NN;k\in[2^{2n}, 2^{2n+1}),\exists n\in\NN\}
+      \]
+      である。この$a_n(F)$が収束しないことを示す、すなわち振動することをしめせばいいので、
+      適当な$2$つの部分列をとってくればよい。これは
+
+
+
+
   \section{Chapter 6}
     \subsection{65ページ9行目}
       $c_1U_1 + c_2U_2 \sim c_1V_1 + c_2V_2$について。\\
