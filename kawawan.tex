@@ -1,0 +1,1186 @@
+  \section{Chapter 6}
+    \subsection{65ページ9行目}
+      $c_1U_1 + c_2U_2 \sim c_1V_1 + c_2V_2$について。\\
+      \begin{align*}
+        &\{x \mid (c_1U_1 + c_2U_2)(x) \neq (c_1V_1 + c_2V_2)(x)\} \\
+        \Leftrightarrow &\{x \mid (c_1U_1 + c_2U_2)(x) - (c_1V_1 + c_2V_2)(x) \neq 0\} =: A
+      \end{align*}
+      の測度が$0$であることを示せばよい。
+      明らかに、
+      \[
+        c_1U_1 \sim c_1V_1, c_2U_2 \sim c_2V_2
+      \]
+      である。したがって、
+      \begin{align*}
+        A_1 := \{x \mid c_1U_1(x) \neq c_1V_1(x)\} \\
+        A_2 := \{x \mid c_2U_2(x) \neq c_2V_2(x)\}
+      \end{align*}
+      の測度はそれぞれ$0$である
+      \footnote{別に$A_1$などと名前を付けなくてもいいが(むしろ名前を付けない方がわかりやすい。)、紙面のスペースの都合上名前を付けている。}。
+      このとき、次が成立。
+      \[
+        A \subset A_1 \cup A_2
+      \]
+      背理法で示す。上式の左辺から任意に$x$を取る。$x \notin A_1 \cup A_2$、つまり、
+      \[
+        x \in A_1^c \cap A_2^c
+        \]
+      と仮定する。このとき、$c_1U_1(x) = c_1V_1(x), c_2U_2(x) = c_2V_2(x)$であるから、
+      \[
+        (c_1U_1 + c_2U_2)(x) - (c_1V_1 + c_2V_2)(x) = 0\
+      \]
+      より、矛盾する。また、
+      \begin{multline*}
+        A = \{x \mid (c_1U_1 + c_2U_2)(x) - (c_1V_1 + c_2V_2)(x) < 0\} \\
+        \cup \{x \mid (c_1U_1 + c_2U_2)(x) - (c_1V_1 + c_2V_2)(x) > 0\}
+      \end{multline*}
+      であるから、$A$は可測集合。したがって、測度の単調性より、$A$の測度は$0$。
+
+    \subsection{65ページ10行目}
+      $U_n \to U$より、
+      $N \in \NN$が存在して、
+      $n \ge N \Rightarrow ||U_n - U|| < \varepsilon \quad (\forall \varepsilon > 0)$
+      である。
+      $U_n \sim V_n, U \sim V$より、$||V_N - V|| < \varepsilon$が分かる。
+
+    \subsection{67ページ10行目から12行目}
+      \subsubsection{(ii) $\Rightarrow$ (i)について。}
+        (逆向きは本の中で証明されています。)
+
+        任意の$Z \in \mathcal{K}$を取ると、$||X - Z|| \ge ||X - Y|| + \alpha$となることを示すとよい。
+        ここで、$\alpha > 0$である。
+        しかし、$Z$として$Y + tZ \quad (t \in \RR)$とすればよい。
+        これは$\mathcal{L}^p$の線形性のためである。
+        なんとなれば、
+        $Z = \frac{-Y+ W}{t} \quad (\forall W \in \mathcal{K})$とすればよい。
+        $\langle X - Y, Z \rangle = \EE[(X - Y)Z] = 0$
+        即ち、$\EE[XY] = \EE[YZ]$が成り立つことに注意して、
+        $||X - Y - tZ||^2$を計算すると分かる\footnote{2乗しないと計算しにくい。}。
+
+      \subsubsection{$||Y - Y^{\prime}|| = 0$について。}
+        \begin{align*}
+          \EE[(X - Y)(Y - Y^{\prime})] = 0\\
+          \EE[(X - Y^{\prime})(Y - Y^{\prime})] = 0
+        \end{align*}
+        という式をそれぞれ期待値の中身を展開して引き算すると、
+        \[
+          \EE[(Y - Y^{\prime})^2] = 0
+        \]
+        という式が求められるから$Y = Y^{\prime}\quad (a.s.)$。
+
+    \subsection{70ページ8,9行目}
+      \subsubsection{$(\mathbf{P}(u))^q \leq \mathbf{P}(u^q)$について。}
+        記号が見慣れなくてよくわからないが、
+        $\mathbf{P}$は直前で確率測度であると示しているから、
+        $\mathbf{P}(u)$とは$\mathbf{P}$による$u$の期待値である。
+        凸関数$c(x) = x ^q$を考えると、この不等式はイェンゼンの不等式を
+        用いるとすぐに従うことが分かる。
+        そのためには、イェンゼンの不等式を用いるための条件を満たしているかを
+        確認しよう。
+        $u$の定義は$f(s) = 0$の部分で$u(s) = 0$なので、
+        下記の計算には本当は$1_{\{f(s) > 0\}}$を書いておくべき。
+
+      \subsubsection{$\mathbf{P}(u^q) < \infty$であること}
+        Chapter 5で見たように、$f,h$を可測関数、$\mu$を測度とすれば、
+        \[
+          (hf)\mu = h(f\mu)
+        \]
+        が成立していた。これを用いる。また、$\frac{1}{p} + \frac{1}{q} = 1$にも注意しておく。
+        \begin{align*}
+          \mathbf{P}(u^q) &= \frac{h^q}{f^{q(p-1)}}\frac{f^p\mu}{\mu(f^p)}
+          = \frac{h^q}{f^p}\frac{f^p\mu}{\mu(f^p)}
+          = \frac{h^q}{f^p}f^p \frac{\mu}{\mu(f^p)} \\
+          &= h^q \frac{\mu}{\mu(f^p)} = \frac{h^q}{\mu(f^p)}\mu
+          =\frac{1}{\mu(f^p)}\int h^q d\mu < \infty
+        \end{align*}
+
+      \subsubsection{$\mathbf{P}(u) < \infty$について}
+        ヤングの不等式を用いる。
+        \[
+          ab \leq \frac{a^p}{p} + \frac{b^q}{q}
+        \]
+        \begin{align*}
+          \mathbf{P}(u)
+          = \frac{h}{f^{p-1}}\frac{f^p\mu}{\mu(f^p)}
+          &= hf\frac{\mu}{\mu(f^p)}
+          = \frac{hf}{\mu(f^p)}\mu \\
+          &\leq \frac{1}{\mu(f^p)} \left( \frac{f^p}{p} + \frac{h^q}{q} \right) \mu
+          < \infty
+        \end{align*}
+
+      \subsubsection{ヘルダーの不等式の証明}
+        $(\mathbf{P}(u))^q \leq \mathbf{P}(u^q)$を展開する。
+        ここでも$\frac{1}{p} + \frac{1}{q} = 1$を適宜変形して利用する。
+        \begin{align*}
+          \left( \frac{h}{\mu(f^{(p-1)}} 1_{\{f(s) > 0\}} \frac{f^p \mu}{\mu(f^p)} \right)^q
+          &\leq
+          \frac{h^q}{f^{q(p-1)}}1_{\{f(s) > 0\}}\frac{f^p}{\mu(f^p)} \\
+          \left(\frac{1}{\mu(f^p)}\right)^q (hf\mu)^q
+          &\leq
+          \left(\frac{1}{\mu(f^p)}\right) \left(h^q\frac{f^p}{f^{q(p-1)}}1_{\{f(s) > 0\}}\mu \right)\\
+          (hf\mu)^q
+          &\leq
+          (\mu(f^p))^{q-1} \left(h^q \frac{f^p}{f^p}1_{\{f(s) > 0\}} \mu\right)\\
+          (hf\mu)^q
+          &\leq
+          (\mu(f^p))^{\frac{q}{p}}(h^q \mu) \\
+          (hf\mu)
+          &\leq
+          (\mu(f^p))^{\frac{1}{p}}(h^q\mu)^{\frac{1}{q}} \\
+          \int fh d\mu
+          &\leq
+          \left(\int f^p d\mu \right)^{\frac{1}{p}} \left(\int h^q d\mu \right)^{\frac{1}{q}}
+        \end{align*}
+        通常の$\log$を使う証明じゃないの面白いね。
+
+  \section{Chapter 7}
+    \subsection{大数の法則を証明する前の補題}
+      \begin{prop*}
+        $S_k$-値確率変数列$(X_k)_{k = 1,2,\cdots, n}$は独立で、
+        $g_k \colon S_k \to S_k^{\prime}$
+        は
+        $\mathcal{S}_k$-可測関数とする。
+        このとき、$Y_k = g_k(X_k)$とおけば、$(Y_k)_k$は独立。
+      \end{prop*}
+      \begin{proof}
+        $A_k^{\prime} \in \mathcal{S}_k^{\prime}$とする。
+        \[
+          \{Y_k \in A_k^{\prime}\} = \{X_k \in g_k^{-1}(A_k^{\prime})\}
+        \]
+        であり、$g_k$の可測性から、
+        \[
+          g_k^{-1}(A_k^{\prime}) \in \mathcal{S}_k
+        \]
+        であることから、
+        \[
+          \{X_k \in g_k^{-1}(A_k^{\prime})\} \in \sigma(X_k)
+        \]
+        よって、
+        \begin{align*}
+          \PP \left(\bigcap_{k=1}^{n} (Y_k \in A_k^{\prime})\right) &= \PP \left((\bigcap_{k=1}^{n} (X_k \in g_k^{-1}(A_k^{\prime}))\right) \\
+          &= \prod_{k=1}^n \PP(X_k \in g_k^{-1}(A_k^{\prime}) \\
+          &= \prod_{k=1}^n \PP(Y_k \in A_k^{\prime})
+        \end{align*}
+      \end{proof}
+
+      \begin{cor*}
+        $(X_k)_{k = 1,2,\cdots, n}$が$\RR$-値独立確率変数の列とする。
+        $g = g(x_1, x_2, \cdots, x_i)$は$\RR^i \to \RR$のボレル可測関数とする。
+        ただし、$i < n$。
+        このとき、$Y := g(X_1, X_2, \cdots, X_i)$とおけば、
+        $Y, X_{i+1}, \cdots, X_n$は独立。
+      \end{cor*}
+      \begin{proof}
+        $X = (X_1, \cdots, X_i)$は$\RR^i$-値確率変数であり、
+        $X, X_{i+1}, \cdots, X_{n}$
+        は独立である。まずはこれを示す。
+        $A \in \BB(\RR^i), A_{i+1}, \cdots, A_n \in \BB(\RR)$について、
+        \begin{equation}\label{2-1}
+          \PP(X \in A, X_{i+1} \in A_{i+1}, \cdots, X_n \in A_n) = \PP(X \in A)\prod_{j = i+1}^n \PP(X_j \in A_j)
+        \end{equation}
+        が成立することを言えばよい。そこで、
+        \[
+          \mathcal{L} = \{A \subset \RR^i \mid (\ref{2-1})\text{が成立}\}
+        \]
+        と定義する。$\mathcal{L}$は$\lambda$-systemである。
+        明らかに$\Omega \in \mathcal{L}$である。
+        次に、$A,B \in \mathcal{L}, A \subset B$とすると、
+        $\PP(X \in B-A) = \PP(X \in B) - \PP(X \in A)$であることに注意すれば、
+        \begin{align*}
+          &\PP(X \in B-A, X_{i+1} \in A_{i+1}, \cdots, X_n \in A_n) \\
+          =& \PP(X \in B, X_{i+1} \in A_{i+1}, \cdots, X_n \in A_n) - \PP(X \in A, X_{i+1} \in A_{i+1}, \cdots, X_n \in A_n) \\
+          =& \PP(X \in B)\prod_{j = i+1}^n \PP(X_j \in A_j) - \PP(X \in A)\prod_{j = i+1}^n \PP(X_j \in A_j) \\
+          =& \left( \PP(X \in B) - \PP(X \in A) \right)\prod_{j = i+1}^n \PP(X_j \in A_j) \\
+          =& \PP(X \in B - A) \prod_{j = i+1}^n \PP(X_j \in A_j)
+        \end{align*}
+        なので、$B - A \in \mathcal{L}$。
+        最後に、$A_n \in \mathcal{L} \quad (n = 1, 2, \cdots)$で、$A_n \uparrow A$とする。
+        $X \in A$とすれば、$\exists m \in \NN \quad s.t. \quad X \in A_m$なので、
+        そのような自然数で最小のものを$m$とする\footnote{自然数全体の部分集合は必ず最小限を持つ}。
+        集合列$(A_n)$は包含関係に関して単調増加であるため、すべての$N \ge m$に対して、
+        \[
+          \{X \in A_m\} = \{X \in A_N\}
+        \]
+        が成立する。したがって当然
+        \[
+          \{X \in A_m\} = \bigcup_{k=N}^{\infty}\{X \in A_k\} = \{X \in A\}
+        \]
+        よって、
+        \[
+          \PP(X \in A_m) = \PP(X \in A)
+        \]
+        よって次のように計算ができる。
+        \begin{align*}
+          &\PP(X \in A, X_{i+1} \in A_{i+1}, \cdots, X_n \in A_n) \\
+          =&\PP(X \in A_m, X_{i+1} \in A_{i+1}, \cdots, X_n \in A_n) \\
+          =&\PP(X \in A_m)\prod_{j = i+1}^n \PP(X_j \in A_j) \\
+          =&\PP(X \in A)\prod_{j = i+1}^n \PP(X_j \in A_j)
+        \end{align*}
+        これにより、$A \in \mathcal{L}$であることが分かる。
+        以上より$\mathcal{L}$は$\lambda$-system。
+
+        さて、
+        $\mathcal{P} = \{A_1 \times \cdots \times A_i \mid A_k \in \BB(\RR) , k = 1, 2, \cdots, i\}$
+        は$\pi$-systemであり、$A \in \mathcal{P}$とすれば、直積の定義より
+        \[
+          X \in A \Leftrightarrow X_1 \in A_1, \cdots, X_i \in A_i
+        \]
+        より、
+        \[
+          \{X \in A\} = \{X_1 \in A_1\} \cap \cdots \cap \{X_i \in A_i\}
+        \]
+        仮定から$X_1 ,\cdots , X_n$は独立なので
+        \begin{align*}
+            &\PP(X \in A ,X_{i+1} \in A_{i+1}, \cdots, X_n \in A_n) \\
+            =& \prod_{k=1}^n\PP(X_k) \\
+            =& \PP(X_1 \in A_1, \cdots, X_i \in A_i)\prod_{k=i+1}^n\PP(X_k \in A_k) \\
+            =& \PP(X \in A)\prod_{k=i+1}^n\PP(X_k)
+        \end{align*}
+        と計算できるから、$A \in \mathcal{L}$がわかる。
+        したがって$\mathcal{P} \subset \mathcal{L}$である。
+        よって、$\pi$-$\lambda$定理より、
+        \[
+          \mathcal{L} \supset \sigma(\mathcal{P}) = \BB(\RR^i)
+        \]
+        以上により、$X, X_{i+1}, \cdots, X_n$は独立であることが分かった。
+
+        あとは先の命題を適用すればよい。
+      \end{proof}
+
+      \begin{lem*}
+        $X,Y,Z,W$は独立なr.v.とする。
+        このとき、$(X,Y^n),(XY^2,Z),(XY,ZW),(X^2,Y^2)$はそれぞれ独立。
+      \end{lem*}
+      \begin{proof}
+        確率変数の独立性は合成によって保たれることに注意する。
+
+        $(X,Y^n)$に関しては、
+        \begin{align*}
+          f &\colon x \mapsto x \\
+          g &\colon x \mapsto x^n
+        \end{align*}
+        として、$X = f(X), Y^n = g(Y)$と見る。
+
+        $(XY^2,Z)$に関しては、
+        \begin{align*}
+          f &\colon (x, y) \mapsto xy^2 \\
+          g &\colon x \mapsto x
+        \end{align*}
+        として、$XY^2 = f(X,Y), Z = g(Z)$として見る。
+
+        $(XY,ZW)$に関しては、
+        \begin{align*}
+          f \colon (x, y) \mapsto xy
+        \end{align*}
+        として$XY = f(X,Y)$とみれば、$XY,Z,W$は独立。
+        もう一度$ZW = f(Z,W)$とみれば、$XY,ZW$は独立。
+
+        $(X^2,Y^2)$に関しては、
+        \begin{align*}
+          f \colon x \mapsto x^2
+        \end{align*}
+        として$X^2 = f(X), Y^2 = f(Y)$として見る。
+      \end{proof}
+
+    \subsection{73ページ下から3行目}
+      まあ明らかなんだけど、さすがにそのまま引き算して証明できるほど明らかではない。
+
+      $1_{\{|X - \mu| > c\}}$を考えよう。
+      \[
+        \PP(|X - \mu| > c) = \EE[1_{\{|X - \mu| > c\}}]
+      \]
+      であり、
+      \[
+        1_{\{|X - \mu| > c\}} < \frac{(X - \mu)^2}{c^2}
+      \]
+      が成立することに注意すると、両辺を積分して、
+      \begin{align*}
+        \int 1_{\{|X - \mu| > c\}} d\PP &\leq \int \frac{(X - \mu)^2}{c^2} d\PP \\
+        \PP(|X - \mu| > c) & \leq \frac{1}{c^2}\EE[(X - \mu)^2] \\
+        c^2 \PP(|X - \mu| > c) & \leq \EE[(X - \mu)^2] = \Var(X)\
+      \end{align*}
+
+    \subsection{74ページ(a)の2行上}
+      $f$が有界なのは$f$が閉区間上の連続関数だから。
+      位相空間でよくあるお話だけどただ単に「$f$は有界である」と書かれるのはちょっと...。
+
+  \section{Chapter 8}
+    眠いし疲れたので明日。
+    なんか書かなきゃいけないことあったはずなんだけど、
+    ちょっと忘れたよ。
+
+  \section{Chapter 9}
+    \subsection{$\EE[X;G]$という書き方について}
+      Chapter 5で実は定義されています。
+      \[
+        \EE[X;G] := \int X 1_G d\PP = \int_G X d\PP
+      \]
+
+    \subsection{条件付き期待値の別の書き方について}
+      積分の形での定義を、指示関数(定義関数)を使って書き換えたものが次の書き方。
+      \begin{defn}
+        $Y$が$X$の$\mathcal{G}$での条件付き期待値であるとは、
+        任意の$G \in \mathcal{G}$に対して次が成立すること。
+        \[
+          \EE[X1_G ] = \EE[Y1_G]
+        \]
+        が成り立つこと。
+      \end{defn}
+      これは次のように書き換えられる。
+      \begin{defn}
+        $Y$が$X$の$\mathcal{G}$での条件付き期待値であるとは、
+        任意の上に有界な非負の$\mathcal{G}$-可測関数$Z$に対して次が成立すること。
+        \[
+          \EE[XZ] = \EE[YZ]
+        \]
+        が成り立つこと。
+      \end{defn}
+
+      後者の定義から前者の定義が導かれるのは自明。
+      前者の定義から後者の定義を導く。
+      $(Z_n)$は$Z$に各点収束する単調増加な単関数の列とする。
+      単関数は指示関数の有限個の和で表すことができるから、
+      \[
+        \EE[XZ_n] = \EE[YZ_n]
+      \]
+      が成り立つ。したがって、
+      \[
+        \lim_{n \to \infty} \EE[XZ_n] = \lim_{n \to \infty} \EE[YZ_n]
+      \]
+      が成り立つ。単調収束定理より、
+      \begin{align*}
+        \EE[\lim_{n \to \infty} XZ_n] &= \EE[\lim_{n \to \infty} YZ_n] \\
+        \EE[XZ] &= \EE[YZ]
+      \end{align*}
+      がなりたつ。
+      ($\EE[XZ_n],\EE[YZ_n]$がそれぞれ単調増加な可測関数列であることは後述の補題\ref{lem1}を参照)
+
+    \subsection{86ページ3行目}
+      \[
+        \{ Y > \tilde{Y} + \frac{1}{n} \} \uparrow
+        \{ Y > \tilde{Y}\}
+      \]
+      とは、
+      \[
+        \bigcup_{n}\{ Y > \tilde{Y} + \frac{1}{n} \} =
+        \{ Y > \tilde{Y}\}
+      \]
+      よって、
+      \[
+        \sum_n \PP(Y > \tilde{Y} + \frac{1}{n})
+        \ge
+        \PP \left(\bigcup_{n}\{ Y > \tilde{Y} + \frac{1}{n} \} \right)
+        \ge
+        \PP(Y > \tilde{Y})
+        > 0
+      \]
+      であることに注意する。
+
+    \subsection{86ページ下から6行目}
+      \underline{almost surely}で$Y_n$が非負かつ、$n$に関して単調増加であることを示すことに気を付ける。
+      \subsubsection{$0 \leq Y_n$(a.s.) について}
+        $F := \{ Y_n < 0 \}$について考える。
+        $Y_n$は$\mathcal{G}$可測なので、
+        $F$は$\mathcal{G}$可測集合となる。
+        $Y_n$が$X_n$の条件付き期待値であることと、
+        非負の可測関数を確立測度で積分するとその値は非負になることに気をつければ、以下のように計算することができる。
+        \begin{align*}
+          \int_F Y_n d\PP &= \int_F X_n d\PP \\
+          &\ge 0
+        \end{align*}
+        一方、
+        \[
+          \int_F Y_n d\PP = \int_{\Omega} Y_n 1_F d\PP
+        \]
+        だから、
+        \[
+          \int_{\Omega} Y_n 1_F d\PP \ge 0
+        \]
+        となる。
+        さて、
+        \[
+          Y_n 1_F(\omega) \leq 0 \quad (\forall \omega \in \Omega)
+        \]
+        だから、
+        \[
+          \int_{\Omega} Y_n 1_F d\PP \leq 0
+        \]
+        よって、
+        \[
+          \int_{\Omega} Y_n 1_F d\PP = 0
+        \]
+        これから、
+        \[
+          \int_{\Omega} -Y_n 1_F d\PP = 0
+        \]
+        51ページのLemma(b)を用いると
+        \[
+          \PP(F) = 0
+        \]
+        が分かる。
+
+      \subsubsection{$Y_n \uparrow$(a.s.)について}
+        前小小節とほぼ同じ。
+        $s < r$として、$G := \{ Y_s > Y_r \}$
+        上で$X_s,X_r$をそれぞれ積分する。
+        そしてそれらを引き算する。
+
+    \subsection{86ページ下から3行目$Y_n \uparrow Y$(a.s)について}
+      上極限の扱い分かってない人みたいになった。
+
+      各点収束することを示すから、$\omega \in \Omega$を一つ固定する。
+      \subsubsection{$\limsup_{n \to \infty}{Y_n(\omega)} = \infty$のとき}
+        \[
+          \limsup_{n \to \infty}{Y_n(\omega)} = \inf_{n \ge 1} \sup_{\nu \ge n} Y_{\nu}(\omega)
+        \]
+        である(定義)。見やすさのために、新たに
+        \[
+          a_n = \sup_{\nu \ge n} Y_{\nu}(\omega)
+        \]
+        とおく。すると、
+        \[
+          \inf_{n \ge 1} a_n
+        \]
+        となる。
+        探索範囲が狭まっているので$a_n$は単調減少列であることに注意する。
+        仮定より、
+        \[
+          \inf_{n \ge 1} a_n = \infty
+        \]
+        だから、
+        \[
+          a_n = \infty \quad (\forall n)
+        \]
+        つまり、とりわけ$n=1$に関して
+        \[
+          \sup_{\nu \ge 1} Y_{\nu}(\omega) = \infty
+        \]
+        これはつぎのように書ける。
+        \[
+          \forall K >0 , \exists m \in \NN \quad s.t. \quad Y_m(\omega) > K
+        \]
+        これは、数列$(Y_n(\omega))$が正の無限大に発散することの定義そのものである。
+        したがって、
+        \[
+          \lim_{n \to \infty} Y_n(\omega) = \infty
+        \]
+
+      \subsubsection{$\limsup_{n \to \infty}{Y_n(\omega)} = \alpha < \infty$のとき}
+        定義より、
+        \[
+          \limsup_{n \to \infty}{Y_n(\omega)} = \inf_{n \ge 1} \sup_{\nu \ge n} Y_{\nu}(\omega)
+        \]
+        であるが、$Y_{n}(\omega)$は$n$に関する単調増加列なので、
+        各$b_n$の値は全て等しい。ただし、
+        \[
+          b_n = \sup_{\nu \ge n} Y_{\nu}(\omega)
+        \]
+        したがって、
+        \[
+          \inf_{n \ge 1} \sup_{\nu \ge n} Y_{\nu}(\omega) = \sup_{n \ge 1}Y_n(\omega)
+        \]
+        つまり、
+        \[
+          \sup_{n \ge 1}Y_n(\omega) = \alpha
+        \]
+        であることが分かる。
+        よって、$Y_n(\omega)$は上限が$\alpha$の単調増加な数列なので
+        \[
+          \lim_{n \to \infty}Y_n(\omega) = \alpha
+        \]
+
+    \subsection{89ページ(d)の証明について}
+      (9.5.d)の証明を用いればよいと書いてあるが、
+      (9.5.d)の主張を証明するために有界性は用いていない。
+      したがって、(9.5.d)証明がそのまま(d)の証明になる。
+
+    \subsection{89ページ(f),(g)の証明について}
+      いくつかの補題を先に証明する。
+      \subsubsection{補題その1}
+        \begin{lem}\label{lem1}
+          $X,Y$: 確率変数で、$X \leq Y$とする。
+          このとき、$\EE[X \mid \mathcal{G}] \leq \EE[Y \mid \mathcal{G}]$
+        \end{lem}
+
+        \begin{proof}
+          仮定より、$0 \leq Y - X$だから、88ページ(d)より、
+          \[
+            0 \leq \EE[ Y - X \mid \mathcal{G}]
+          \]
+          88ページ(c)の線形性から、
+          \[
+            \EE[X \mid \mathcal{G}] \leq \EE[Y \mid \mathcal{G}]
+          \]
+        \end{proof}
+
+      \subsubsection{補題その2}
+        \begin{lem}[Reverse cFATOU]\label{lem2}
+          $|X_n(\omega)| \leq V(\omega) \, (\forall n), \quad \EE[V] < \infty$
+          であるなら、
+          \[
+            \EE[\limsup_{n \to \infty}X_n | \mathcal{G}] \ge \limsup_{n \to \infty}\EE[X_n | \mathcal{G}]
+          \]
+        \end{lem}
+
+        \begin{proof}
+          $(V - X_n)$にcFATOUを適用する。
+          \begin{align*}
+            \EE[\liminf_{n \to \infty}(V - X_n) \mid \mathcal{G}] &\leq \liminf_{n \to \infty}\EE[V - X_n \mid \mathcal{G}] \\
+            \\
+            \EE[V + \liminf_{n \to \infty}(- X_n) \mid \mathcal{G}]
+            &\leq
+             \liminf_{n \to \infty}(\EE[V \mid \mathcal{G}] + \EE[- X_n \mid \mathcal{G}]) \\
+             \\
+             \EE[\liminf_{n \to \infty}(- X_n) \mid \mathcal{G}]
+             &\leq
+             \liminf_{n \to \infty} \EE[- X_n \mid \mathcal{G}]\\
+             \\
+             \EE[- \liminf_{n \to \infty}(- X_n) \mid \mathcal{G}]
+             &\ge
+             -\liminf_{n \to \infty} \EE[- X_n \mid \mathcal{G}]\\
+             \\
+             \EE[\limsup_{n \to \infty}X_n | \mathcal{G}]
+             &\ge
+             \limsup_{n \to \infty}\EE[X_n | \mathcal{G}]\\
+          \end{align*}
+        \end{proof}
+
+      \subsubsection{補題その3}
+        \begin{lem}\label{lem3}
+          $|\EE[X \mid \mathcal{G}]| \leq \EE[|X| \mid \mathcal{G}]$
+        \end{lem}
+        \begin{proof}
+          \[
+            -\EE[|X| \mid \mathcal{G}] \leq \EE[X \mid \mathcal{G}] \leq \EE[|X| \mid \mathcal{G}]
+          \]
+          を示せばよい。
+
+          右側の不等式は$X \leq |X|$よりわかる。
+          左側の不等式は$-|X| \leq X$よりわかる。
+        \end{proof}
+
+      \subsubsection{(f)の証明}
+        $k \in \NN$とする。
+        $n \ge k$において、$\inf_{n \ge k}X_n \leq X$が成立する。
+        補題\ref{lem1}より、
+        \[
+          \EE[\inf_{n \ge k}X_n \mid \mathcal{G}] \leq \EE[X \mid \mathcal{G}]
+        \]
+        $n \ge k$について下限をとると、
+        \[
+          \EE[\inf_{n \ge k}X_n \mid \mathcal{G}] \leq \inf_{n \ge k} \EE[X \mid \mathcal{G}]
+        \]
+        $k \to \infty$とすると、(cMON)と$\inf_{n \ge k}X_n$は$k$に関する単調増加列であることから、
+        主張の式が得られる。
+
+      \subsubsection{(g)の証明}
+        補題\ref{lem3}より、
+        \[
+          |\EE[X_n - X \mid \mathcal{G}]| \leq \EE[|X_n - X| \mid \mathcal{G}]
+        \]
+        だから、
+        \begin{align*}
+          \lim_{n \to \infty}|\EE[X_n - X \mid \mathcal{G}]|
+          &\leq
+          \lim_{n \to \infty}\EE[|X_n - X| \mid \mathcal{G}]\\
+          \\
+          &\leq \limsup_{n \to \infty}\EE[|X_n - X| \mid \mathcal{G}]
+        \end{align*}
+        である。ここで補題\ref{lem2}より、
+        \begin{align*}
+          \limsup_{n \to \infty}\EE[|X_n - X| \mid \mathcal{G}]
+          &\leq
+          \EE[\limsup_{n \to \infty}|X_n - X| \mid \mathcal{G}]\\
+          \\
+          = \EE[0 \mid \mathcal{G}]\\
+        \end{align*}
+        したがって、
+        \[
+          \limsup_{n \to \infty}\EE[|X_n - X| \mid \mathcal{G}] = 0
+        \]
+        よって、はさみちの原理から、
+        \[
+          \lim_{n \to \infty}|\EE[X_n - X \mid \mathcal{G}]| = 0
+        \]
+        ゆえに、
+        \[
+          \lim_{n \to \infty}\EE[X_n \mid \mathcal{G}] = \EE[X \mid \mathcal{G}]
+        \]
+
+    \subsection{(j)について}
+      (***)にある『適切な可積分条件』とは
+      \[
+        \EE[|ZX|] < \infty
+      \]
+      のこと。これがないとそもそも条件付き期待値が定義できない。
+      本の証明は$\EE[|ZX|] < \infty$を仮定して、先に(***)の条件を証明している。
+      そのご、各条件に付いて$\EE[|ZX|] < \infty$を満たしているかどうかをチェックしている。
+
+      『適切な可積分条件』とかふわふわした書き方しないでよ、分からないでしょ！
+
+    \subsection{(k)について}
+      \subsubsection{証明1行目}
+        $\EE[X] < \infty$は条件付き期待値を定義するために必要な条件だから書いてあります。
+        9.7のリストの最初に$\EE[|X|] < \infty$を仮定すると書いてあるので、それはそう。
+
+      \subsubsection{証明2行目}
+        「$XI_G$ and $H$ are independent」は「$XI_G$ and $I_H$ are independent」
+        のこと。
+
+        また、この主張は
+        $\sigma(XI_G) \subset \sigma(\sigma(X), \mathcal{G})$
+        と
+        $\sigma(I_H) \subset \sigma(\mathcal{H})$
+        を示せばよい。
+        これが示されれば、
+        \[
+          A \in \sigma(XI_G) \Rightarrow A \in \sigma(\sigma(X), \mathcal{G})
+        \]
+        \[
+          B \in \sigma(I_H) \Rightarrow B \in \sigma(\mathcal{H})
+        \]
+        が分かるので、$\sigma(\sigma(X), \mathcal{G})$と$\sigma(\mathcal{H})$
+        が独立であるという仮定を利用すればよい。
+
+        $\sigma(XI_G) \subset \sigma(\sigma(X), \mathcal{G})$は、
+        $X$は$\sigma(X)$上可測であり、$I_G$は$\mathcal{G}$上可測だから、
+        それぞれ$\sigma(\sigma(X), \mathcal{G})$である。
+        よって、$XI_G$は$\sigma(\sigma(X), \mathcal{G})$上で可測。
+        したがって、$\sigma(XI_G) \subset \sigma(\sigma(X), \mathcal{G})$。もう一個もおんなじ感じやで。
+
+      \subsubsection{4行目}
+        $Y$は$\mathcal{G}$可測だから、$YI_G$も$\mathcal{G}$可測で、
+        ゆえに、
+        $\sigma(YI_G) \subset \mathcal{G} \subset \sigma(\sigma(X),\mathcal{G})$より、
+        $\sigma(YI_G)$と$\sigma(I_H)$は独立。
+
+      \subsubsection{10行目}
+        この書き方嫌い。例えば次のように書けば見やすいのでは?
+
+        二つの写像、$\mu_1, \mu_2$を次のように定義する。
+        \[
+        \mu_1 \colon \sigma(\mathcal{G},\mathcal{H}) \rightarrow \RR
+        \]
+        という写像で、$\mu_1(F) = \EE[X ; F]$とする。
+        また、
+        \[
+        \mu_2 \colon \sigma(\mathcal{G},\mathcal{H}) \rightarrow \RR
+        \]
+        という写像で、$\mu_2(F) = \EE[Y ; F]$とする。
+
+      \subsubsection{11行目}
+        ここの書き方も嫌い。記号を使った方が分かりやすいと思う...
+
+        \[
+          \mathcal{I} := \{G \cap H \mid G \in \mathcal{G}, H \in \mathcal{H}\}
+        \]
+        とすると、$\mu_1 , \mu_2$が$\mathcal{I}$上で一致する。\\
+        てな感じで書いてくれないと英語読めない人死亡する。
+
+      \subsubsection{12行目}
+        "... and hence agree everywhere on $\sigma(\mathcal{G},\mathcal{H})$"
+        じゃねえんだよな。使った補題くらい明記しとけや。
+
+        $\sigma(I) = \sigma(\mathcal{G},\mathcal{H})$より、
+        19ページの補題から、$\mu_1 , \mu_2$は$\sigma(\mathcal{G},\mathcal{H})$
+        で一致する。
+
+        くらいはせめて言葉を尽くして欲しかった。
+
+      \subsubsection{後半の主張}
+        これ前半の主張の式使って証明できるの？
+
+        $Y$を$\EE[X \mid \mathcal{H}]$の一変形とする。
+        $H \in \mathcal{H}$を任意にとる。
+        \begin{align*}
+          \EE[Y;H] &= \EE[X;H] \\
+          &= \EE[XI_H] \\
+          &= \EE[X]\EE[I_H] \\
+          &= \int_H \EE[X] d\PP \\
+          &= \EE[\EE[X];H]
+        \end{align*}
+        より、$\EE[X \mid \mathcal{H}] = \EE[X]$が言える。
+        なお、この計算の途中で$X,I_H$が独立であることを用いた。
+
+    \subsection{9.9節について}
+      \subsubsection{(a)の式の証明}
+        これくらいの行間なら許せる。
+        \begin{proof}
+          \[
+            G_n = \sum_{k = 1}^{n} I_{F_k}
+          \]
+          とする。
+          $(F_n)$はdisjointな集合の列だから、
+          $(G_n)$は単調増加な非負の関数列である。
+          \begin{align*}
+            \PP \left( \bigcup_{n = 1}^{\infty} F_n \mid \mathcal{G}\right) &= \EE[I_{\sum_n F_n \mid \mathcal{G}}]\\
+            &= \EE[\lim_{n \to \infty}G_n \mid \mathcal{G}] \\
+            &= \lim_{n \to \infty} \EE[G_n \mid \mathcal{G}] \\
+            &= \lim_{n \to \infty} \sum_{k = 1}^n \EE[I_{F_k} \mid \mathcal{G}] \\
+            &= \sum_{n = 1}^{\infty}\EE[I_n \mid \mathcal{G}]\\
+            &= \sum_{n = 1}^{\infty}\PP (F_n \mid \mathcal{G})
+          \end{align*}
+          ただし、この計算の途中で(cMON)および(cDOM)を用いている。
+        \end{proof}
+
+      \subsubsection{$P(\cdot,\cdot)$の存在を(a)から言うことができないことについて}
+        お前は許せないタイプの行間。
+
+        すこし論理記号を用いて書くとするならば、以下のような感じになるだろう。\footnote{\LaTeX がなんかいい感じに書けなかった。}\footnote{ここで大切なのは$(F_n)$が$\PP$のカッコの中にないということ。}
+        \[
+          \forall (F_n):\text{disjoint} \quad [\PP \left( \bigcup_{n = 1}^{\infty} F_n \mid \mathcal{G}\right) = \sum_{n = 1}^{\infty}\PP (F_n \mid \mathcal{G}) \text{が} (a.s.)　\text{で成り立つ。}]
+        \]
+        すなわち、$(F_n)$を固定するごとに、上記の等式が成り立たないような零集合が存在する。
+        確率空間$(\Omega, \mathcal{F}, \PP)$が簡単なものではない場合、
+        つまり、$\mathcal{F}$が有限だったり、可算集合でない場合、
+        $\mathcal{F}$上のdisjointな集合列は非可算個存在する。
+        そこで、そのような零集合を$N_{(F_n)}$と書くことにする。
+        \[
+          N := \bigcup_{(F_n)} N_{(F_n)}
+        \]
+        と定める。
+        $\mathcal{F}$内の$(F_n)$をすべて動かしたときの$N_{(F_n)}$の和集合である。
+        $N$は(b2)が成り立たない集合である。
+        しかし、これはそもそも可測ではないかもしれないし、
+        可測であったとしても零集合の非可算個の和集合なので、
+        その測度は$0$よりも大きくなりえる。
+        だから、$P(\cdot,\cdot)$の存在を(a)から言うことができないのである。
+
+        \subsubsection{正則条件付き確率が存在することの必要十分条件(?)について}
+          D. L
+          %\EE
+          AO, M. FRAGOSO and P. RUFFINOらによる2003年の論文
+          \footnote{https://scielo.conicyt.cl/pdf/proy/v23n1/art02.pdf}(最近だな！)
+          にいろいろ情報が書かれてあった。
+          (まだ読んでないですが)
+
+    \subsection{9.10について}
+      \subsubsection{91ページ(b)の式について}
+          $\gamma^{h}(X_1)$は$X_1$を一つ決め打ちした時の$h$の期待値。
+          $\EE[h(X_1,X_2, \cdots , X_r) \mid X_1]$は$\sigma(X_1)$という条件が付いたときの$h$の期待値。
+          これらの二つが実は同じ\footnote{「同じ」と言ってしまうと語弊があるけど...}ですよ～って意味。
+
+      \subsubsection{(c)が成り立てば証明できたことになる？}
+          主張の式を確認するためには、任意の$G \in \sigma(X_1)$に対して、
+          \[
+            \EE[\gamma^{h}(X_1)I_G] = \EE[h(X_1, \cdots, X_r)I_G]
+          \]
+          を示せばよい。
+          しかし、$\sigma(X_1) = \{X_{1}^{-1}(B) \mid B \in \BB(\RR)\}$
+          であることを以前に証明している\footnote{36ページexercise}。
+          したがって、$G = X_{1}^{-1}(B)$となる$B \in \BB(\RR)$
+          が存在する。
+          よって、
+          \[
+            I_G = I_{X_{1}^{-1}(B)}
+          \]
+          である。ここで右辺は
+          \[
+            I_{X_{1}^{-1}(B)} = I_B(X_1)
+          \]
+          だから、(c)の式を確認できれば主張の式を証明できたことになる。
+
+      \subsubsection{Fubiniでの証明について}
+          68ページの補題を
+          $h \colon \RR^r \to \RR$というボレル可測関数$h$
+          に対して使っている。
+          2行目でFubiniの定理を用いている。
+          \begin{align*}
+            (\text{(c)の左辺})
+            &= \int_{x \in \RR^r}h(x)I_B(x_1)(\Lambda_1 \times \Lambda_2 \times \cdots \Lambda_r)(dx) \\
+            &= \int_{x_1 \in \RR}\int_{y \in \RR^{r-1}}h(x_1,y)I_B(x_1)(\Lambda_2 \times \cdots \Lambda_r)(dy)\Lambda_1(dx_1)\\
+            &=\int_{x_1 \in \RR}\int_{y \in \RR^{r-1}}h(x_1,y)(\Lambda_2 \times \cdots \Lambda_r)(dy)I_B(x_1)\Lambda_1(dx_1)\\
+            &= \int_{x_1 \in \RR}\gamma^{h}(x_1)I_B(x_1)\Lambda_1(dx_1)\\
+            &= \EE[\gamma^h(X_1)I_{B}(X_1)]
+          \end{align*}
+          この証明独立性使ってるのかよくわかんないんだけど。
+
+      \subsubsection{単調族定理での証明}
+          もうちょい式を使って書いてくれって思った。
+          \[
+            \mathcal{H} := \{h \in b\BB^r \mid h \text{は(c)を満たす。}\}
+          \]
+          まず以下のことを示す。
+            \begin{itemize}
+              \item $\mathcal{H}$は$\RR$上のベクトル空間
+              \item 定数関数$1$は$\mathcal{H}$に含まれる
+              \item $\mathcal{H}$の非負関数列$(f_n)$が有界関数$f$に収束するなら、$f \in \mathcal{H}$
+            \end{itemize}
+          最初の二つは多分計算できるので実際に書いてみるとよいでしょう。
+          三つめも多分計算できます。$\lim$を交換するときに(DOM)を使うことに注意しよう。
+          \begin{align*}
+            \EE[\gamma^f(X_1)I_B(X_1)]
+            &= \EE[\EE[f(X_1,X_2, \cdots X_r)]I_B(X_1)]\\
+            &= \EE[\EE[\lim_{n \to \infty}f_n(X_1,X_2, \cdots X_r)]I_B(X_1)]\\
+            &= \EE[\lim_{n \to \infty}\EE[f_n(X_1,X_2, \cdots X_r)]I_B(X_1)]\\
+            &= \lim_{n \to \infty}\EE[\EE[f_n(X_1,X_2, \cdots X_r)]I_B(X_1)]\\
+            &= \lim_{n \to \infty}\EE[f_n(X_1,X_2, \cdots X_r)I_B(X_1)]\\
+            &= \EE[\lim_{n \to \infty}f_n(X_1,X_2, \cdots X_r)I_B(X_1)]\\
+            &= \EE[f(X_1,X_2, \cdots X_r)I_B(X_1)]
+          \end{align*}
+
+          $\BB^r$はもちろん$\pi$-systemです。
+          また、$\sigma(\BB^r) = \BB^r$です。
+          よって、次を示せば単調属定理を用いると証明が完了します。
+          \begin{itemize}
+            \item $\mathcal{H}$は$\BB^r$のすべての定義関数を含んでいる。
+          \end{itemize}
+
+        $A \in \BB^r$とする。
+        $A_1,A_2,\cdots,A_r \in \BB^r$があって、
+        $A = A_1 \times A_2 \times \cdots \times A_r$と書けます。
+        \begin{align*}
+          \text{(c)の右辺}
+          &= \EE[\gamma^{I_A}(X_1)I_B(X_1)] \\
+          &= \EE[\EE[I_A(X_1,X_2, \cdots ,X_r)]I_B(X_1)] \\
+          &= \EE[\EE[1;A_1 \times A_2 \times \cdots \times A_r]I_B(X_1)]\\
+          &= \EE[(\Lambda_1 \times \Lambda_2 \cdots \times \Lambda_r)(A_1 \times A_2 \times \cdots \times A_r)I_B(X_1)]\\
+          &= (\Lambda_1 \times \Lambda_2 \cdots \times \Lambda_r)(A_1 \times A_2 \times \cdots \times A_r)\EE[I_B(X_1)]
+        \end{align*}
+        です。
+        一方$X_1,\cdots , X_r$が独立であったことに気を付ければ(2行目で使っている)左辺は次のように計算できます。
+        \begin{align*}
+          \text{(c)の左辺}
+          &= \EE[I_A(X_1,X_2, \cdots, X_r)I_B(X_1)] \\
+          &= \EE[I_A(X_1,X_2, \cdots, X_r)]\EE[I_B(X_1)] \\
+          &= (\Lambda_1 \times \Lambda_2 \cdots \times \Lambda_r)(A_1 \times A_2 \times \cdots \times A_r)\EE[I_B(X_1)]
+        \end{align*}
+
+    \subsection{9.11について}
+      この節のタイトルが"Use of symmetry: an example"
+      なんだから、対称性を使ったところは分かるように明記しておいてほしいと思いました。
+      さりげなく使わないで。いや、まあ確かによく考えたらわかるけど。
+      わかるけどさ...
+
+      \subsubsection{3行目}
+        \[
+          \sigma(S_n,S_{n+1},\cdots) = \sigma(S_n,X_{n+1},X_{n+2},\cdots)
+        \]
+        について。
+        \begin{proof}
+          ($\subset$について)\\
+          $m > n$とする。
+          \[
+            S_m = S_n + \sum_{k = n+1}^m X_k
+          \]
+          と表されるから、$S_m$は右辺で可測。
+
+          ($\supset$について)\\
+          $m > n$とする。
+          \[
+            X_m = S_m - S_{m - 1}
+          \]
+          だから、$X_m$は左辺で可測。
+        \end{proof}
+
+      \subsubsection{6行目}
+        \[
+          \sigma(X_{n+1},X_{n+2},\cdots), \sigma(X_1,S_n)
+        \]
+        が独立なこと。
+        \begin{proof}
+          $\sigma(X_{n+1},X_{n+2},\cdots)$と$\sigma(X_1,\cdots,X_n)$が独立であることを示せばよい。
+          ところが、これは4章の0-1法則で証明済み。
+        \end{proof}
+
+      \subsubsection{9行目}
+        \[
+          \EE[X_1 \mid \mathcal{G}] = \EE[X_1 \mid S_1]
+        \]
+        について。
+        \begin{proof}
+          \[
+          \sigma(X_1,S_n) = \sigma(\sigma(X_1),\sigma(S_n))
+          \]
+          より、
+          $\sigma(X_{n+1},X_{n+2},\cdots)$と$\sigma(\sigma(X_1),\sigma(S_n))$
+          は独立。
+          よって(9.7.k)より、
+          \begin{align*}
+            \EE[X_1 \mid \mathcal{G}]
+            &= \EE[X_1 \mid \sigma(S_n,X_{n+1},X_{n+2},\cdots)] \\
+            &= \EE[X_1 \mid \sigma(\sigma(S_n),\sigma(X_{n+1},X_{n+2},\cdots))]\\
+            &= \EE[X_1 \mid \sigma(S_n)]
+          \end{align*}
+        \end{proof}
+
+      \subsubsection{12行目からの計算}
+        $\pi_i \colon \RR^r \rightarrow \RR$を第$i$成分への射影とする。
+        $B$は$\BB$の任意の元である。
+        \begin{align*}
+          \EE[X_1;S_n \in B]　
+          &= \EE[\pi_1(X_1,X_2,\cdots,X_r);S_n \in B]\\
+          &= \int_{s_n \in B}x_1 (\Lambda \times \Lambda \times \cdots \times \Lambda)(dx)\\
+          &= \int \cdots \int_{s_n \in B}x_1 \Lambda(dx_1)\Lambda(dx_2)\cdots\Lambda(dx_r)\\
+          &= \int \cdots \int_{s_n \in B}x_2 \Lambda(dx_2)\Lambda(dx_1)\cdots\Lambda(dx_r)\\
+          &= \EE[\pi_2(X_1,X_2,\cdots,X_r);S_n \in B]\\
+          &= \EE[X_2;S_n \in B]
+        \end{align*}
+        3行目から4行目の変形で対称性を用いた。
+        ($x_1,x_2$を入れ替えても変わらない。)
+
+      \subsubsection{結局何が分かった}
+        条件付き期待値でも大数の法則みたいなの成り立ってるよね！
+
+  \section{Chapter 10}
+    \subsection{10.1}
+      \subsubsection{6行目}
+        $\mathcal{F}_{\infty}$の定義に、$\sigma$が付いているのは、
+        $\bigcup_n \mathcal{F}_{\infty}$だけでは$\sigma$-alg.
+        にならないかもしれない、という事実があるから。
+
+    \subsection{10.2}
+      \subsubsection{気を付けておきたいこと}
+        adopted processにおいては$X_{n+1}$が$\mathcal{F}_n$可測かどうかはわからない。
+        一方、$s < t$ならば$\mathcal{F}_s \subset \mathcal{F}_t$だから、
+        $X_s$は$\mathcal{F}_t$可測であることは分かる。
+
+    \subsection{10.3}
+      \subsubsection{94ページ下から14行目}
+        本文では"It is important to note that ..."とかいてあるところ。
+        主張を改めて書いておくと次のようになる。
+        この主張、本に証明全くないのウケる。
+        \begin{prop*}
+          $X_0 \in \mathcal{L}^1(\Omega, \mathcal{F}, \PP)$
+          であるような過程$X$がある。
+          この$X$がマルチンゲールであることと、
+          過程$(X - X_0)$がマルチンゲールであることは同値。
+        \end{prop*}
+        \begin{proof}
+          $X$はマルチンゲールと仮定する。
+          $X_n,X_0$はともに$\mathcal{F}_n$可測だから、
+          $X_n - X_0$は$\mathcal{F}_n$可測。
+          よって、$(X - X_0)$はadopted process。
+          $n \ge 1$に対して、
+          \[
+            |X_n - X_0| \leq |X_n| + |X_0|
+          \]
+          より(三角不等式)、
+          \[
+            \EE[|X_n - X_0|] \leq \EE[|X_n|] + \EE[|X_0|] < \infty
+          \]
+          だから(右側の不等式は$X$がマルチンゲールであることからわかる)、
+          $X_n - X_0$は可積分。
+          そして、$n \ge 1$に対して$X_0$は$\mathcal{F}_{n-1}$可測であることに注意すると、
+          \begin{align*}
+            \EE[X_n - X_0 \mid \mathcal{F}_{n-1}]
+            &= \EE[X_n \mid \mathcal{F}_{n-1}] - \EE[X_0 \mid \mathcal{F}_{n-1}] \\
+            &= X_{n-1} - X_0
+          \end{align*}
+          よって、$X - X_0$はマルチンゲール。
+
+          一方、$X - X_0$がマルチンゲールだと仮定する。
+          $X_n - X_0$および$X_0$は$\mathcal{F}_n$可測であり、
+          \[
+            X_n = X_n - X_0 + X_0
+          \]
+          なので、$X_n$は$\mathcal{F}_n$可測。
+          したがって、$X$はadopted processである。
+          \begin{align*}
+            \infty &> \EE[|X_n - X_0] \ge \EE[|X_n] - \EE[|X_0|]
+          \end{align*}
+          なので、$X_0 \in \mathcal{L}^1$より
+          \[
+            \EE[|X_n|] \leq \EE[|X_0] + \EE[|X_n - X_0] < \infty
+          \]
+          が分かる。よって、各$X_n$は可積分。
+          $\EE[X_n \mid \mathcal{F}_{n-1}] = \EE[X_n - X_0 + X_0 \mid \mathcal{F}_{n-1}]$より、
+          先ほどと似たような計算を経ることにより、
+          \[
+            \EE[X_n \mid \mathcal{F}_{n-1}] = X_{n-1}
+          \]
+          がわかる。よって$X$はマルチンゲールである。
+        \end{proof}
+
+    \subsection{10.4}
+      \subsubsection{(a)の例について}
+        マルチンゲールの3つ目の条件は本に書いてある通り。
+        しかし、一つ目と二つ目の条件の確認は省略されているのでちゃんとしておこう。
+        とはいえ、簡単で、$(S_n)$がadopted processなことは、今回のfiltrationの定義から明らか。
+        $\EE[|S_n|] < \infty$であることは、$\EE[|X_n|] < \infty$という仮定から明らか。
+      \subsubsection{(b)の例について}
+          (9.7.j)を用いているが、ちゃんと使えるか条件を確認しておかないといけない。
+          その条件は、
+          \[
+            X \in (m\mathcal{F})^+ ,\, Z \in (m\mathcal{G})^+, \, \EE[X] < \infty , \, \EE[ZX] < \infty
+          \]
+          ここで、$\mathcal{F}$とは、確率空間$(\Omega, \mathcal{F},\PP)$の$\mathcal{F}$で、
+          $\mathcal{G}$とは$\mathcal{F}$の部分$\sigma$-alg.のこと。
+          (b)の場合だと、$X$に相当するものが$X_n$、
+          $Z$に相当するものが、$M_{n-1}$である。
+          だから、
+          \[
+            X_n \in (m\mathcal{F})^+ ,\, M_{n-1} \in (m\mathcal{G})^+, \, \EE[X_n] < \infty , \, \EE[M_{n-1}X_n] < \infty
+          \]
+          を確認すればよい。
+
+      \subsubsection{気づいたこと}
+        (a),(b)はそれぞれ環の加法単位元と乗法単位元に対応してる感じがあった。
+        平均が$0$というのは環の加法の演算においては$0$が単位元であることに対応してて、
+        平均が$1$というのは(非負という条件も付くが)、環の乗法の置いては$1$が単位元であることに対応してそう。
+
+        マルチンゲールがそうやって代数とつながってるのかは分かんないね。
+        今回だけの偶然かもしれない。
+
+      \subsubsection{(c)の例について}
+        なんかもうここまでadopted processと可積分性確認されないのおもろいな。(なんもおもろくないが(ちゃんと書けや))
+
+        \begin{align*}
+          |\EE[\xi \mid \mathcal{F}_n]|
+          &=|\EE[\xi^+ - \xi^- \mid \mathcal{F}_n]|\\
+          &= |\EE[\xi^+ \mid \mathcal{F}_n] - \EE[\xi^- \mid \mathcal{F}_n]|\\
+          &\leq |\EE[\xi^+ \mid \mathcal{F}_n]| + |\EE[\xi^- \mid \mathcal{F}_n]|
+        \end{align*}
+        だから、
+        \begin{align*}
+          \EE[|M_n|]
+          &\leq \EE[|\EE[\xi^+ \mid \mathcal{F}_n]| + |\EE[\xi^- \mid \mathcal{F}_n]|]\\
+          &= \EE[\EE[\xi^+ \mid \mathcal{F}_n]] + \EE[\EE[\xi^- \mid \mathcal{F}_n]]\\
+          &= \EE[\xi^+] + \EE[\xi^-]\\
+          &= \EE[\xi^+ + \xi^-]\\
+          &= \EE[|\xi |] < \infty \quad (\xi \in \mathcal{L}^1)
+        \end{align*}
+
+    \subsection{10.5}
+      とくにないです。
+
+    \subsection{10.6}
+      英語が微妙にわからないやつ。
+
+      "Your winnings on game $n$ are $C_n(X_n - X{n-1})$ and ..."
+      はおそらく、
+      「第$n$ゲーム終了時にもらえるお金は"$C_n(X_n - X{n-1})$"
+      (これは負の数\footnote{もらえるお金が負の数ということは、お金を失ったということ}も含めて考えている)であるとすると」
+      という意味だと思われる。
+
+    \subsection{10.7}
+      ここの証明もサラッとしか書かれていないな？
+      もっと丁寧に言ってくれないと僕ちゃん見落としちゃうぞ？
+      \subsubsection{(i)の証明の補完}
+        $C_n \EE[X_n - X_{n-1} \mid \mathcal{F}_{n-1}] \leq 0$は、
+        $C_n$が非負で、submartingaleであることと(9.7.b)から、
+        \[
+          \EE[X_n - X_{n-1} \mid \mathcal{F}_{n-1}] \leq X_{n-1} - X_{n-1} = 0
+        \]
+        と計算できるから。
+        また、($C \bullet X$)がadopted processであることについては、
+        $C_{n-1}$は$\mathcal{F}_{n-2}$可測であり、filtrationの定義から
+        $C_{n-1}$は$\mathcal{F}_{n-1}$可測でもある。
+        可積分性については、次のように計算できる。
+        \begin{align*}
+          \EE[|Y_n|]
+          &= \EE[|\sum_{k=1}^n C_k(X_k - X_{k-1})|] \\
+          &\leq \EE[\sum_{k=1}^n | C_k(X_k - X_{k-1})|] \\
+          &= \sum_{k=1}^n \EE[| C_k(X_k - X_{k-1})|] \\
+          &\leq \sum_{k=1}^n \EE[|C_k X_k| + |C_k X_{k-1}|] \\
+          &\leq \sum_{k=1}^n (\EE[K|X_k|] + \EE[K|X_{k-1}|]) < \infty
+        \end{align*}
+        なお、ここで1行目から2行目は三角不等式を用いている。
+        3行目から4行目は$|a - b| \leq |a| + |b|$を用いている。
+        4行目から5行目はprocess $C$が有界だから$C_k < K $と
+        一様に上から押さえられていることを用いている。
+        5行目の$< \infty$は、各$X_k$が可積分であることを用いている。
+
+      \subsubsection{(ii)の証明の補完}
+        $C_n$が非負であることはsubmartingaleの時に用いた。
+        (i)の証明でmartingaleの時の証明をそのまま流用すればよい。
+
+      \subsubsection{(iii)の証明の補完}
+        (9.7.j)を用いるための条件として、
+        \[
+          p>1, \, \frac{1}{p} + \frac{1}{q} = 1, \, X \in \mathcal{L}^p, \, Z \in \mathcal{L}^q
+        \]
+        があった。今回は$p = q =2$の場合。他は同様。
+        可積分性は、$X_k \in \mathcal{L}^2$より、$X_k \in \mathcal{L}^1$なので、
+        $\EE[|Y_n|] < \infty$がわかる。
+
+    \subsection{10.8}
+      \subsubsection{$L$がstopping timeではないかもしれないこと}
+        $L$の理解が難しいので絵をかいて考えてみよう。
+
+
+        図の場合だと、$L = 6$となる。(一番最初の点は時刻0の扱い)
+        $L = 6$という集合は次のように考えられる。
+        $n < 6$の時は、$A_n \in B$であることはどうでもよい。
+        $n \ge 7 $の時は$A_n \notin B$であることが必要である。
+        したがって、次にように考えることができる。
+        \begin{align*}
+          \{L = 6\} &= \{A_6 \in B, \, A_7 \notin B, \, \cdots ,\, A_{10} \notin B\}\\
+          &= \{A_6 \in B\} \cap \{A_7 \notin B\} \cap \cdots \cap \{A_{10} \notin B\} \in \mathcal{F}_6 \quad \text{(???)}
+        \end{align*}
+        $\{L = 6 \} \in \mathcal{F}_6$ならば$L$は stopping time となる。
+        しかしながら、$A$は adopted process だから$A_7$
+        は$\mathcal{F}_6$可測関数かどうかまでは分からない。
+        ということは、
+        \[
+          \{A_7 \notin B\} \in \mathcal{F}_6
+        \]
+        かどうかは判断がつかない。(これは$A_8,A_9,A_{10}$も同様)
+        したがって、$L$は stopping time であるとは断言することができない。
+        本文で "unless $A$ is freaky" とカッコ付けで書かれているのは、
+        「$A$が極端な過程なため、$L$が stopping time になってしまうような場合を除けば」というニュアンス。
+
+    \subsection{10.9}
+      \subsubsection{$(C^{(T)} \bullet X)_n = X_{T \wedge n} - X_0$なこと}
+        場合分けをして考える。
+        しかし、$T$そのものは写像なので単に「$T < n$の場合」とすることはできない\footnote{こうしてしまうと「$T$は上に有界」という主張になってしまう。}。
+        まず初めに$\omega \in \Omega$を一つ固定して、
+        \begin{enumerate}
+          \item $T(\omega) < n$の場合
+          \item $T(\omega) \ge n$の場合
+        \end{enumerate}
+        として計算よう。
+
+      \subsubsection{$\ZZ$上のsimple random walk が martingale}
+        丁寧に書くところと書かないところの差が激しくないですか？
+
+        \begin{def*}[$\ZZ$上の simple random walk]
+          $(\xi_i)_{i \leq 1}$は$i.i.d$の独立な$\{-1, 1\}$-値確率変数とする。
+          任意の$\xi_i$について、
+          \[
+            \PP(\xi_i = 1) = \PP(\xi_i = -1) = \frac{1}{2}
+          \]
+          とする。
+          確率変数列$(X_n)_{n \ge 0}$を次のように定義する。
+          \begin{align*}
+            &X_0 := 0 \\
+            &X_{n+1} = X_n + \xi_{n+1}
+          \end{align*}
+          確率過程$(X_n)_{n \ge 0}$を$\ZZ$上の simple random walk という。
+        \end{def*}
+
+        $X$を$\ZZ$上の simple random walk とする。
+        $X$はmartigaleになる。
+        martingale であることを示すためには filtraion が必要である。
+        今回のfiltration は natural filtration 、すなわち、
+        \[
+          \mathcal{F}_n = \sigma(X_0,X_1, \cdots , X_n)
+        \]
+        である。simple random walk の定義から、
+        \begin{align*}
+          \mathcal{F}_n &= \sigma(X_0,X_1, \cdots , X_n)\\
+          &= \sigma(0, \xi_1, \cdots ,\xi_n) \\
+          &= \sigma(\xi_1, \cdots ,\xi_n)
+        \end{align*}
+        である。
+
+        $X$は natural filtration の定義から adopted process である。
+        各$n$に対して
+        \[
+          X_n = \sum_{i = 1}^{n} \xi_i \leq n
+        \]
+        だから、
+        \[
+          \EE[|X_n|] < \infty
+        \]
+        である。最後に、
+        \begin{align*}
+          \EE[X_{n+1} \mid \mathcal{F}_n] &= \EE[X_{n} + \xi_{n + 1} \mid \mathcal{F}_n]\\
+          &= \EE[X_{n} \mid \mathcal{F}_n] + \EE[\xi_{n + 1} \mid \mathcal{F}_n] \\
+          &= X_{n} + \EE[\xi_{n + 1}] \\
+          &= X_{n} + 1 \times \frac{1}{2} + (-1) \times \frac{1}{2}\\
+          &= X_{n}
+        \end{align*}
+        したがって、$X$は martingale である。
+
+      \subsubsection{$\EE[X_T] \neq E[X_0]$について}
