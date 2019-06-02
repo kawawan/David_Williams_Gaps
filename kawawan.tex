@@ -180,7 +180,7 @@
         \end{equation}
         が成立することを言えばよい。そこで、
         \[
-          \mathcal{L} = \{A \subset \RR^i \mid (\ref{2-1})\text{が成立}\}
+          \mathcal{L} = \{A \subset \RR^i \mid \text{(\ref{2-1})が成立}\}
         \]
         と定義する。$\mathcal{L}$は$\lambda$-systemである。
         明らかに$\Omega \in \mathcal{L}$である。
@@ -1183,4 +1183,127 @@
         \end{align*}
         したがって、$X$は martingale である。
 
-      \subsubsection{$\EE[X_T] \neq E[X_0]$について}
+    \subsection{10.10}
+      ここひどい。
+      $X_T$の定義が書かれていないので何とも議論ができない。
+      $T(\omega) < \infty$のときは問題なく定義できるでしょうが、
+      $T(\omega) = \infty$のとき、つまり$X_{\infty}$の定義が書かれていない。
+      \footnote{Chapter 11のマルチンゲールの収束定理を見れば定義が分かるかもしれないが、
+      それをするなら先にその収束定理をかけよ。}
+      それ以外にも抜けているところが多いので、
+      証明をすべて書いていきます。
+
+      \subsubsection{almost surely と almost everywhere (再確認)}
+        この本によると、これらの二つは微妙に定義が異なります。
+
+        $\omega \in \Omega$ごとに真偽が決まる命題$P(\omega)$
+        がある。単に$P$と略記する。
+        $P$が$\Omega$上 almost everywhere で成立するとは、
+        $P$が成立しない集合が可測集合かつ、その測度が0であること。
+
+        $P$が$\Omega$上 almost surely で成立するとは、
+        $P$が成立する集合の測度(確率)が$1$であること。
+
+        前者は全ての測度空間において定義できる概念で、
+        後者は確率論専用の概念です。
+        すなわち、almost surely というのは確率空間があるときにのみ
+        導入できる概念です。
+
+      \begin{proof}
+        [準備]
+        仮定より、$(X_{T \wedge n})$はsupermartingaleになるから、
+        各$n \in \NN$に対して、$X_{T \wedge n}$は可積分である。
+        また、10.9の定理より、
+        \[
+          \EE[X_{T \wedge n}] \leq \EE[X_0]
+        \]
+        がすべての$n \in \NN$について成立している。
+
+        [(i)が成り立つ場合]
+        $T$は有界なので、ある$N \in \NN$が存在して、
+        $T(\omega) \leq N$となる。
+        よって、$X_{T \wedge N} = X_T$となる。
+        したがって、
+        \[
+          \EE[X_T] = \EE[X_{T \wedge N}] \leq \EE[X_0]
+        \]
+        また、$|X_{T \wedge n}| = |X_T|$より、
+        $X_T$は可積分であることが分かる。
+
+        [$T$がfinite (a.s)ならば$\lim_{n \to \infty}X_{T \wedge n} = X_T $(a.s)であること]
+        $\omega \in \{T < \infty\}$ ならば明らかに
+        $\lim_{n \to \infty}X_{T(\omega) \wedge n}(\omega) = X_{T(\omega)}(\omega) $
+        そして、$T$ finite (a.s)なので、$\PP(\{T < \infty\}) = 1$
+        である。
+        さて、$\{\omega \mid \lim_{n \to \infty}X_{T(\omega) \wedge n}(\omega) = X_{T(\omega)}(\omega)\}$
+        は「可測集合」であるが
+        \footnote{らしいけど、これまじ？$X_T$の定義がないとやっぱ無理ちゃう？}、
+        \[
+          \{T < \infty\} \subset \{\omega \mid \lim_{n \to \infty}X_{T(\omega) \wedge n}(\omega) = X_{T(\omega)}(\omega)\}
+        \]
+        であるから、測度の単調性より、
+        \[
+          \PP(\{\omega \mid \lim_{n \to \infty}X_{T(\omega) \wedge n}(\omega) = X_{T(\omega)}(\omega)\}) = 1
+        \]
+        となる。
+
+        [(ii)が成立しているとき]
+        先ほどの議論と$T$はfinite (a.s)であるという仮定から
+        \[
+          \lim_{n \to \infty}X_{T \wedge n} = X_T
+        \]
+        が almost surely で成立する。
+        また、過程$X$は有界より(BDD)を使うことができる。したがって、
+        \[
+          \lim_{n \to \infty}\EE[X_{T \wedge n}] = \EE[X_T]
+        \]
+        がなりたつ。
+        よって、
+        \begin{align*}
+          \EE[X_{T \wedge n}] &\leq \EE[X_0] \\
+          \lim_{n \to \infty}\EE[X_{T \wedge n}] &\leq \lim_{n \to \infty}\EE[X_0] \\
+          \EE[X_T] &\leq \EE[X_0]
+        \end{align*}
+        $X_T$の可積分性は次のように示す。
+        \begin{align*}
+          \EE[|X_T|] &= \int_{\{T < \infty\}}|X_T|\PP(d\omega) + \int_{\{T = \infty\}}|X_T|\PP(d\omega) \\
+          &= \int_{\{T < \infty\}}|X_T|\PP(d\omega) + 0\\
+          &= \int_{\{T < \infty\}}|X_T|\PP(d\omega)
+        \end{align*}
+        であるが、ここで$X$が有界であるという仮定と、
+        $\omega \in \{T < \infty\}$であることから
+        次のような計算ができる。
+        ただし、以下で$K$とは、$X$を上から押さえている定数。
+        \begin{align*}
+          |X_{T(\omega) \wedge n}(\omega)| &\leq K \\
+          \lim_{n \to \infty}|X_{T(\omega) \wedge n}(\omega)| &\leq K \\
+          |X_{T(\omega)}(\omega)| &\leq K
+        \end{align*}
+        したがって、
+        \[
+          \EE[|X_T|] \leq K < \infty
+        \]
+        よって、$X_T$は可積分である。
+
+        [(iii)が成り立つとき]
+        このとき、$T$は finite (a.s.) である。
+        これは背理法を用いれば$\EE[T] < \infty$に反していることがすぐにわかる。
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      \end{proof}
