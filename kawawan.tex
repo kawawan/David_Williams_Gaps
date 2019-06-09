@@ -1209,7 +1209,11 @@
         すなわち、almost surely というのは確率空間があるときにのみ
         導入できる概念です。
 
-      \begin{proof}
+      \subsubsection{証明}
+
+        \begin{proof}
+        (a)の証明。
+
         [準備]
         仮定より、$(X_{T \wedge n})$はsupermartingaleになるから、
         各$n \in \NN$に対して、$X_{T \wedge n}$は可積分である。
@@ -1288,22 +1292,105 @@
         [(iii)が成り立つとき]
         このとき、$T$は finite (a.s.) である。
         これは背理法を用いれば$\EE[T] < \infty$に反していることがすぐにわかる。
+        (iii)の仮定を使えば、
+        \[
+          |X_{T \wedge n} - X_0| = |\sum_{k=1}^{T \wedge n}(X_k - X_{k-1})| \leq TK
+        \]
+        ここで$K$は定数で、$\EE[T] < \infty$より、$\EE[TK] < \infty$。
+        よって、(DOM)より。
+        \[
+          \EE[|(X_{T \wedge n}) - X_0) - (X_T -X_0)|] \rightarrow 0
+        \]
+        すなわち、
+        \begin{align*}
+          \EE[|X_{T \wedge n} -X_T|] \rightarrow 0 \\
+          \lim_{n \to \infty}\EE[X_{T \wedge n}] = \EE[X_T]
+        \end{align*}
+        よって(ii)と同様に、$\EE[X_T] \leq \EE[X_0]$となる。
+        $X_T$の可積分性は次のように示す。
+        \[
+          |X_{T \wedge n} - X_0| \ge |X_{T \wedge n}| - |X_0|
+        \]
+         であり、
+         \[
+            |X_{T \wedge n} - X_0| \leq TK
+         \]
+         なので、
+         \begin{align*}
+            |X_{T \wedge n}| - |X_0| &\leq TK \\
+            |X_{T \wedge n}| &\leq TK + |X_0|\\
+            \lim_{n \to \infty}|X_{T \wedge n}| &\leq \lim_{n \to \infty}(TK + |X_0|)\\
+            |X_{T}| &\leq TK + |X_0|\\
+            \EE[|X_{T \wedge n}|] &\leq \EE[TK + |X_0|] < \infty
+         \end{align*}
 
+         以上によりすべての主張を証明できた。
 
+         (b)の証明。
 
+         $X$がマルチンゲールだから$-X$もマルチンゲール。
+         よって(a)を適用すればよい。
+       \end{proof}
 
+      \subsubsection{系について}
 
+        \begin{cor}
+        $M$はマルチンゲールで、各$n$に対して$M_n M_{n-1}$は一様に
+        $K_1 \in \RR^+$で押さえられている。
+        すなわち、
+        \[
+          \exists K_1 \in \RR, \forall n \in \NN, \forall \omega \in \Omega, |M_n(\omega) - M_{n-1}(\omega)| \leq K_1
+        \]
+        とする。$C$はprevisible process\footnote{filtrationは与えられているものとする}で、$K_2 \in \RR^+$で一様に抑えられているとする。
+        $T$はstopping time で、$\EE[T] < \infty$とする。
+        このとき、$\EE[(C \bullet M)_T] = 0$となる。
+        \end{cor}
 
+        \begin{proof}
+        $M$はマルチンゲールで、$C$は有界なprevisible process なので、
+        10.7節の(b)より、$(C \bullet M)$は$(C \bullet M)_0 = 0$
+        であるようなマルチンゲールである。
+        また、
+        \[
+          |(C \bullet M)_n - (C \bullet M)_{n-1}| = |C_n(M_n - M_{n-1})| \leq K_1K_2
+        \]
+        仮定より、
+        \[\EE[T] < \infty\]
+        よって、任意抽出定理の(iii)の条件を満たしているので、
+        10.10(b)より、
+        \[
+          \EE[(C \bullet M)_T] = \EE[(C \bullet M)_0] = \EE[0] = 0
+        \]
 
+        \end{proof}
 
+        \begin{cor}\label{10.10d}
+          $X$が非負supermartingaleで$T$がstopping time で、a.s.で有限であるとする。このとき、
+          \[\EE[X_T] \leq \EE[X_0]\]
+        \end{cor}
 
+        \begin{proof}
+          $X$がsupermartingaleより、$\EE[X_{T \wedge n}] \leq \EE[X_0]$
+          である。$X$が非負より、$X_{T \wedge n}$も非負。
+          また、$T$はa.s.で有限より、
+          $X_{n \wedge T} \rightarrow X_T$がa.s.で成立する。
+          よって、FATOUの補題より、
+          \begin{align*}
+            \EE[\liminf_{n \to \infty}X_{T \wedge n}] &\leq \liminf_{n \to \infty}\EE[X_{T \wedge n}]\\
+            \EE[X_T] &\leq \liminf_{n \to \infty}\EE[X_0]\\
+            &=\EE[X_0]
+          \end{align*}
+        \end{proof}
 
+      \subsubsection{やらかしたミス}
+        せや！
+        \[
+          X \leq Y \Rightarrow \EE[X \mid \mathcal{F}] \leq \EE[Y \mid \mathcal{F}]
+        \]
+        なんやから、対偶を取ったら
+        \[
+          \EE[X \mid \mathcal{F}] \leq \EE[Y \mid \mathcal{F}]  \Rightarrow X \leq Y
+        \]
+        だから、系\ref{10.10d}はこれですぐにしめせるやんけ！ｗ
 
-
-
-
-
-
-
-
-      \end{proof}
+        almost surelyが付いた命題の否定命題を考えるときは気をつけましょう。
