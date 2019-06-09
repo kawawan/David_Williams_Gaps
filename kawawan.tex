@@ -1394,3 +1394,106 @@
         だから、系\ref{10.10d}はこれですぐにしめせるやんけ！ｗ
 
         almost surelyが付いた命題の否定命題を考えるときは気をつけましょう。
+
+    \subsection{10.11}
+      本文には巻末の演習問題集のE10.5を参考にしなさいと書いてあります。
+      \subsubsection{E10.5の証明}
+        \begin{proof}
+          帰納法で示す。
+
+          [$n=1$のとき]
+          $\PP(T > N) = 1 - \PP(T \leq N)$である。
+          $\PP(T \leq M \mid \mathcal{F}_0)$は
+          $\EE[I_{\{T \leq N\}} \mid \mathcal{F}_0]$
+          の一変形であり、仮定より、
+          \[
+            \PP(T \leq N \mid \mathcal{F}_0) >  \varepsilon \quad (a.s.)
+          \]
+          となる$N \in \NN, \varepsilon > 0$が存在する。
+          したがって、
+          \[
+            -\PP(T \leq N \mid \mathcal{F}_0) < - \varepsilon \quad (a.s.)
+          \]
+          である。
+          条件付き平均の定義より、
+          \[
+            \int_{\Omega} \PP(T \leq N \mid \mathcal{F}_0) d\PP
+            = \int_{\Omega}I_{\{T \leq N\}}d\PP
+            = \PP(T \leq N)
+          \]
+          である。したがって、
+          \[
+            -\varepsilon
+            > \int_{\Omega}(-\PP(T \leq N \mid \mathcal{F}_0))
+            = -\PP(T \leq N)
+          \]
+          よって、
+          \[
+            1 - \PP(T \leq N) < 1 - \varepsilon
+          \]
+          すなわち、
+          \[
+            \PP(T > N) < \varepsilon
+          \]
+
+          $n = k(\leq 1)$の時成立すると仮定。$T$はstoppinng timeより、
+          \[
+            \{T \leq kN\} \in \mathcal{F}_{kN}
+          \]
+          したがって、
+          \[
+            \{T \leq kN\}^c = \{T > kN\} \in \mathcal{F}_{kN}
+          \]
+          ところで、
+          \[
+            \PP(T \leq kN + N \mid \mathcal{F}_{kN}) > \varepsilon \quad (a.s.)
+          \]
+          より、
+          \begin{align*}
+            1 - \PP(T \leq kN + N \mid \mathcal{F}_{kN}) &< 1 - \varepsilon \quad (a.s.) \\
+            \PP(T > kN + N \mid \mathcal{F}_{kN}) &< 1 - \varepsilon \quad (a.s.)
+          \end{align*}
+          $\PP(T > kN + N \mid \mathcal{F}_{kN})$は
+          $\EE[I_{\{T > kN + N\}} \mid \mathcal{F}_{kN}]$
+          の一変形であることに注意すれば、
+          \begin{align*}
+            \int_{T > kN}\PP(T > kN + N \mid \mathcal{F}_{kN})d\PP
+            &< \int_{T > kN}(1 - \varepsilon )d\PP \\
+            \int_{T > kN}I_{\{T > kN + N\}}d\PP
+            &< (1 - \varepsilon )\PP(T > kN) \\
+            \int_{\Omega} I_{\{T > kN + N\} \cap \{T > kN\}}d\PP
+            &< (1 - \varepsilon )(1 - \varepsilon)^k \\
+            \PP(\{T > kN + N\} \cap \{T > kN\})
+            &\leq (1 - \varepsilon)^{k+1}\\
+            \PP(T > (k + 1)N)
+            &\leq (1 - \varepsilon)^{k+1}\\
+          \end{align*}
+        \end{proof}
+
+      \subsubsection{$\EE[T] < \infty$の証明}
+        \begin{proof}
+          \begin{align*}
+            \EE[T] =& 0 \times \PP(T = 0) \\
+            &+ 1 \times \PP(T = 1) + 2 \times \PP(T = 2) + \cdots + N \times \PP(T = N)\\
+            &+ (N + 1) \times \PP(T = N + 1) + (N + 2) \times \PP(T = N + 2) + \cdots + 2N \times \PP(T = 2N)\\
+            &+ (2N + 1) \times \PP(T = 2N + 1) + (2N + 2) \times \PP(T = 2N + 2) + \cdots + 3N \times \PP(T = 3N)\\
+            &+ (3N + 1) \times \PP(T = 3N + 1) + \cdots
+          \end{align*}
+          と書けるから、
+          \[
+            \EE[T] \leq N\PP(0<T\leq N) + 2N\PP(N< T \leq 2N) + \cdots
+          \]
+          とできる。ここで、$l = 1,2,3,\cdots$に対して
+          \[
+            \PP(lN < T \leq (l + 1)N) \leq \PP(lN < T) \leq (1 - \varepsilon)^l
+          \]
+          なので、
+          \[
+            \EE[T] \leq
+            N\PP(0 < T \leq N)
+            + \sum_{l = 1}^{\infty}(l + 1)N(1 - \varepsilon)^l
+          \]
+          とできる。
+          右辺の無限級数は有限の値に収束する。
+          よって$\EE[T] < \infty$
+        \end{proof}
