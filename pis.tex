@@ -72,7 +72,7 @@
         示すべきことは以下のとおりである。
         \begin{enumerate}[font = \bfseries, label = step \arabic*.]
             \item $I\in\pi(\RR)\Rightarrow I\in \BB$を示す。
-            \item $O\in\mathcal{O} \Rightarrow O \in \sigma(\pi(R))$を示す。
+            \item $O\in\mathcal{O}_{\RR} \Rightarrow O \in \sigma(\pi(R))$を示す。
             \begin{enumerate}
                 \item $O$が可算個の開区間の和で表せる、すなわち、
                     $\exists a_n, b_n\in\RR, a_n < b_n\ (n\in\NN)$があって、
@@ -85,14 +85,14 @@
             \end{enumerate}
         \end{enumerate}
         \begin{proof}
-            $\RR$の開集合全体の集合を$\mathcal{O}$とする。
+            $\RR$の開集合全体の集合を$\mathcal{O}_{\RR}$とする。
             \begin{enumerate}[font = \bfseries, label = step \arabic*.]
                 \item "$I\in\pi(\RR)\Rightarrow I\in \BB$"\par
                     $I\in\pi(\RR)$とすると、$\exists x\in\RR$があって、
                     \[
                         I = (-\infty, x]
                     \]
-                    と表される。これが、可算個の開集合で表されたら良い。このとき、
+                    と表される。このとき、
                     \[
                         I = \bigcap_{n} (-\infty, x + n^{-1})
                     \]
@@ -106,7 +106,7 @@
                                 -\infty<a<x + n^{-1}
                             \]
                             となる。
-                            我々が示したいことは、示したいことは$a\leq x$を満たすことである。
+                            我々が示したいことは、$a\leq x$を満たすことである。
                             これは
                             \[
                                 a > x \Rightarrow \exists n \in \NN;\ a > x + n^{-1}
@@ -126,7 +126,7 @@
                                 (a-x)\cdot n &> 1\\
                                 a &> x + n^{-1}
                             \end{align*}
-                            よって、示した命題のたいううをとって
+                            よって、示した命題の対偶をとって
                             \[
                                 x \leq a
                             \]
@@ -136,14 +136,14 @@
                     ここで、$I = \bigcap_{n} (-\infty, x + n^{-1}) \in \BB$なので、$I\in\BB$。
     
                     $\therefore$\ 任意の$n\in\NN$について、
-                    $(-\infty, x + n^{-1})\in\mathcal{O}$
+                    $(-\infty, x + n^{-1})\in\mathcal{O}_{\RR}$
                     である。これはすなわち、
                     $(-\infty, x + n^{-1})\in\BB$
                     に他ならず、$\BB$は$\sigma$-algebraなので、開区間の可算個の和集合はもちろん$\BB$の元となる。
     
-                \item "$O\in\mathcal{O} \Rightarrow O \in \sigma(\pi(R))$"
+                \item "$O\in\mathcal{O}_{\RR} \Rightarrow O \in \sigma(\pi(R))$"
                     まず、$\RR$が第二可算公理を満たすこと示す。すなわち、
-                    $\forall O \in \mathcal{O}$がある可算個の開区間$(a_n, b_n)\ (n\in\NN, a_n \leq b_n)$を用いて、
+                    $\forall O \in \mathcal{O}_{\RR}$がある可算個の開区間$(a_n, b_n)\ (n\in\NN, a_n \leq b_n)$を用いて、
                     \[
                         O = \bigcup_{n} (a_n, b_n)
                     \]
@@ -172,7 +172,7 @@
                     $\mathcal{I}_\QQ$は可算濃度なので、$\mathcal{I}$も可算濃度である。
                     つまり、$O$は$\mathcal{I}$の元の和集合、すなわち、可算個の開区間の和で表せる。
                     
-                    よって、任意の$O\in\mathcal{O}$に対して、ある開区間列$\{(a_n, b_n)\}_{n\in\NN}$があって、
+                    よって、任意の$O\in\mathcal{O}_{\RR}$に対して、ある開区間列$\{(a_n, b_n)\}_{n\in\NN}$があって、
                     \[
                         O = \bigcap_{n\in\NN} (a_n, b_n)
                     \]
