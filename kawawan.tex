@@ -1497,3 +1497,192 @@
           右辺の無限級数は有限の値に収束する。
           よって$\EE[T] < \infty$
         \end{proof}
+
+        \subsubsection{ABRACADABRAについて}
+          ごめんやってない。
+
+    \subsection{10.12}
+      \subsubsection{$\text{sech}$とは}
+          見慣れない記号ですが定義は以下の通り\footnote{\LaTeX でうまいこと出力するの分からなかったから適当に誤魔化しています。}。
+        \[
+          \text{sech} \, \theta = \frac{1}{\cosh \theta}
+          \]
+
+      \subsubsection{p.102 $\blacktriangleright$ について}
+          "Now insisit that $\theta > 0$"の意味は「ここで$\theta > 0$とする」。
+          これたぶん初めから$\theta > 0$でやっておけばいいと思った。
+          この条件は後々聞いてくるので必要な条件です。
+
+          \subsubsection{p.102 $\blacktriangleright$ の一行下について}
+          \[
+          \exp(\theta S_{T \wedge n}) \leq e^{\theta}
+          \]
+          と主張している。これを言うためには
+          \[
+          S_{T \wedge n} \leq 1
+          \]
+          を確認しておく必要がある。
+          $T(\omega) < \infty$の場合と、$T(\omega) = \infty$の場合に
+          場合分けしてそれぞれ調べる。
+
+          その次に、$M_{T \wedge n}^{\theta} < e^{\theta}$であるのは、
+          すぐ上で確認したように
+          \[
+          \exp(\theta S_{T \wedge n}) \leq e^{\theta}
+          \]
+          であることと、$\theta > 0$より、
+          \[
+          \text{sech} \, \theta < 1
+          \]
+          である\footnote{詳しい計算は微分頑張ったらいけるはず。}ことよりわかる。
+
+      \subsubsection{102ページ下から9行目}
+        こう書いていたら分かりやすいと思います。
+
+        $M_{T}^{\theta}$を以下のように定める。
+        \begin{equation*}
+          M_{T}^{\theta}(\omega) =
+          \begin{cases}
+            M_{T(\omega)}^{\theta}(\omega) & (T(\omega) < \infty) \\
+            0 & (T(\omega) = \infty)
+          \end{cases}
+        \end{equation*}
+        このとき、
+        \[
+          \lim_{n \to \infty}M_{T \wedge n}^{\theta} = M_{T}^{\theta}
+        \]
+        が成立する\footnote{ここでは(a.s.)の意味ではなく、通常の意味での各点収束}。
+        この収束の証明は次の通り。
+        \begin{proof}
+          $\omega \in \{ T < \infty\}$の場合は明らか。
+          $\omega \in \{ T = \infty\}$の場合、
+          \begin{align*}
+            M_{T \wedge n}^{\theta}(\omega)
+            &= M_n^{\theta}(\omega)\\
+            &= (\text{sech}\, \theta)^n e^{\theta S_n(\omega)}\\
+            &\leq (\text{sech}\, \theta)^n e^{\theta}\\
+            & \rightarrow 0 \quad (n \rightarrow \infty)
+          \end{align*}
+        \end{proof}
+
+      \subsubsection{102ページ下から6行目の式の右辺}
+        しれっと$(\text{sech}\,(\theta))^T$が出てきているけれど、
+        定義が明記されていないので、エスパー能力を発揮して
+        適切な定義を察してあげないといけません。
+        おそらく次のように解釈するのが自然でしょう。
+        \begin{def*}
+          \begin{equation*}
+            (\text{sech}\, \theta)^T =
+            \begin{cases}
+              (\text{sech}\, \theta)^{T(\omega)} & (T(\omega) < \infty)\\
+              0 & (T(\omega) = \infty)
+            \end{cases}
+          \end{equation*}
+        \end{def*}
+        こうしてきちんと定義をしておかないと、
+        \[
+          (\text{sech}\, \theta)^{\infty}
+        \]
+        という謎の計算をどう処理するのかわからなくなってしまいます。
+
+      \subsubsection{102ページ下から3行目}
+        $\theta \downarrow 0$としていますが、ここ少し大雑把に書いてある。
+        実際はこのようにしています。
+
+        $n \ge 1$に対して、
+        \[
+          f_n(\omega ) :=
+          \left(\text{sech}\, \frac{1}{n}\right)^{T(\omega)}
+        \]
+        とさだめ、
+        \[
+          f(\omega ) := I_{\{T < \infty \}}(\omega)
+        \]
+        と定義する。
+        このとき、$f_n$は増加列で、すべての$\omega \in \Omega$について
+        \[
+          \lim_{n \to \infty}f_n(\omega) = f(\omega)
+        \]
+        が成り立つ。
+        したがって、(MON)を使って、
+        \begin{align*}
+          \lim_{n \to \infty}e^{-\frac{1}{n}} &=
+          \lim_{n \to \infty}\EE \Bigl[\left(\text{sech}\, \frac{1}{n}\right)^{T(\omega)} \Bigr] \\
+          1 &= \lim \EE[f_n] \\
+          1 &= \EE[\lim f_n] \\
+          1 &= \EE[f] = \PP(T < \infty)
+        \end{align*}
+
+      \subsubsection{103ページ(c)の式の一番右辺}
+        強マルコフ性を使わなくてもいけるのでは...。
+
+        \[
+          \text{sech}\, \theta = \alpha
+        \]
+        を$e^{-\theta}$について解くと、
+        \[
+          e^{-\theta} = \frac{1 \pm \sqrt{1 - \alpha^2}}{\alpha}
+        \]
+        と求められるが、いま$\theta > 0$という条件より、
+        \[
+          e^{-\theta} = \frac{1 + \sqrt{1 - \alpha^2}}{\alpha}
+        \]
+        はあり得ないことが分かってしまう。
+
+      \subsubsection{103ページ上から6行目}
+        $\sqrt{1 - \alpha^2}$を一般二項展開しよう。
+        その後係数比較をすると
+        \[
+          \PP(T = 2m) = 0
+        \]
+        であることもついでに分かってしまう。
+
+    \subsection{10.13}
+      \subsubsection{103ページ下から9行目}
+        確立測度を入れるためには$\sigma$-alg. が必要なわけですが、
+        ここでは$2^E$がそれにあたります。
+
+      \subsubsection{103ページ下から3行目}
+        この形の条件付き確率でも
+        マルコフ性成り立っていてほしいよねって言う式。
+        証明は直観的には素直な感じですが、
+        書いてみると面倒くさいなあというタイプの証明。
+
+        \begin{proof}
+           左辺は$\EE[Z_{n+1} = j \mid \mathcal{F}_n]$の一変形だから、
+           \[
+              \int_G I_{\{Z_{n+1} = j\}} d\PP^{\mu} = \int_G p(X_n ,j) d\PP^{\mu} \quad (\forall G \in \mathcal{F}_n)
+           \]
+           を示せばよい。
+
+           当然ながら、
+           $\omega \in G \Rightarrow Z_n(\omega) \in Z_n(G)$
+           であるから、$G$は次のように書くことができる。
+           \[
+            G = \bigcup_{a_n \in Z_n(G)} \cdots \bigcup_{a_0 \in Z_0(G)} \Bigl\{ Z_0 = a_0, \cdots ,Z_n = a_n \Bigr\}
+           \]
+           しかも、右辺の$\Bigl\{ \quad \bullet \quad \Bigr\}$の集合は、
+           $a_i$達が変わるたびにdisjointである。
+           さて、測度の可算加法性から次のような計算ができる。
+           \begin{align*}
+             \int_G I_{\{Z_{n+1} = j\}} d\PP^{\mu}
+             &= \PP^{\mu}(G \cap \{Z_{n+1} = j\}) \\
+             &=\PP^{\mu} \Biggl( \biggl( \bigcup_{a_n \in Z_n(G)} \cdots \bigcup_{a_0 \in Z_0(G)} \Bigl\{ Z_0 = a_0, \cdots ,Z_n = a_n \Bigr\} \biggl) \, \cap \, \{Z_{n+1} = j \} \Biggr) \\
+             &= \sum_{a_n \in Z_n(G)} \cdots \sum_{a_0 \in Z_0(G)} \PP^{\mu}(Z_0 = a_0, \cdots , Z_n = a_n, Z_{n+1}=j) \\
+             &= \sum_{a_n \in Z_n(G)} \cdots \sum_{a_0 \in Z_0(G)}\mu_{a_0}p_{a_0 a_1}\cdots p_{a_{n-1}a_n}p_{a_{n}j}\\
+             &= \sum_{a_n \in Z_n(G)} \cdots \sum_{a_0 \in Z_0(G)}\PP^{\mu}(Z_0 = a_0, \cdots ,Z_n = a_n)p_{a_{n}j}\\
+             &= \sum_{a_n \in Z_n(G)}\PP^{\mu}(Z_n = a_n)p_{a_{n}j}
+           \end{align*}
+           一方、
+           \begin{align*}
+             \int_G p(X_n ,j) d\PP^{\mu}
+             &= \int p(X_n ,j) I_{A} d\PP^{\mu} \\
+             &=\sum_{a_n \in Z_n(G)}\PP^{\mu}(Z_n = a_n)p_{a_{n}j}
+           \end{align*}
+           である。ただしここで
+           \[
+              A := \bigcup_{a_n \in Z_n(G)}\{Z_n = a_n\}
+           \]
+           としている\footnote{\LaTeX の表記の都合上こうしました}。
+           したがって示したい等式がしめせた。
+        \end{proof}
