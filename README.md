@@ -15,23 +15,25 @@ Cloud LaTeX https://cloudlatex.io/ などを利用してみてください。
 会員登録などは済ませてください。
 
 David_Williams_Gaps.tex の
-`\begin{document}
-  \maketitle
-  \begin{abstract}
-    タイトル通り。ネットの海からこれを見つけ出した方は参考にしていただけると嬉しい。
-    David Williams 著 "Probability with Martingales"。
-  \end{abstract}
 
-  \input{pis.tex}
+>\begin{document}
+>  \maketitle
+>  \begin{abstract}
+>    タイトル通り。ネットの海からこれを見つけ出した方は参考にしていただけると嬉しい。
+>    David Williams 著 "Probability with Martingales"。
+>  \end{abstract}
+>
+>  \input{pis.tex}
+>
+>  \input{kawawan.tex}
+>\end{document}
 
-  \input{kawawan.tex}
-\end{document}`
 の
-`
-\input{pis.tex}
 
-\input{kawawan.tex}
-`
+>\input{pis.tex}
+>
+>\input{kawawan.tex}
+
 を消去し、
 pis.tex , kawawan.tex の内容をすべて David_Williams_Gaps.tex の先ほど消した部分に
 コピペしてください。
