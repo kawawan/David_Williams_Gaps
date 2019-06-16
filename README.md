@@ -1,4 +1,4 @@
-# David_Williams_Gaps
+# このリポジトリの概要
 David Williams 著 "Probability with martingales" の行間とか復習のメモ。見つけた人はご自由にご利用ください。
 
 # pdfの読み方
