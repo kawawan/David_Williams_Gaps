@@ -17,15 +17,20 @@ Cloud LaTeX https://cloudlatex.io/ などを利用してみてください。
 David_Williams_Gaps.tex の
 
 > \begin{document}
+>
 >  \maketitle
+>
 >  \begin{abstract}
+>
 >    タイトル通り。ネットの海からこれを見つけ出した方は参考にしていただけると嬉しい。
 >    David Williams 著 "Probability with Martingales"。
+>
 >  \end{abstract}
 >
 >  \input{pis.tex}
 >
 >  \input{kawawan.tex}
+>
 > \end{document}
 
 の
