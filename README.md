@@ -2,7 +2,7 @@
 David Williams 著 "Probability with martingales" の行間とか復習のメモ。見つけた人はご自由にご利用ください。
 
 # pdfの読み方
-1. 緑色のボタンをクリックし、Download Zipをクリック
+1. 画面右上の緑色'Clone or Download' のボタンをクリックし、Download Zipをクリック
 2. ダウンロードしたフォルダの中にDavid_Williams_Gaps.tex , pis.tex , kawawan.tex があることを確認。
 3. David_Williams_Gaps.tex をお手元の環境でコンパイルしてください
 
