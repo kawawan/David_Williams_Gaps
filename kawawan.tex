@@ -140,7 +140,7 @@
         $g_k \colon S_k \to S_k^{\prime}$
         は
         $\mathcal{S}_k$-可測関数とする。
-        このとき、$Y_k = g_k(X_k)$とおけば、$(Y_k)_k$は独立。
+        このとき、$Y_k = g_k(X_k)$とおけば、$(Y_k)_{k=1,2,\cdots,n}$は独立。
       \end{prop*}
       \begin{proof}
         $A_k^{\prime} \in \mathcal{S}_k^{\prime}$とする。
@@ -163,13 +163,13 @@
         \end{align*}
       \end{proof}
 
-      \begin{cor*}
+      \begin{prop*}
         $(X_k)_{k = 1,2,\cdots, n}$が$\RR$-値独立確率変数の列とする。
         $g = g(x_1, x_2, \cdots, x_i)$は$\RR^i \to \RR$のボレル可測関数とする。
         ただし、$i < n$。
         このとき、$Y := g(X_1, X_2, \cdots, X_i)$とおけば、
         $Y, X_{i+1}, \cdots, X_n$は独立。
-      \end{cor*}
+      \end{prop*}
       \begin{proof}
         $X = (X_1, \cdots, X_i)$は$\RR^i$-値確率変数であり、
         $X, X_{i+1}, \cdots, X_{n}$
@@ -180,7 +180,7 @@
         \end{equation}
         が成立することを言えばよい。そこで、
         \[
-          \mathcal{L} = \{A \subset \RR^i \mid (\ref{2-1})\text{が成立}\}
+          \mathcal{L} = \{A \subset \RR^i \mid \text{(\ref{2-1})が成立}\}
         \]
         と定義する。$\mathcal{L}$は$\lambda$-systemである。
         明らかに$\Omega \in \mathcal{L}$である。
@@ -353,7 +353,7 @@
         \EE[XZ] &= \EE[YZ]
       \end{align*}
       がなりたつ。
-      ($\EE[XZ_n],\EE[YZ_n]$がそれぞれ単調増加な可測関数列であることは後述の補題\ref{lem1}を参照)
+      ($XZ_n,YZ_n$がそれぞれ単調増加な可測関数列である。)
 
     \subsection{86ページ3行目}
       \[
@@ -376,18 +376,17 @@
       \]
       であることに注意する。
 
-    \subsection{86ページ下から6行目}
-      \underline{almost surely}で$Y_n$が非負かつ、$n$に関して単調増加であることを示すことに気を付ける。
+      \subsection{86ページ下から6行目}
+        \underline{almost surely}で$Y_n$が非負かつ、$n$に関して単調増加であることを示すことに気を付ける。
       \subsubsection{$0 \leq Y_n$(a.s.) について}
         $F := \{ Y_n < 0 \}$について考える。
         $Y_n$は$\mathcal{G}$可測なので、
         $F$は$\mathcal{G}$可測集合となる。
         $Y_n$が$X_n$の条件付き期待値であることと、
         非負の可測関数を確立測度で積分するとその値は非負になることに気をつければ、以下のように計算することができる。
-        \begin{align*}
-          \int_F Y_n d\PP &= \int_F X_n d\PP \\
-          &\ge 0
-        \end{align*}
+        \begin{equation*}
+          \int_F Y_n d\PP = \int_F X_n d\PP \ge 0
+        \end{equation*}
         一方、
         \[
           \int_F Y_n d\PP = \int_{\Omega} Y_n 1_F d\PP
@@ -498,8 +497,8 @@
       いくつかの補題を先に証明する。
       \subsubsection{補題その1}
         \begin{lem}\label{lem1}
-          $X,Y$: 確率変数で、$X \leq Y$とする。
-          このとき、$\EE[X \mid \mathcal{G}] \leq \EE[Y \mid \mathcal{G}]$
+          $X,Y$: 確率変数で、$X \leq Y \quad (a.s)$とする。
+          このとき、$\EE[X \mid \mathcal{G}] \leq \EE[Y \mid \mathcal{G}] \quad (a.s.)$
         \end{lem}
 
         \begin{proof}
@@ -644,7 +643,7 @@
 
         $\sigma(XI_G) \subset \sigma(\sigma(X), \mathcal{G})$は、
         $X$は$\sigma(X)$上可測であり、$I_G$は$\mathcal{G}$上可測だから、
-        それぞれ$\sigma(\sigma(X), \mathcal{G})$である。
+        それぞれ$\sigma(\sigma(X), \mathcal{G})$可測である。
         よって、$XI_G$は$\sigma(\sigma(X), \mathcal{G})$上で可測。
         したがって、$\sigma(XI_G) \subset \sigma(\sigma(X), \mathcal{G})$。もう一個もおんなじ感じやで。
 
@@ -926,8 +925,15 @@
     \subsection{10.1}
       \subsubsection{6行目}
         $\mathcal{F}_{\infty}$の定義に、$\sigma$が付いているのは、
-        $\bigcup_n \mathcal{F}_{\infty}$だけでは$\sigma$-alg.
-        にならないかもしれない、という事実があるから。
+        $\bigcup_n \mathcal{F}_{\infty}$だけではダメ。
+        例えば、
+      \begin{gather*}
+        \Omega = \{a,b,c\}\\
+        \mathcal{F}_1 = \{\emptyset, \{a\}, \{b, c\}, \Omega\}\\
+        \mathcal{F}_2 = \{\emptyset, \{b\}, \{a, c\}, \Omega\}
+      \end{gather*}
+      とおく。$\mathcal{F}_1, \mathcal{F}_2$は当然$\sigma$-alg.であるが、
+      $\mathcal{F}_1 \cup \mathcal{F}_2$は$\sigma$-alg.にならない。
 
     \subsection{10.2}
       \subsubsection{気を付けておきたいこと}
@@ -1096,11 +1102,7 @@
 
     \subsection{10.8}
       \subsubsection{$L$がstopping timeではないかもしれないこと}
-        $L$の理解が難しいので絵をかいて考えてみよう。
-
-
-        図の場合だと、$L = 6$となる。(一番最初の点は時刻0の扱い)
-        $L = 6$という集合は次のように考えられる。
+        例えば$L = 6$という集合は次のように考えられる。
         $n < 6$の時は、$A_n \in B$であることはどうでもよい。
         $n \ge 7 $の時は$A_n \notin B$であることが必要である。
         したがって、次にように考えることができる。
@@ -1183,4 +1185,655 @@
         \end{align*}
         したがって、$X$は martingale である。
 
-      \subsubsection{$\EE[X_T] \neq E[X_0]$について}
+    \subsection{10.10}
+      ここひどい。
+      $X_T$の定義が書かれていないので何とも議論ができない。
+      $T(\omega) < \infty$のときは問題なく定義できるでしょうが、
+      $T(\omega) = \infty$のとき、つまり$X_{\infty}$の定義が書かれていない。
+      \footnote{Chapter 11のマルチンゲールの収束定理を見れば定義が分かるかもしれないが、
+      それをするなら先にその収束定理をかけよ。}
+      それ以外にも抜けているところが多いので、
+      証明をすべて書いていきます。
+
+      \subsubsection{almost surely と almost everywhere (再確認)}
+        この本によると、これらの二つは微妙に定義が異なります。
+
+        $\omega \in \Omega$ごとに真偽が決まる命題$P(\omega)$
+        がある。単に$P$と略記する。
+        $P$が$\Omega$上 almost everywhere で成立するとは、
+        $P$が成立しない集合が可測集合かつ、その測度が0であること。
+
+        $P$が$\Omega$上 almost surely で成立するとは、
+        $P$が成立する集合の測度(確率)が$1$であること。
+
+        前者は全ての測度空間において定義できる概念で、
+        後者は確率論専用の概念です。
+        すなわち、almost surely というのは確率空間があるときにのみ
+        導入できる概念です。
+
+      \subsubsection{証明}
+
+        \begin{proof}
+        (a)の証明。
+
+        [準備]
+        仮定より、$(X_{T \wedge n})$はsupermartingaleになるから、
+        各$n \in \NN$に対して、$X_{T \wedge n}$は可積分である。
+        また、10.9の定理より、
+        \[
+          \EE[X_{T \wedge n}] \leq \EE[X_0]
+        \]
+        がすべての$n \in \NN$について成立している。
+
+        [(i)が成り立つ場合]
+        $T$は有界なので、ある$N \in \NN$が存在して、
+        $T(\omega) \leq N$となる。
+        よって、$X_{T \wedge N} = X_T$となる。
+        したがって、
+        \[
+          \EE[X_T] = \EE[X_{T \wedge N}] \leq \EE[X_0]
+        \]
+        また、$|X_{T \wedge n}| = |X_T|$より、
+        $X_T$は可積分であることが分かる。
+
+        [$T$がfinite (a.s)ならば$\lim_{n \to \infty}X_{T \wedge n} = X_T $(a.s)であること]
+        $\omega \in \{T < \infty\}$ ならば明らかに
+        $\lim_{n \to \infty}X_{T(\omega) \wedge n}(\omega) = X_{T(\omega)}(\omega) $
+        そして、$T$ finite (a.s)なので、$\PP(\{T < \infty\}) = 1$
+        である。
+        さて、$\{\omega \mid \lim_{n \to \infty}X_{T(\omega) \wedge n}(\omega) = X_{T(\omega)}(\omega)\}$
+        は「可測集合」であるが
+        \footnote{らしいけど、これまじ？$X_T$の定義がないとやっぱ無理ちゃう？}、
+        \[
+          \{T < \infty\} \subset \{\omega \mid \lim_{n \to \infty}X_{T(\omega) \wedge n}(\omega) = X_{T(\omega)}(\omega)\}
+        \]
+        であるから、測度の単調性より、
+        \[
+          \PP(\{\omega \mid \lim_{n \to \infty}X_{T(\omega) \wedge n}(\omega) = X_{T(\omega)}(\omega)\}) = 1
+        \]
+        となる。
+
+        [(ii)が成立しているとき]
+        先ほどの議論と$T$はfinite (a.s)であるという仮定から
+        \[
+          \lim_{n \to \infty}X_{T \wedge n} = X_T
+        \]
+        が almost surely で成立する。
+        また、過程$X$は有界より(BDD)を使うことができる。したがって、
+        \[
+          \lim_{n \to \infty}\EE[X_{T \wedge n}] = \EE[X_T]
+        \]
+        がなりたつ。
+        よって、
+        \begin{align*}
+          \EE[X_{T \wedge n}] &\leq \EE[X_0] \\
+          \lim_{n \to \infty}\EE[X_{T \wedge n}] &\leq \lim_{n \to \infty}\EE[X_0] \\
+          \EE[X_T] &\leq \EE[X_0]
+        \end{align*}
+        $X_T$の可積分性は次のように示す。
+        \begin{align*}
+          \EE[|X_T|] &= \int_{\{T < \infty\}}|X_T|\PP(d\omega) + \int_{\{T = \infty\}}|X_T|\PP(d\omega) \\
+          &= \int_{\{T < \infty\}}|X_T|\PP(d\omega) + 0\\
+          &= \int_{\{T < \infty\}}|X_T|\PP(d\omega)
+        \end{align*}
+        であるが、ここで$X$が有界であるという仮定と、
+        $\omega \in \{T < \infty\}$であることから
+        次のような計算ができる。
+        ただし、以下で$K$とは、$X$を上から押さえている定数。
+        \begin{align*}
+          |X_{T(\omega) \wedge n}(\omega)| &\leq K \\
+          \lim_{n \to \infty}|X_{T(\omega) \wedge n}(\omega)| &\leq K \\
+          |X_{T(\omega)}(\omega)| &\leq K
+        \end{align*}
+        したがって、
+        \[
+          \EE[|X_T|] \leq K < \infty
+        \]
+        よって、$X_T$は可積分である。
+
+        [(iii)が成り立つとき]
+        このとき、$T$は finite (a.s.) である。
+        これは背理法を用いれば$\EE[T] < \infty$に反していることがすぐにわかる。
+        (iii)の仮定を使えば、
+        \[
+          |X_{T \wedge n} - X_0| = |\sum_{k=1}^{T \wedge n}(X_k - X_{k-1})| \leq TK
+        \]
+        ここで$K$は定数で、$\EE[T] < \infty$より、$\EE[TK] < \infty$。
+        よって、(DOM)より。
+        \[
+          \EE[|(X_{T \wedge n}) - X_0) - (X_T -X_0)|] \rightarrow 0
+        \]
+        すなわち、
+        \begin{align*}
+          \EE[|X_{T \wedge n} -X_T|] \rightarrow 0 \\
+          \lim_{n \to \infty}\EE[X_{T \wedge n}] = \EE[X_T]
+        \end{align*}
+        よって(ii)と同様に、$\EE[X_T] \leq \EE[X_0]$となる。
+        $X_T$の可積分性は次のように示す。
+        \[
+          |X_{T \wedge n} - X_0| \ge |X_{T \wedge n}| - |X_0|
+        \]
+         であり、
+         \[
+            |X_{T \wedge n} - X_0| \leq TK
+         \]
+         なので、
+         \begin{align*}
+            |X_{T \wedge n}| - |X_0| &\leq TK \\
+            |X_{T \wedge n}| &\leq TK + |X_0|\\
+            \lim_{n \to \infty}|X_{T \wedge n}| &\leq \lim_{n \to \infty}(TK + |X_0|)\\
+            |X_{T}| &\leq TK + |X_0|\\
+            \EE[|X_{T \wedge n}|] &\leq \EE[TK + |X_0|] < \infty
+         \end{align*}
+
+         以上によりすべての主張を証明できた。
+
+         (b)の証明。
+
+         $X$がマルチンゲールだから$-X$もマルチンゲール。
+         よって(a)を適用すればよい。
+       \end{proof}
+
+      \subsubsection{系について}
+
+        \begin{cor}
+        $M$はマルチンゲールで、各$n$に対して$M_n - M_{n-1}$は一様に
+        $K_1 \in \RR^+$で押さえられている。
+        すなわち、
+        \[
+          \exists K_1 \in \RR, \forall n \in \NN, \forall \omega \in \Omega, |M_n(\omega) - M_{n-1}(\omega)| \leq K_1
+        \]
+        とする。$C$はprevisible process\footnote{filtrationは与えられているものとする}で、$K_2 \in \RR^+$で一様に抑えられているとする。
+        $T$はstopping time で、$\EE[T] < \infty$とする。
+        このとき、$\EE[(C \bullet M)_T] = 0$となる。
+        \end{cor}
+
+        \begin{proof}
+        $M$はマルチンゲールで、$C$は有界なprevisible process なので、
+        10.7節の(b)より、$(C \bullet M)$は$(C \bullet M)_0 = 0$
+        であるようなマルチンゲールである。
+        また、
+        \[
+          |(C \bullet M)_n - (C \bullet M)_{n-1}| = |C_n(M_n - M_{n-1})| \leq K_1K_2
+        \]
+        仮定より、
+        \[\EE[T] < \infty\]
+        よって、任意抽出定理の(iii)の条件を満たしているので、
+        10.10(b)より、
+        \[
+          \EE[(C \bullet M)_T] = \EE[(C \bullet M)_0] = \EE[0] = 0
+        \]
+
+        \end{proof}
+
+        \begin{cor}\label{10.10d}
+          $X$が非負supermartingaleで$T$がstopping time で、a.s.で有限であるとする。このとき、
+          \[\EE[X_T] \leq \EE[X_0]\]
+        \end{cor}
+
+        \begin{proof}
+          $X$がsupermartingaleより、$\EE[X_{T \wedge n}] \leq \EE[X_0]$
+          である。$X$が非負より、$X_{T \wedge n}$も非負。
+          また、$T$はa.s.で有限より、
+          $X_{n \wedge T} \rightarrow X_T$がa.s.で成立する。
+          よって、FATOUの補題より、
+          \begin{align*}
+            \EE[\liminf_{n \to \infty}X_{T \wedge n}] &\leq \liminf_{n \to \infty}\EE[X_{T \wedge n}]\\
+            \EE[X_T] &\leq \liminf_{n \to \infty}\EE[X_0]\\
+            &=\EE[X_0]
+          \end{align*}
+        \end{proof}
+
+      \subsubsection{やらかしたミス}
+        せや！
+        \[
+          X \leq Y \Rightarrow \EE[X \mid \mathcal{F}] \leq \EE[Y \mid \mathcal{F}]
+        \]
+        なんやから、対偶を取ったら
+        \[
+          \EE[X \mid \mathcal{F}] \leq \EE[Y \mid \mathcal{F}]  \Rightarrow X \leq Y
+        \]
+        だから、系\ref{10.10d}はこれですぐにしめせるやんけ！ｗ
+
+        almost surelyが付いた命題の否定命題を考えるときは気をつけましょう。
+
+    \subsection{10.11}
+      本文には巻末の演習問題集のE10.5を参考にしなさいと書いてあります。
+      \subsubsection{E10.5の証明}
+        \begin{proof}
+          帰納法で示す。
+
+          [$n=1$のとき]
+          $\PP(T > N) = 1 - \PP(T \leq N)$である。
+          $\PP(T \leq M \mid \mathcal{F}_0)$は
+          $\EE[I_{\{T \leq N\}} \mid \mathcal{F}_0]$
+          の一変形であり、仮定より、
+          \[
+            \PP(T \leq N \mid \mathcal{F}_0) >  \varepsilon \quad (a.s.)
+          \]
+          となる$N \in \NN, \varepsilon > 0$が存在する。
+          したがって、
+          \[
+            -\PP(T \leq N \mid \mathcal{F}_0) < - \varepsilon \quad (a.s.)
+          \]
+          である。
+          条件付き平均の定義より、
+          \[
+            \int_{\Omega} \PP(T \leq N \mid \mathcal{F}_0) d\PP
+            = \int_{\Omega}I_{\{T \leq N\}}d\PP
+            = \PP(T \leq N)
+          \]
+          である。したがって、
+          \[
+            -\varepsilon
+            > \int_{\Omega}(-\PP(T \leq N \mid \mathcal{F}_0))
+            = -\PP(T \leq N)
+          \]
+          よって、
+          \[
+            1 - \PP(T \leq N) < 1 - \varepsilon
+          \]
+          すなわち、
+          \[
+            \PP(T > N) < \varepsilon
+          \]
+
+          $n = k(\leq 1)$の時成立すると仮定。$T$はstoppinng timeより、
+          \[
+            \{T \leq kN\} \in \mathcal{F}_{kN}
+          \]
+          したがって、
+          \[
+            \{T \leq kN\}^c = \{T > kN\} \in \mathcal{F}_{kN}
+          \]
+          ところで、
+          \[
+            \PP(T \leq kN + N \mid \mathcal{F}_{kN}) > \varepsilon \quad (a.s.)
+          \]
+          より、
+          \begin{align*}
+            1 - \PP(T \leq kN + N \mid \mathcal{F}_{kN}) &< 1 - \varepsilon \quad (a.s.) \\
+            \PP(T > kN + N \mid \mathcal{F}_{kN}) &< 1 - \varepsilon \quad (a.s.)
+          \end{align*}
+          $\PP(T > kN + N \mid \mathcal{F}_{kN})$は
+          $\EE[I_{\{T > kN + N\}} \mid \mathcal{F}_{kN}]$
+          の一変形であることに注意すれば、
+          \begin{align*}
+            \int_{T > kN}\PP(T > kN + N \mid \mathcal{F}_{kN})d\PP
+            &< \int_{T > kN}(1 - \varepsilon )d\PP \\
+            \int_{T > kN}I_{\{T > kN + N\}}d\PP
+            &< (1 - \varepsilon )\PP(T > kN) \\
+            \int_{\Omega} I_{\{T > kN + N\} \cap \{T > kN\}}d\PP
+            &< (1 - \varepsilon )(1 - \varepsilon)^k \\
+            \PP(\{T > kN + N\} \cap \{T > kN\})
+            &\leq (1 - \varepsilon)^{k+1}\\
+            \PP(T > (k + 1)N)
+            &\leq (1 - \varepsilon)^{k+1}\\
+          \end{align*}
+        \end{proof}
+
+      \subsubsection{$\EE[T] < \infty$の証明}
+        \begin{proof}
+          \begin{align*}
+            \EE[T] =& 0 \times \PP(T = 0) \\
+            &+ 1 \times \PP(T = 1) + 2 \times \PP(T = 2) + \cdots + N \times \PP(T = N)\\
+            &+ (N + 1) \times \PP(T = N + 1) + (N + 2) \times \PP(T = N + 2) + \cdots + 2N \times \PP(T = 2N)\\
+            &+ (2N + 1) \times \PP(T = 2N + 1) + (2N + 2) \times \PP(T = 2N + 2) + \cdots + 3N \times \PP(T = 3N)\\
+            &+ (3N + 1) \times \PP(T = 3N + 1) + \cdots
+          \end{align*}
+          と書けるから、
+          \[
+            \EE[T] \leq N\PP(0<T\leq N) + 2N\PP(N< T \leq 2N) + \cdots
+          \]
+          とできる。ここで、$l = 1,2,3,\cdots$に対して
+          \[
+            \PP(lN < T \leq (l + 1)N) \leq \PP(lN < T) \leq (1 - \varepsilon)^l
+          \]
+          なので、
+          \[
+            \EE[T] \leq
+            N\PP(0 < T \leq N)
+            + \sum_{l = 1}^{\infty}(l + 1)N(1 - \varepsilon)^l
+          \]
+          とできる。
+          右辺の無限級数は有限の値に収束する。
+          よって$\EE[T] < \infty$
+        \end{proof}
+
+        \subsubsection{ABRACADABRAについて}
+          ごめんやってない。
+
+    \subsection{10.12}
+      \subsubsection{$\text{sech}$とは}
+          見慣れない記号ですが定義は以下の通り\footnote{\LaTeX でうまいこと出力するの分からなかったから適当に誤魔化しています。}。
+        \[
+          \text{sech} \, \theta = \frac{1}{\cosh \theta}
+          \]
+
+      \subsubsection{p.102 $\blacktriangleright$ について}
+          "Now insisit that $\theta > 0$"の意味は「ここで$\theta > 0$とする」。
+          これたぶん初めから$\theta > 0$でやっておけばいいと思った。
+          この条件は後々聞いてくるので必要な条件です。
+
+          \subsubsection{p.102 $\blacktriangleright$ の一行下について}
+          \[
+          \exp(\theta S_{T \wedge n}) \leq e^{\theta}
+          \]
+          と主張している。これを言うためには
+          \[
+          S_{T \wedge n} \leq 1
+          \]
+          を確認しておく必要がある。
+          $T(\omega) < \infty$の場合と、$T(\omega) = \infty$の場合に
+          場合分けしてそれぞれ調べる。
+
+          その次に、$M_{T \wedge n}^{\theta} < e^{\theta}$であるのは、
+          すぐ上で確認したように
+          \[
+          \exp(\theta S_{T \wedge n}) \leq e^{\theta}
+          \]
+          であることと、$\theta > 0$より、
+          \[
+          \text{sech} \, \theta < 1
+          \]
+          である\footnote{詳しい計算は微分頑張ったらいけるはず。}ことよりわかる。
+
+      \subsubsection{102ページ下から9行目}
+        こう書いていたら分かりやすいと思います。
+
+        $M_{T}^{\theta}$を以下のように定める。
+        \begin{equation*}
+          M_{T}^{\theta}(\omega) =
+          \begin{cases}
+            M_{T(\omega)}^{\theta}(\omega) & (T(\omega) < \infty) \\
+            0 & (T(\omega) = \infty)
+          \end{cases}
+        \end{equation*}
+        このとき、
+        \[
+          \lim_{n \to \infty}M_{T \wedge n}^{\theta} = M_{T}^{\theta}
+        \]
+        が成立する\footnote{ここでは(a.s.)の意味ではなく、通常の意味での各点収束}。
+        この収束の証明は次の通り。
+        \begin{proof}
+          $\omega \in \{ T < \infty\}$の場合は明らか。
+          $\omega \in \{ T = \infty\}$の場合、
+          \begin{align*}
+            M_{T \wedge n}^{\theta}(\omega)
+            &= M_n^{\theta}(\omega)\\
+            &= (\text{sech}\, \theta)^n e^{\theta S_n(\omega)}\\
+            &\leq (\text{sech}\, \theta)^n e^{\theta}\\
+            & \rightarrow 0 \quad (n \rightarrow \infty)
+          \end{align*}
+        \end{proof}
+
+      \subsubsection{102ページ下から6行目の式の右辺}
+        しれっと$(\text{sech}\,(\theta))^T$が出てきているけれど、
+        定義が明記されていないので、エスパー能力を発揮して
+        適切な定義を察してあげないといけません。
+        おそらく次のように解釈するのが自然でしょう。
+        \begin{def*}
+          \begin{equation*}
+            (\text{sech}\, \theta)^T =
+            \begin{cases}
+              (\text{sech}\, \theta)^{T(\omega)} & (T(\omega) < \infty)\\
+              0 & (T(\omega) = \infty)
+            \end{cases}
+          \end{equation*}
+        \end{def*}
+        こうしてきちんと定義をしておかないと、
+        \[
+          (\text{sech}\, \theta)^{\infty}
+        \]
+        という謎の計算をどう処理するのかわからなくなってしまいます。
+
+        なおこのように新しく記号を導入したので、
+        \[
+          M^{\theta}_T = (\text{sech}\, \theta)^T \exp{(\theta S_{T})}
+        \]
+        が成立することを確かめておかなければなりません。
+        (この確かめはそこまで難しくない。)
+
+      \subsubsection{102ページ下から3行目}
+        $\theta \downarrow 0$としていますが、ここ少し大雑把に書いてある。
+        実際はこのようにしています。
+
+        $n \ge 1$に対して、
+        \[
+          f_n(\omega ) :=
+          \left(\text{sech}\, \frac{1}{n}\right)^{T(\omega)}
+        \]
+        とさだめ、
+        \[
+          f(\omega ) := I_{\{T < \infty \}}(\omega)
+        \]
+        と定義する。
+        このとき、$f_n$は増加列で、すべての$\omega \in \Omega$について
+        \[
+          \lim_{n \to \infty}f_n(\omega) = f(\omega)
+        \]
+        が成り立つ。
+        したがって、(MON)を使って、
+        \begin{align*}
+          \lim_{n \to \infty}e^{-\frac{1}{n}} &=
+          \lim_{n \to \infty}\EE \Bigl[\left(\text{sech}\, \frac{1}{n}\right)^{T(\omega)} \Bigr] \\
+          1 &= \lim \EE[f_n] \\
+          1 &= \EE[\lim f_n] \\
+          1 &= \EE[f] = \PP(T < \infty)
+        \end{align*}
+
+      \subsubsection{103ページ(c)の式の一番右辺}
+        強マルコフ性を使わなくてもいけるのでは...。
+
+        \[
+          \text{sech}\, \theta = \alpha
+        \]
+        を$e^{-\theta}$について解くと、
+        \[
+          e^{-\theta} = \frac{1 \pm \sqrt{1 - \alpha^2}}{\alpha}
+        \]
+        と求められるが、いま$\theta > 0$という条件より、
+        \[
+          e^{-\theta} = \frac{1 + \sqrt{1 - \alpha^2}}{\alpha}
+        \]
+        はあり得ないことが分かってしまう。
+
+      \subsubsection{103ページ上から6行目}
+        $\sqrt{1 - \alpha^2}$を一般二項展開しよう。
+        その後係数比較をすると
+        \[
+          \PP(T = 2m) = 0
+        \]
+        であることもついでに分かってしまう。
+
+    \subsection{10.13}
+      \subsubsection{103ページ下から9行目}
+        確立測度を入れるためには$\sigma$-alg. が必要なわけですが、
+        ここでは$2^E$がそれにあたります。
+
+      \subsubsection{103ページ下から3行目}
+        この形の条件付き確率でも
+        マルコフ性成り立っていてほしいよねって言う式。
+        証明は直観的には素直な感じですが、
+        書いてみると面倒くさいなあというタイプの証明。
+
+        \begin{proof}
+           左辺は$\EE[Z_{n+1} = j \mid \mathcal{F}_n]$の一変形だから、
+           \[
+              \int_G I_{\{Z_{n+1} = j\}} d\PP^{\mu} = \int_G p(X_n ,j) d\PP^{\mu} \quad (\forall G \in \mathcal{F}_n)
+           \]
+           を示せばよい。
+
+           当然ながら、
+           $\omega \in G \Rightarrow Z_n(\omega) \in Z_n(G)$
+           であるから、$G$は次のように書くことができる。
+           \[
+            G = \bigcup_{a_n \in Z_n(G)} \cdots \bigcup_{a_0 \in Z_0(G)} \Bigl\{ Z_0 = a_0, \cdots ,Z_n = a_n \Bigr\}
+           \]
+           しかも、右辺の$\Bigl\{ \quad \bullet \quad \Bigr\}$の集合は、
+           $a_i$達が変わるたびにdisjointである。
+           さて、測度の可算加法性から次のような計算ができる。
+           \begin{align*}
+             \int_G I_{\{Z_{n+1} = j\}} d\PP^{\mu}
+             &= \PP^{\mu}(G \cap \{Z_{n+1} = j\}) \\
+             &=\PP^{\mu} \Biggl( \biggl( \bigcup_{a_n \in Z_n(G)} \cdots \bigcup_{a_0 \in Z_0(G)} \Bigl\{ Z_0 = a_0, \cdots ,Z_n = a_n \Bigr\} \biggl) \, \cap \, \{Z_{n+1} = j \} \Biggr) \\
+             &= \sum_{a_n \in Z_n(G)} \cdots \sum_{a_0 \in Z_0(G)} \PP^{\mu}(Z_0 = a_0, \cdots , Z_n = a_n, Z_{n+1}=j) \\
+             &= \sum_{a_n \in Z_n(G)} \cdots \sum_{a_0 \in Z_0(G)}\mu_{a_0}p_{a_0 a_1}\cdots p_{a_{n-1}a_n}p_{a_{n}j}\\
+             &= \sum_{a_n \in Z_n(G)} \cdots \sum_{a_0 \in Z_0(G)}\PP^{\mu}(Z_0 = a_0, \cdots ,Z_n = a_n)p_{a_{n}j}\\
+             &= \sum_{a_n \in Z_n(G)}\PP^{\mu}(Z_n = a_n)p_{a_{n}j}
+           \end{align*}
+           一方、
+           \begin{align*}
+             \int_G p(X_n ,j) d\PP^{\mu}
+             &= \int p(X_n ,j) I_{A} d\PP^{\mu} \\
+             &=\sum_{a_n \in Z_n(G)}\PP^{\mu}(Z_n = a_n)p_{a_{n}j}
+           \end{align*}
+           である。ただしここで
+           \[
+              A := \bigcup_{a_n \in Z_n(G)}\{Z_n = a_n\}
+           \]
+           としている\footnote{\LaTeX の表記の都合上こうしました}。
+           したがって示したい等式がしめせた。
+        \end{proof}
+
+      \subsubsection{104ページ上から3行目の式}
+        これももう少し書いてあげたほうが良いのでは......。
+        \[
+          \EE^{\mu}[ h(Z_{n+1}) \mid \mathcal{F}_n] = \sum_{j} p(Z_n, j)h(j)
+        \]
+        について。
+        \begin{proof}
+          $E$の元に番号付けをして$e_0, e_1, \cdots$とする。
+          \begin{align*}
+            Z_{n+1} &= Z_{n+1}I_{\{Z_{n+1} = e_0\}} + Z_{n+1}I_{\{Z_{n+1} = e_1\}} + \cdots \\
+            &= \sum_{j \in E}Z_{n+1}I_{\{Z_{n+1} = j\}}
+          \end{align*}
+          より、
+          \[
+            h(Z_{n+1}) = \sum_{j \in E}h(j)I_{\{Z_{n+1} = j\}} =: X
+          \]
+          とする。また、
+          \[
+            X_m := \sum_{k=0}^m h(e_k)I_{\{Z_{n+1}=e_k\}}
+          \]
+          とする。
+          $h,I$はともに非負の関数だから$0 \leq X_m$であり、
+          $X_m \uparrow X$であるから、(cMON)より、
+          \begin{align*}
+            \EE^{\mu}[X \mid \mathcal{F}_n]
+            &= \lim_{m \to \infty}\EE^{\mu}[X_m \mid \mathcal{F}_n]\\
+            &= \lim_{m \to \infty}\EE^{\mu}[\sum_{k=0}^m h(e_k)I_{\{Z_{n+1}=e_k\}} \mid \mathcal{F}_n]\\
+            &= \lim_{m \to \infty}\sum_{k=0}^m\EE^{\mu}[ h(e_k)I_{\{Z_{n+1}=e_k\}} \mid \mathcal{F}_n]\\
+            &= \lim_{m \to \infty}\sum_{k=0}^m h(e_k)\EE^{\mu}[ I_{\{Z_{n+1}=e_k\}} \mid \mathcal{F}_n]\\
+            &= \sum_{j \in E}h(j)\EE^{\mu}[ I_{\{Z_{n+1}=j\}} \mid \mathcal{F}_n]\\
+            &= \sum_{j \in E}h(j)\PP^{\mu}(Z_{n+1}=j \mid \mathcal{F}_n)\\
+            &= \sum_{j \in E}h(j)p(Z_{n},j)\\
+          \end{align*}
+        \end{proof}
+
+      \subsubsection{104ページ上から4行目}
+        "$h(Z_n)$ is a non-negative supermartingale"とあるが、嘘っぽい。
+        初期分布の$\mu$がディラックのデルタならおそらく問題はない。
+        $h$が有限という仮定しかない。
+        なので、$\EE[|h(Z_n)|]$もとい、
+        supermartingaleの性質より$\EE[|h(Z_0)|]$が有限かどうか
+        という判定はできなさそう。
+        おそらく$h$が有界という条件ならうまくいくのでは......？
+        もしかしてmartingaleの三番目の条件が成り立ったから、
+        と言ってそこで安心してsupermartingaleだって言ってる......？
+        僕が何かを見落としている可能性が大なので参考程度に。
+
+      \subsubsection{104ページExercise}
+        マルコフ連鎖を本格的にやっていないのにこのExercise
+        をやらせるのは酷なのでは......
+
+        等式の証明には次の事実を用いる。
+        \[
+          \PP^i (T_j = m+1) = \sum_{k \neq j}p_{ik}\PP^k (T_j = m)
+        \]
+        これはマルコフ性を用いれば証明できる。
+        が、詳しい証明は確率過程に焦点を当てた教科書に載っている。
+        Poel "Introduction to Stachastic processes"など参照。
+        しかし、直観的にも明らか。
+        $m+1$で初めて$j$に行くのは、
+        $1$\, stepめではいったん$j$出ないところに進み
+        その後$m$\,stepかけて$j$に向かうと思えばよい。
+        次の段落から解答を書きます。
+
+        まず、次を示す。
+        \[
+          \PP^i(T_j < n+1) = \sum_{k \neq j} p_{ik}\PP^k(T_j < n) + p_{ij}\quad (n \ge 1)
+        \]
+
+        [$n=1$のとき]
+        \begin{align*}
+          \text{(左辺)} &= \PP^i(T_j < 2) = \PP^i(T_j \leq 1) = p_{ij}\\
+          \text{(右辺)} &= \sum_{k \neq j} p_{ik}\PP^k(T_j < 1) + p_{ij}\\
+          &= 0 + p_{ij} \\
+          &= p_{ij}
+        \end{align*}
+        より成立する。
+
+        [$n=m$のとき成立すると仮定]
+        \begin{align*}
+          \PP^i(T_{j} < m + 1 + 1) &= \PP^i(T_J < m + 2)\\
+          &= \PP^i(T_j < m + 1) + \PP^i(T_j = m + 1)\\
+          &= \sum_{k \neq j} p_{ik}\PP^k(T_j < m) + p_{ij} + \sum_{k \neq j}p_{ik}\PP^k (T_j = m)\\
+          &= \sum_{k \neq j} p_{ik}\PP^k(T_j \leq m) + p_{ij}\\
+          &= \sum_{k \neq j} p_{ik}\PP^k(T_j < m + 1)
+        \end{align*}
+        よって、$m+1$についても成立する。
+
+        今示した等式について、$n \rightarrow \infty$とする。
+        \[
+          \lim_{n \to \infty}\PP^i(T_j < n+1) = \lim_{n \to \infty}\sum_{k \neq j} p_{ik}\PP^k(T_j < n) + p_{ij}
+        \]
+        左辺は測度のMONより、
+        \[
+          \text{(左辺)} = \PP^i(T_j < \infty)
+        \]
+        右辺は(多分)DOMで極限が$\sum$の中に入って、
+        そのあと測度のMONより、
+        \[
+          \text{(右辺)} = \sum_{k \neq j} p_{ik}\PP^k(T_j < \infty) + p_{ij}
+        \]
+        以上により、
+        \[
+          f_{ij} = \sum_{k \neq j} p_{ik}f_{kj} + p_{ij}
+        \]
+        がわかる。
+
+        残りは次を証明することである。
+        \begin{center}
+          遷移行列の各成分が$0$より大きいマルコフ連鎖$Z$がある
+          \footnote{「遷移行列の各成分が$0$より大きい」
+          という条件は教科書にはなかったですが、僕の証明では
+          この仮定がないと証明にならないのです......。
+          でも、この証明が一番自然なんだよなあと思うんだけど}。
+          このとき、全ての$P$-superharmonic関数が定数関数なら、
+          マルコフ連鎖$Z$は既約で再帰的である。
+        \end{center}
+
+        まず、
+        \[
+          f_j(i) = \PP^i(T_j < \infty)
+        \]
+        とおく。
+        作用素$P$の定義通りに計算すると、
+        $f_j$が$P$-superharmonic関数であることが分かる。
+        仮定より$f_j$は定数関数となるので、それを$\alpha$とおくことにする。
+        \begin{align*}
+          f_j(i) &= f_{ij}\\
+          \alpha &= \sum_{k \neq j} p_{ik}f_{kj} + p_{ij}\\
+          \alpha &= \sum_{k \neq j} p_{ik}f_j(k) + p_{ij}\\
+          \alpha &= \alpha\sum_{k \neq j} p_{ik} + p_{ij}\\
+          \alpha \left(1 - \sum_{k \neq j} p_{ik} \right) &= p_{ij}\\
+          \alpha &= \frac{p_{ij}}{1 - \sum_{k \neq j} p_{ik}}\\
+          \alpha &= \frac{p_{ij}}{p_{ij}}\\
+          \alpha &= 1
+        \end{align*}
+        よって、
+        \[
+          \PP^i(T_j < \infty) =f_{j}(i) = \alpha = 1
+        \]
+        である。$i,j$は任意より、$Z$は既約で再帰的である\footnote{この証明は$p_{ij} > 0$であることを使っておるのじゃ}。
