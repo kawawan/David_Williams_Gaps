@@ -140,7 +140,7 @@
         $g_k \colon S_k \to S_k^{\prime}$
         は
         $\mathcal{S}_k$-可測関数とする。
-        このとき、$Y_k = g_k(X_k)$とおけば、$(Y_k)_k$は独立。
+        このとき、$Y_k = g_k(X_k)$とおけば、$(Y_k)_{k=1,2,\cdots,n}$は独立。
       \end{prop*}
       \begin{proof}
         $A_k^{\prime} \in \mathcal{S}_k^{\prime}$とする。
@@ -163,13 +163,13 @@
         \end{align*}
       \end{proof}
 
-      \begin{cor*}
+      \begin{prop*}
         $(X_k)_{k = 1,2,\cdots, n}$が$\RR$-値独立確率変数の列とする。
         $g = g(x_1, x_2, \cdots, x_i)$は$\RR^i \to \RR$のボレル可測関数とする。
         ただし、$i < n$。
         このとき、$Y := g(X_1, X_2, \cdots, X_i)$とおけば、
         $Y, X_{i+1}, \cdots, X_n$は独立。
-      \end{cor*}
+      \end{prop*}
       \begin{proof}
         $X = (X_1, \cdots, X_i)$は$\RR^i$-値確率変数であり、
         $X, X_{i+1}, \cdots, X_{n}$
@@ -353,7 +353,7 @@
         \EE[XZ] &= \EE[YZ]
       \end{align*}
       がなりたつ。
-      ($\EE[XZ_n],\EE[YZ_n]$がそれぞれ単調増加な可測関数列であることは後述の補題\ref{lem1}を参照)
+      ($XZ_n,YZ_n$がそれぞれ単調増加な可測関数列である。)
 
     \subsection{86ページ3行目}
       \[
@@ -376,18 +376,17 @@
       \]
       であることに注意する。
 
-    \subsection{86ページ下から6行目}
-      \underline{almost surely}で$Y_n$が非負かつ、$n$に関して単調増加であることを示すことに気を付ける。
+      \subsection{86ページ下から6行目}
+        \underline{almost surely}で$Y_n$が非負かつ、$n$に関して単調増加であることを示すことに気を付ける。
       \subsubsection{$0 \leq Y_n$(a.s.) について}
         $F := \{ Y_n < 0 \}$について考える。
         $Y_n$は$\mathcal{G}$可測なので、
         $F$は$\mathcal{G}$可測集合となる。
         $Y_n$が$X_n$の条件付き期待値であることと、
         非負の可測関数を確立測度で積分するとその値は非負になることに気をつければ、以下のように計算することができる。
-        \begin{align*}
-          \int_F Y_n d\PP &= \int_F X_n d\PP \\
-          &\ge 0
-        \end{align*}
+        \begin{equation*}
+          \int_F Y_n d\PP = \int_F X_n d\PP \ge 0
+        \end{equation*}
         一方、
         \[
           \int_F Y_n d\PP = \int_{\Omega} Y_n 1_F d\PP
@@ -498,8 +497,8 @@
       いくつかの補題を先に証明する。
       \subsubsection{補題その1}
         \begin{lem}\label{lem1}
-          $X,Y$: 確率変数で、$X \leq Y$とする。
-          このとき、$\EE[X \mid \mathcal{G}] \leq \EE[Y \mid \mathcal{G}]$
+          $X,Y$: 確率変数で、$X \leq Y \quad (a.s)$とする。
+          このとき、$\EE[X \mid \mathcal{G}] \leq \EE[Y \mid \mathcal{G}] \quad (a.s.)$
         \end{lem}
 
         \begin{proof}
@@ -644,7 +643,7 @@
 
         $\sigma(XI_G) \subset \sigma(\sigma(X), \mathcal{G})$は、
         $X$は$\sigma(X)$上可測であり、$I_G$は$\mathcal{G}$上可測だから、
-        それぞれ$\sigma(\sigma(X), \mathcal{G})$である。
+        それぞれ$\sigma(\sigma(X), \mathcal{G})$可測である。
         よって、$XI_G$は$\sigma(\sigma(X), \mathcal{G})$上で可測。
         したがって、$\sigma(XI_G) \subset \sigma(\sigma(X), \mathcal{G})$。もう一個もおんなじ感じやで。
 
@@ -926,8 +925,15 @@
     \subsection{10.1}
       \subsubsection{6行目}
         $\mathcal{F}_{\infty}$の定義に、$\sigma$が付いているのは、
-        $\bigcup_n \mathcal{F}_{\infty}$だけでは$\sigma$-alg.
-        にならないかもしれない、という事実があるから。
+        $\bigcup_n \mathcal{F}_{\infty}$だけではダメ。
+        例えば、
+      \begin{gather*}
+        \Omega = \{a,b,c\}\\
+        \mathcal{F}_1 = \{\emptyset, \{a\}, \{b, c\}, \Omega\}\\
+        \mathcal{F}_2 = \{\emptyset, \{b\}, \{a, c\}, \Omega\}
+      \end{gather*}
+      とおく。$\mathcal{F}_1, \mathcal{F}_2$は当然$\sigma$-alg.であるが、
+      $\mathcal{F}_1 \cup \mathcal{F}_2$は$\sigma$-alg.にならない。
 
     \subsection{10.2}
       \subsubsection{気を付けておきたいこと}
@@ -1096,11 +1102,7 @@
 
     \subsection{10.8}
       \subsubsection{$L$がstopping timeではないかもしれないこと}
-        $L$の理解が難しいので絵をかいて考えてみよう。
-
-
-        図の場合だと、$L = 6$となる。(一番最初の点は時刻0の扱い)
-        $L = 6$という集合は次のように考えられる。
+        例えば$L = 6$という集合は次のように考えられる。
         $n < 6$の時は、$A_n \in B$であることはどうでもよい。
         $n \ge 7 $の時は$A_n \notin B$であることが必要である。
         したがって、次にように考えることができる。
@@ -1335,7 +1337,7 @@
       \subsubsection{系について}
 
         \begin{cor}
-        $M$はマルチンゲールで、各$n$に対して$M_n M_{n-1}$は一様に
+        $M$はマルチンゲールで、各$n$に対して$M_n - M_{n-1}$は一様に
         $K_1 \in \RR^+$で押さえられている。
         すなわち、
         \[
@@ -1585,6 +1587,13 @@
         \]
         という謎の計算をどう処理するのかわからなくなってしまいます。
 
+        なおこのように新しく記号を導入したので、
+        \[
+          M^{\theta}_T = (\text{sech}\, \theta)^T \exp{(\theta S_{T})}
+        \]
+        が成立することを確かめておかなければなりません。
+        (この確かめはそこまで難しくない。)
+
       \subsubsection{102ページ下から3行目}
         $\theta \downarrow 0$としていますが、ここ少し大雑把に書いてある。
         実際はこのようにしています。
@@ -1686,3 +1695,145 @@
            としている\footnote{\LaTeX の表記の都合上こうしました}。
            したがって示したい等式がしめせた。
         \end{proof}
+
+      \subsubsection{104ページ上から3行目の式}
+        これももう少し書いてあげたほうが良いのでは......。
+        \[
+          \EE^{\mu}[ h(Z_{n+1}) \mid \mathcal{F}_n] = \sum_{j} p(Z_n, j)h(j)
+        \]
+        について。
+        \begin{proof}
+          $E$の元に番号付けをして$e_0, e_1, \cdots$とする。
+          \begin{align*}
+            Z_{n+1} &= Z_{n+1}I_{\{Z_{n+1} = e_0\}} + Z_{n+1}I_{\{Z_{n+1} = e_1\}} + \cdots \\
+            &= \sum_{j \in E}Z_{n+1}I_{\{Z_{n+1} = j\}}
+          \end{align*}
+          より、
+          \[
+            h(Z_{n+1}) = \sum_{j \in E}h(j)I_{\{Z_{n+1} = j\}} =: X
+          \]
+          とする。また、
+          \[
+            X_m := \sum_{k=0}^m h(e_k)I_{\{Z_{n+1}=e_k\}}
+          \]
+          とする。
+          $h,I$はともに非負の関数だから$0 \leq X_m$であり、
+          $X_m \uparrow X$であるから、(cMON)より、
+          \begin{align*}
+            \EE^{\mu}[X \mid \mathcal{F}_n]
+            &= \lim_{m \to \infty}\EE^{\mu}[X_m \mid \mathcal{F}_n]\\
+            &= \lim_{m \to \infty}\EE^{\mu}[\sum_{k=0}^m h(e_k)I_{\{Z_{n+1}=e_k\}} \mid \mathcal{F}_n]\\
+            &= \lim_{m \to \infty}\sum_{k=0}^m\EE^{\mu}[ h(e_k)I_{\{Z_{n+1}=e_k\}} \mid \mathcal{F}_n]\\
+            &= \lim_{m \to \infty}\sum_{k=0}^m h(e_k)\EE^{\mu}[ I_{\{Z_{n+1}=e_k\}} \mid \mathcal{F}_n]\\
+            &= \sum_{j \in E}h(j)\EE^{\mu}[ I_{\{Z_{n+1}=j\}} \mid \mathcal{F}_n]\\
+            &= \sum_{j \in E}h(j)\PP^{\mu}(Z_{n+1}=j \mid \mathcal{F}_n)\\
+            &= \sum_{j \in E}h(j)p(Z_{n},j)\\
+          \end{align*}
+        \end{proof}
+
+      \subsubsection{104ページ上から4行目}
+        "$h(Z_n)$ is a non-negative supermartingale"とあるが、嘘っぽい。
+        初期分布の$\mu$がディラックのデルタならおそらく問題はない。
+        $h$が有限という仮定しかない。
+        なので、$\EE[|h(Z_n)|]$もとい、
+        supermartingaleの性質より$\EE[|h(Z_0)|]$が有限かどうか
+        という判定はできなさそう。
+        おそらく$h$が有界という条件ならうまくいくのでは......？
+        もしかしてmartingaleの三番目の条件が成り立ったから、
+        と言ってそこで安心してsupermartingaleだって言ってる......？
+        僕が何かを見落としている可能性が大なので参考程度に。
+
+      \subsubsection{104ページExercise}
+        マルコフ連鎖を本格的にやっていないのにこのExercise
+        をやらせるのは酷なのでは......
+
+        等式の証明には次の事実を用いる。
+        \[
+          \PP^i (T_j = m+1) = \sum_{k \neq j}p_{ik}\PP^k (T_j = m)
+        \]
+        これはマルコフ性を用いれば証明できる。
+        が、詳しい証明は確率過程に焦点を当てた教科書に載っている。
+        Poel "Introduction to Stachastic processes"など参照。
+        しかし、直観的にも明らか。
+        $m+1$で初めて$j$に行くのは、
+        $1$\, stepめではいったん$j$出ないところに進み
+        その後$m$\,stepかけて$j$に向かうと思えばよい。
+        次の段落から解答を書きます。
+
+        まず、次を示す。
+        \[
+          \PP^i(T_j < n+1) = \sum_{k \neq j} p_{ik}\PP^k(T_j < n) + p_{ij}\quad (n \ge 1)
+        \]
+
+        [$n=1$のとき]
+        \begin{align*}
+          \text{(左辺)} &= \PP^i(T_j < 2) = \PP^i(T_j \leq 1) = p_{ij}\\
+          \text{(右辺)} &= \sum_{k \neq j} p_{ik}\PP^k(T_j < 1) + p_{ij}\\
+          &= 0 + p_{ij} \\
+          &= p_{ij}
+        \end{align*}
+        より成立する。
+
+        [$n=m$のとき成立すると仮定]
+        \begin{align*}
+          \PP^i(T_{j} < m + 1 + 1) &= \PP^i(T_J < m + 2)\\
+          &= \PP^i(T_j < m + 1) + \PP^i(T_j = m + 1)\\
+          &= \sum_{k \neq j} p_{ik}\PP^k(T_j < m) + p_{ij} + \sum_{k \neq j}p_{ik}\PP^k (T_j = m)\\
+          &= \sum_{k \neq j} p_{ik}\PP^k(T_j \leq m) + p_{ij}\\
+          &= \sum_{k \neq j} p_{ik}\PP^k(T_j < m + 1)
+        \end{align*}
+        よって、$m+1$についても成立する。
+
+        今示した等式について、$n \rightarrow \infty$とする。
+        \[
+          \lim_{n \to \infty}\PP^i(T_j < n+1) = \lim_{n \to \infty}\sum_{k \neq j} p_{ik}\PP^k(T_j < n) + p_{ij}
+        \]
+        左辺は測度のMONより、
+        \[
+          \text{(左辺)} = \PP^i(T_j < \infty)
+        \]
+        右辺は(多分)DOMで極限が$\sum$の中に入って、
+        そのあと測度のMONより、
+        \[
+          \text{(右辺)} = \sum_{k \neq j} p_{ik}\PP^k(T_j < \infty) + p_{ij}
+        \]
+        以上により、
+        \[
+          f_{ij} = \sum_{k \neq j} p_{ik}f_{kj} + p_{ij}
+        \]
+        がわかる。
+
+        残りは次を証明することである。
+        \begin{center}
+          遷移行列の各成分が$0$より大きいマルコフ連鎖$Z$がある
+          \footnote{「遷移行列の各成分が$0$より大きい」
+          という条件は教科書にはなかったですが、僕の証明では
+          この仮定がないと証明にならないのです......。
+          でも、この証明が一番自然なんだよなあと思うんだけど}。
+          このとき、全ての$P$-superharmonic関数が定数関数なら、
+          マルコフ連鎖$Z$は既約で再帰的である。
+        \end{center}
+
+        まず、
+        \[
+          f_j(i) = \PP^i(T_j < \infty)
+        \]
+        とおく。
+        作用素$P$の定義通りに計算すると、
+        $f_j$が$P$-superharmonic関数であることが分かる。
+        仮定より$f_j$は定数関数となるので、それを$\alpha$とおくことにする。
+        \begin{align*}
+          f_j(i) &= f_{ij}\\
+          \alpha &= \sum_{k \neq j} p_{ik}f_{kj} + p_{ij}\\
+          \alpha &= \sum_{k \neq j} p_{ik}f_j(k) + p_{ij}\\
+          \alpha &= \alpha\sum_{k \neq j} p_{ik} + p_{ij}\\
+          \alpha \left(1 - \sum_{k \neq j} p_{ik} \right) &= p_{ij}\\
+          \alpha &= \frac{p_{ij}}{1 - \sum_{k \neq j} p_{ik}}\\
+          \alpha &= \frac{p_{ij}}{p_{ij}}\\
+          \alpha &= 1
+        \end{align*}
+        よって、
+        \[
+          \PP^i(T_j < \infty) =f_{j}(i) = \alpha = 1
+        \]
+        である。$i,j$は任意より、$Z$は既約で再帰的である\footnote{この証明は$p_{ij} > 0$であることを使っておるのじゃ}。
