@@ -41,9 +41,8 @@ David_Williams_Gaps.tex の
 >\input{kawawan.tex}
 >
 >\input{kawawan2.tex}
-
 を消去し、
-pis.tex , kawawan.tex , kawawan2.texの内容をすべて David_Williams_Gaps.tex の先ほど消した部分に
+pis.tex , kawawan.tex の内容をすべて David_Williams_Gaps.tex の先ほど消した部分に
 コピペしてください。
 
 # 執筆者向け
