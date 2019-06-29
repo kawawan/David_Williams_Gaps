@@ -8,7 +8,7 @@
       \begin{proof}
         次のように場合分けする。
         \begin{enumerate}
-          \item 上向き横断がなかた場合
+          \item 上向き横断がなかった場合
             \begin{enumerate}
               \item ゲームに参加しなかった場合
               \item ゲームに参加した場合
@@ -151,4 +151,75 @@
       \[
         \EE[M_v \mid \mathcal{F}_u] = M_u \quad (a.s)
       \]
-      を示していた。
+      を示していた。$\mathcal{F}_v$は完備より、6.11の定理を使うと、
+      ある$Y \in \mathcal{L}^2(\mathcal{F}_u)$が存在して
+      \[(M_v - Y) \perp Z \quad (\forall Z \in \mathcal{L}^2(\mathcal{F}_u))\]
+      となる。
+      また、9.5よりこの$Y$は$\EE[M_v \mid \mathcal{F}_u]$の一変形だった。
+      条件付き期待値はalmost surely で一意的なので、
+      \[
+        Y = M_u \quad (a.s)
+      \]
+      したがって、
+      \[
+        (M_v - M_u) \perp Z \quad (\forall Z \in \mathcal{L}^2(\mathcal{F}_u))
+      \]
+      となり、$(M-v -M_u)$は$\mathcal{L}^2(\mathcal{F}_u)$に直交する。
+      $M_t, M_s$はともに$\mathcal{F}_u$可測で、
+      $M$が$\mathcal{L}^2$有界より、
+      \[
+        M_t, \, M_s \in \mathcal{L}^2(\mathcal{F}_u)
+      \]
+      ゆえに、
+      \[
+        M_t - M_s \in \mathcal{L}^2(\mathcal{F}_u)
+      \]
+      したがって、とりわけ110ページの式(a)が成立するのである。
+
+    \subsubsection{111ページTHEOREMの証明}
+      直観的には明らかだけど...。
+
+      \begin{proof}
+        $(\Rightarrow)$
+        $M$は$\mathcal{L}^2$有界とする。
+        (b)式の右辺より、数列$\{\EE[M_n^2]\}_{n = 0}^{\infty}$
+        は単調増加な数列で、仮定より、上に有界である。
+        したがって、極限
+        \[
+          \lim_{n \to \infty}\EE[M_n^2]
+        \]
+        は有限の値に収束する。
+        すなわち、
+        \[
+          \EE[M_0^2] + \sum_k \EE[(M_k - M_{k-1})^2)] < \infty
+        \]
+        したがって(c)の式が成立する。
+
+        $(\Leftarrow)$
+        (c)が成立するとする。
+        \[
+          \EE[M_n^2] \leq \EE[M_0^2] + \sum_k \EE[(M_k - M_{k-1})^2] < \infty
+        \]
+        である。
+        $\EE[M_0^2] + \sum_k \EE[(M_k - M_{k-1})^2]$は
+        $\{\EE[M_n^2]\}_{n = 0}^{\infty}$の上界である。
+        よって、
+        \[
+          \sup_{n} \EE[M_n^2] \leq \EE[M_0^2] + \sum_k \EE[(M_k - M_{k-1})^2] < \infty
+        \]
+      \end{proof}
+
+    \subsubsection{111ページ(c)式の2行下}
+      $M_{\infty}$が$\mathcal{L}^2$に存在するのはFatou Lemma か言えたり。
+      \begin{align*}
+        \EE[M_{\infty}^2] = \EE[\liminf M_n^2] &\leq \liminf\EE[M_n^2]\\
+        &\leq \sup_n \EE[M_n^2]\\
+        &< \infty
+      \end{align*}
+
+    \subsubsection{111ページ一番下の行}
+      (e)式が$=$でも成立するのは、
+      \[
+        \lim_{r \to \infty} \EE[(M_{n+r} - M_n)^2] = \EE[(M_{\infty} - M_n)^2]
+      \]
+      が成立するから。なおこの式が成立するのはノルムは連続関数だから。
