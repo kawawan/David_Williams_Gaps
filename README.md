@@ -10,7 +10,7 @@ David Williams 著 "Probability with martingales" の行間とか復習のメモ
 ごめんなさい。いろいろあったんです。解決策もあるようなので早めに解決したいです。
 
 # お手元にtex環境入ってないですが
-Cloud LaTeX https://cloudlatex.io/ などを利用してみてください。
+Overlaef https://ja.overleaf.com/ や、Cloud LaTeX https://cloudlatex.io/ などを利用してみてください。
 ## Cloud LaTeX利用方法一例
 会員登録などは済ませてください。
 
@@ -32,6 +32,7 @@ David_Williams_Gaps.tex の
 >  \input{kawawan.tex}
 >
 >  \input{kawawan2.tex}
+>
 > \end{document}
 
 の
@@ -41,6 +42,7 @@ David_Williams_Gaps.tex の
 >\input{kawawan.tex}
 >
 >\input{kawawan2.tex}
+
 を消去し、
 pis.tex , kawawan.tex の内容をすべて David_Williams_Gaps.tex の先ほど消した部分に
 コピペしてください。
