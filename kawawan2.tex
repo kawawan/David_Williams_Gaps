@@ -1,1 +1,225 @@
-hoge
+\section{Chapter 11}
+  ここは本当に素晴らしい章。
+  しかし若干直観的に示している部分もあるのでそこだけ補足。
+  \subsection{11.2}
+    \subsubsection{108ページ式(D)について}
+      直観的に明らかですが、きちっとした証明をすると少し煩雑でした。
+      $\leq$の記号を用いているのは意図的で、$=$が成立するときがちゃんとあります。
+      \begin{proof}
+        次のように場合分けする。
+        \begin{enumerate}
+          \item 上向き横断がなかった場合
+            \begin{enumerate}
+              \item ゲームに参加しなかった場合
+              \item ゲームに参加した場合
+            \end{enumerate}
+          \item 上向き横断があった場合
+          \begin{enumerate}
+            \item 最後の横断ののち、ゲームに参加しなかった場合
+            \item 最後の横断ののち、ゲームに参加した場合
+          \end{enumerate}
+        \end{enumerate}
+
+        [1.(a)について]
+        1.は(a),(b)ともに、$U_N[a,b](\omega) = 0$のときである。
+        1.(a)の時は、
+        \[Y_N = 0\]
+        であるので、
+        \[Y_N \ge -(X_N - a)^-\]
+        が成立。また、\underline{このときのみ等号が成立}する。
+
+        [1.(b)について]
+        ゲームに参加はしているので、どこかの時刻で$X$は$a$を下回っている。
+        $m$をその最小の時刻とする。このとき、
+        \[
+          Y_N = X_N - X_m
+        \]
+        となるので、
+        \[X_N - X_m \ge -(X_N - a)^-\]
+        を示せばよい。
+        \begin{align*}
+          \text{(左辺)}-\text{(右辺)} &= X_N - X_m + (X_N - a)^-\\
+          &= \begin{cases}
+            X_N - X_m + 0 & (0 \ge -X_N + a)\\
+            X_N - X_m - X_N + a & (-X_N + a > 0)
+        \end{cases}\\
+        &= \begin{cases}
+          X_N - X_m  & (X_N \ge a) \\
+          a - X_m  & (a > X_N)
+        \end{cases}
+        \end{align*}
+        どちらの場合も、$>0$となる\footnote{$X_m$の定義！}。よって成立。
+
+        [2.(a)の場合]
+        $U_N[a,b](\omega) = k$とおく。これは2.(b)でも同様とする。
+        上向き横断の定義より、ある時刻$t_k (\leq N)$が存在して、
+        $X_{t_k} > b$である。
+        横断を一回終えると所持金は少なくとも$(b-a)$は増えるので、
+        \[Y_{t_k} > k(b-a) = (b-a) \times U_N[a,b](\omega)\]
+        が成立する。
+        \begin{align*}
+          Y_N &= Y_{t_k} + (Y_N - Y_{t_k}) \\
+          &> (b - a)U_N[a,b] + (Y_N - Y_{t_k})
+        \end{align*}
+        であることに注意すると、あとは
+        \[Y_N - Y_{t_k} \ge -(X_N - a)^-\]
+        を示せばよい。
+        (a)の場合、つまり$t_k + 1$行こうゲームに参加しなかった場合、
+        \[Y_N = Y_{t_k}\]
+        だから、
+        \[Y_N - Y_{t_k} = 0 \ge -(X_N - a)^-\]
+        なので、成立する。
+
+        [2.(b)の場合]
+        \[Y_N - Y_{t_k} \ge -(X_N - a)^-\]
+        を示ばよいというところまでは同じ。
+        時刻$(t_k \leq)\, l \,(< N)$から再びゲームに参加したとする。
+        このとき、
+        \[
+          Y_N - Y_{t_k} = Y_{t_k} + X_N - X_l - Y_{t_k} = X_N - X_l
+        \]
+        なので、
+        \begin{equation*}
+          X_N - X_l + (X_N - a)^- = \begin{cases}
+            X_N - X_l & (X_N \ge a)\\
+            a -X_l & (a> X_N)
+        \end{cases}
+        \end{equation*}
+        どちらの場合も$>0$となる。
+      \end{proof}
+
+  \subsection{11.5}
+    \subsubsection{109ページ12行目}
+      \[
+        \Lambda_{a,b} \subseteq \{\omega \mid U_{\infty}[a,b](\omega) = \infty\}
+      \]
+      について。
+
+      \begin{proof}
+        $\omega \in \Lambda_{ab}$をとる。
+        $U_{\infty}[a,b](\omega) = k < \infty$と仮定する。
+        $\Lambda_{ab}$の定義より、
+        \[\liminf X_n(\omega) = \sup_{n}\inf_{\nu \ge n}X_{\nu}(\omega) < a\]
+        この式から明らかなように
+        \[\inf_{\nu \ge n}X_{\nu}(\omega) < a \quad (\forall n)\]
+        同様に、
+        \[\sup_{\nu \ge n}X_{\nu}(\omega) > b \quad (\forall n)\]
+        $t_k$を最後の上向き横断時刻が達成された時刻とする。
+        時刻$t_k + 1$について次が成立する。
+        \[\inf_{\nu \ge t_k + 1}X_{\nu}(\omega) < a\]
+        全ての$\nu \ge t_k + 1$について$X_{\nu} \ge a$とすると
+        \footnote{$\min$でとっているならこの仮定はいらないがいまは$\inf$でとっているので必要}、
+        $a$は数列$\{X_{\nu}(\omega)\}_{\nu = t_k +1}^{\infty}$の下界である。
+        したがって、下限は下界の最大元であるから
+        \[\inf_{\nu \ge t_k + 1}X_{\nu}(\omega) \ge a\]
+        が従い、矛盾する。
+        よって、ある$\xi_1 (\ge t_k + 1)$について
+        \[X_{\xi_1} < a\]
+        となる。
+        同様の議論をすると、ある$\xi_2 (\ge \xi_1)$について
+        \[X_{\xi_2} > b\]
+        となる。これは、$k+1$回目の上向き横断が実現されたことになる。
+        よって矛盾。よって$U_{\infty}[a,b](\omega) = \infty$
+        が従う。
+      \end{proof}
+      \begin{rem*}
+        $\limsup$と$\liminf$が一致していないということは、
+        絵を描けば$X$のsample pathは上下に振動しまくっていることになる。
+        だから直観的には明らかでしょう。
+        もう少し短い証明があるかもですね。
+      \end{rem*}
+
+\section{Chapter 12}
+  \subsection{12.1}
+    \subsubsection{110ページ下から2行目}
+      9.5節を参照せよとあります。参照しましょう。
+      \begin{itembox}[l]{9.5の内容}
+        $\mathcal{F} \supseteq \mathcal{G}$で、$\mathcal{G}$は
+        $\mathcal{F}$のsub $\sigma$-alg.とする。
+        $\mathcal{L}^2(\mathcal{F})$において
+        $X$の$\mathcal{G}$に関する条件付き期待値の
+        存在を言うとき、$X$に直交射影の定理(6.11参照)を用いて、
+        とある確率変数$Y$の存在を言っていた。
+        この時の$Y$は次を満たす。
+        \begin{itemize}
+          \item $(X - Y) \perp Z , \quad \forall Z \in \mathcal{L}^2(\mathcal{G})$
+          \item $Y$は$\EE[X \mid \mathcal{G}]$の一変形
+        \end{itemize}
+      \end{itembox}
+      さて、戻りましょう。
+      教科書の110ページの下から3行目で
+      \[
+        \EE[M_v \mid \mathcal{F}_u] = M_u \quad (a.s)
+      \]
+      を示していた。$\mathcal{F}_v$は完備より、6.11の定理を使うと、
+      ある$Y \in \mathcal{L}^2(\mathcal{F}_u)$が存在して
+      \[(M_v - Y) \perp Z \quad (\forall Z \in \mathcal{L}^2(\mathcal{F}_u))\]
+      となる。
+      また、9.5よりこの$Y$は$\EE[M_v \mid \mathcal{F}_u]$の一変形だった。
+      条件付き期待値はalmost surely で一意的なので、
+      \[
+        Y = M_u \quad (a.s)
+      \]
+      したがって、
+      \[
+        (M_v - M_u) \perp Z \quad (\forall Z \in \mathcal{L}^2(\mathcal{F}_u))
+      \]
+      となり、$(M-v -M_u)$は$\mathcal{L}^2(\mathcal{F}_u)$に直交する。
+      $M_t, M_s$はともに$\mathcal{F}_u$可測で、
+      $M$が$\mathcal{L}^2$有界より、
+      \[
+        M_t, \, M_s \in \mathcal{L}^2(\mathcal{F}_u)
+      \]
+      ゆえに、
+      \[
+        M_t - M_s \in \mathcal{L}^2(\mathcal{F}_u)
+      \]
+      したがって、とりわけ110ページの式(a)が成立するのである。
+
+    \subsubsection{111ページTHEOREMの証明}
+      直観的には明らかだけど...。
+
+      \begin{proof}
+        $(\Rightarrow)$
+        $M$は$\mathcal{L}^2$有界とする。
+        (b)式の右辺より、数列$\{\EE[M_n^2]\}_{n = 0}^{\infty}$
+        は単調増加な数列で、仮定より、上に有界である。
+        したがって、極限
+        \[
+          \lim_{n \to \infty}\EE[M_n^2]
+        \]
+        は有限の値に収束する。
+        すなわち、
+        \[
+          \EE[M_0^2] + \sum_k \EE[(M_k - M_{k-1})^2)] < \infty
+        \]
+        したがって(c)の式が成立する。
+
+        $(\Leftarrow)$
+        (c)が成立するとする。
+        \[
+          \EE[M_n^2] \leq \EE[M_0^2] + \sum_k \EE[(M_k - M_{k-1})^2] < \infty
+        \]
+        である。
+        $\EE[M_0^2] + \sum_k \EE[(M_k - M_{k-1})^2]$は
+        $\{\EE[M_n^2]\}_{n = 0}^{\infty}$の上界である。
+        よって、
+        \[
+          \sup_{n} \EE[M_n^2] \leq \EE[M_0^2] + \sum_k \EE[(M_k - M_{k-1})^2] < \infty
+        \]
+      \end{proof}
+
+    \subsubsection{111ページ(c)式の2行下}
+      $M_{\infty}$が$\mathcal{L}^2$に存在するのはFatou Lemma か言えたり。
+      \begin{align*}
+        \EE[M_{\infty}^2] = \EE[\liminf M_n^2] &\leq \liminf\EE[M_n^2]\\
+        &\leq \sup_n \EE[M_n^2]\\
+        &< \infty
+      \end{align*}
+
+    \subsubsection{111ページ一番下の行}
+      (e)式が$=$でも成立するのは、
+      \[
+        \lim_{r \to \infty} \EE[(M_{n+r} - M_n)^2] = \EE[(M_{\infty} - M_n)^2]
+      \]
+      が成立するから。なおこの式が成立するのはノルムは連続関数だから。
