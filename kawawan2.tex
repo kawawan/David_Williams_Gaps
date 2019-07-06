@@ -1,3 +1,4 @@
+% Chapter11から
 \section{Chapter 11}
   ここは本当に素晴らしい章。
   しかし若干直観的に示している部分もあるのでそこだけ補足。
@@ -223,3 +224,66 @@
         \lim_{r \to \infty} \EE[(M_{n+r} - M_n)^2] = \EE[(M_{\infty} - M_n)^2]
       \]
       が成立するから。なおこの式が成立するのはノルムは連続関数だから。あ
+
+  \subsection{112ページNotationの$A_n$の定義について}
+    $A_n$は分散の和なので、実数列。確率変数列じゃないよ！
+  \subsection{112ページ(*)の式の二つ目の$=$}
+    分散を計算。
+  \subsection{113ページ上から8行目}
+    $N$がmaritingaleになることは計算しましょう。
+    ここまでの議論で
+    \[\sigma_k^2 = \EE[M_k^2 \mid \mathcal{F}_{k-1}] - M_{k-1}^2\]
+    がalmost surelyで成り立つことが分かっている。
+    この等式を用いて、
+    \[\EE[N_m \mid \mathcal{F}_{m-1}] = N_{m-1}\]
+    がalmost surelyで成り立つことを証明しよう。
+  \subsection{113ページ上から12行目}
+    $N^T$はmartingaleだからTower Propertyを用いれば、
+    \[\EE[N_n^T \mid \mathcal{F}_0] = N_0 = 0\]
+    が分かる。
+  \subsection{113ページ(b)の証明の最後の三行}
+    ここは不親切。"bounded"の意味を取り違えないように。
+    翻訳すれば、
+    「しかしながら、$\sum X_n$がa.s.で収束するから、任意の部分和$\sum_{k=1}^n X_k$
+    も上に有界である。したがって、うまく実数$c$をとれば、$\PP(T= \infty) > 0$
+    とすることができる。このことと、(**)の式により、
+    $A_{\infty} := \sum \sigma_k^2 < \infty$であることが分かる。」
+    のようになる。
+    (この部分の日本語訳の本を見てみましたが、あまり訳がうまくないとおもいます。
+    逐語訳を意識しすぎているのと、学術的な言いまわしに凝りすぎていて日本語として意味が
+    掴みにくいです。)
+
+    さて、「部分和が上に有界」とは、次のような意味です。
+    \begin{center}
+      $\omega$を一つ固定するごとに、$n$に関する数列
+      $\{\sum_{k=1}^n X_k(\omega)\}$は上に有界である。
+    \end{center}
+    次のような意味ではないことに気を付けてください\footnote{このような誤解を生んでしまうような書き方は避けるべきだと思います。
+    丁寧に「$\omega$を任意に一つ固定すれば」という文言を付け足せば、
+    それだけで悲しい誤解を生まなくて済むのに。}。
+    \begin{center}
+      関数列$\{\sum_{k=1}^n X_k\}_{n \in \NN}$は一様有界である。すなわち、
+      \[\exists K ,\forall \omega, \forall n, \quad |\sum_{k=1}^n X_k(\omega)| \leq K\]
+    \end{center}
+
+    \subsubsection{$\PP(T= \infty) > 0$について}
+      $Y$を次のように置きます。
+      \[Y(\omega) := \sup_n \left|\sum_{k=1}^n X_k(\omega) \right|\]
+      先ほど言ったように、$Y(\omega) < \infty$です。
+      よって、$Y(\omega) < c$となるような実数$c$があります。
+      \[\PP(Y < c) \rightarrow 1 \quad (c \rightarrow \infty)\]
+      測度の単調性から$c$を大きくしていけばいつしか$\PP(Y < c)$は$0$を超えます。
+      だからそのような$c$をとれば、$T_c := \inf\{r \mid |M_r| > c\}$について
+      \[\PP(T_c = \infty) > 0\]
+      となります。
+
+    \subsubsection{証明の完成}
+      前小小節でとった$\PP(T_c = \infty) > 0$となるような$c$について次のような式が成り立ちます。
+      \begin{align*}
+        \EE[A_{T \wedge n}] \leq& (K + c)^2 \\
+        \EE[\sum_{k = 1}^{T_c \wedge n}\Var(X_k)] =& \left( \sum_{k=1}^n \Var(X_k)\right) \PP(T_c > n)\\
+        &+ \left( \sum_{k=1}^{T_c} \Var(X_k)\right) \PP(T_c \leq n)\\
+        (K + c)^2 \ge& \left( \sum_{k=1}^n \Var(X_k)\right) \PP(T_c > n)\\
+        (K + c)^2 \ge& \left( \sum_{k=1}^{\infty} \Var(X_k)\right) \PP(T_c = \infty)\\
+        \sum_{k=1}^{\infty} \Var(X_k) \leq& \frac{(K + c)^2}{\PP(T_c = \infty)}
+      \end{align*}
