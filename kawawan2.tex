@@ -287,3 +287,21 @@
         (K + c)^2 \ge& \left( \sum_{k=1}^{\infty} \Var(X_k)\right) \PP(T_c = \infty)\\
         \sum_{k=1}^{\infty} \Var(X_k) \leq& \frac{(K + c)^2}{\PP(T_c = \infty)}
       \end{align*}
+
+  \subsection{114ページ2行目}
+    "only if"の方、つまり
+    \[\sum \varepsilon_n a_n \quad \text{converges(a.s.)} \Rightarrow \sum a_n^2 < \infty\]
+    はここの文章に書かれている以上の条件がいります。
+    それは、$\{\varepsilon_n a_n\}_{n \in \NN}$が一様有界であることです。
+    つまり数列$\{a_n\}_{n \in \NN}$が有界であるという条件が必要です。
+
+  \subsection{114ページ4行目}
+    もう8章も前のことなので、影が薄いですが、「確率変数列の和が各点収束する」
+    という事象は末尾$\sigma$-alg.の事象です。
+    つまり、この事象が起こる確率はコルモゴロフの0－1法則より、
+    1か0です。このことに注意しましょう。
+
+  \subsection{115ページ下から14行目}
+    (12.2.a)を適用しているのは$(X_n - \EE[X_n])$に使っています。
+    使うからにはこれが独立確率変数の列であることと、
+    各$n$について平均が0で分散が有限であることを確かめることを忘れずに。
