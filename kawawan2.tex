@@ -305,3 +305,82 @@
     (12.2.a)を適用しているのは$(X_n - \EE[X_n])$に使っています。
     使うからにはこれが独立確率変数の列であることと、
     各$n$について平均が0で分散が有限であることを確かめることを忘れずに。
+
+  \subsection{116ページ証明の5行目}
+    "... for all but finitely many $n$"という文章は直観的でパット見分かりやすいですが、
+    数式で書いた方がよいと思います。そうでないと扱い方が分かりません。
+    (BC1)で従うのは、
+    \[
+      \PP(\limsup \{|X_n| > K\}) = 0
+    \]
+    であること。$\limsup\{\text{事象}F\}$は、「事象$F$が無限回起こること」
+    を意味している。
+    これは、「有限個の$n$を除いて事象$F$が起こる」ことではない\footnote{実質無限回起きてるけど}。
+    文学的な表現だけを用いて証明を進めると
+    このように意味が分からなくなってしまうので、
+    数式を書くべきところではちゃんとするべきだと思いました。
+    $i.o.$や$e.v.$という用語も直観的に議論を進めるためには大いに重要だと思います。
+    しかし、数式に戻してちゃんと議論をしたいときには
+    その数式を証明に明記しておかないと分かりにくいと思います。
+    こういうことが多いからこの本嫌いなんだよ。
+    \footnote{"for all but finitely mayn $n$"という表現もここが初出じゃないの？BC1を証明した時点で$i.o.$や$e.v.$という用語を導入しているのだから、そっちを使ってほしい。}
+
+    というわけで、どのようにして証明5行目の式が得られたかを書きます。
+    (BC1)より、$\PP(\limsup\{|X_n| > K\}) = 0$が得られた。
+    この集合の補集合を考える。
+    \begin{align*}
+      1 &= \PP((\limsup\{|X_n| > K\})^c) \\
+      &= \PP(\liminf\{|X_n| \leq K\})) \\
+      &= \PP(\liminf\{X_n^K = X_n\})\\
+      &= \PP(X_n^K \neq X_n \quad e.v.)\\
+      &= \PP\left(\bigcup_m \bigcap_{n \ge m}\{X_n^K = X_n\}\right)
+    \end{align*}
+
+  \subsection{116ページ証明の6行目}
+    "It is therefore clear that we need only show that ...;"のところ。
+    $\omega$を固定するごとに有限個の$n$しか$X_n(\omega) \neq X_n^K(\omega)$
+    とならない。だから直観的には$\sum X_n^K$がalmost surely で収束することを
+    示せば良さそうです。じつは、
+    \[
+      \sum X_n \text{が収束}(a.s) \Leftrightarrow \sum X_n^K \text{が収束}(a.s.)
+    \]
+    です。
+    これを示すためのちょっとした補題。
+    \begin{lem*}
+      $\PP$を確立測度とする。$A,B$は確率$1$の事象とする。
+      このとき、$\PP(A \cap B) = 1$である。
+    \end{lem*}
+    \begin{proof}
+      $\PP((A \cap B)^c) = \PP(A^c \cup B^c) = 0$であることが仮定よりわかる。
+    \end{proof}
+    先ほどの同値命題の証明です。
+    \begin{proof}
+      \begin{gather*}
+        A = \bigcup_m \bigcap_{n \ge m}\{X_n^K = X_n\} \\
+        B = \{\sum X_n \text{が収束}\} \\
+        C =\{\sum X_n^K \text{が収束}\}
+      \end{gather*}
+      とおく。
+
+      ($\Rightarrow$)
+
+      $\omega \in A \cap B$をとる
+      \footnote{$A \cap B \neq \emptyset$は確認してください}。
+      このとき、ある$n_{\omega}$が存在して、すべての$n \ge n_{\omega}$
+      にたいして、$X_n^K(\omega) = X_n (\omega)$になる。
+      このとき、
+      \begin{align*}
+        \sum X_n^K(\omega) &= \sum_{k=1}^{n_{\omega}-1} X_k^K(\omega) + \sum_{k\ge n_{\omega}} X_k^K(\omega) \\
+        &=\sum_{k=1}^{n_{\omega}-1} X_k^K(\omega) + \sum_{k\ge n_{\omega}} X_k(\omega)
+      \end{align*}
+      また、
+      \[
+        \sum X_n(\omega) = \sum_{k=1}^{n_{\omega}-1} X_k(\omega) + \sum_{k\ge n_{\omega}} X_k(\omega)
+      \]
+      であり、$\omega \in B$であることに気を付ければ$\omega \in C$であることがわかる
+      \footnote{ここちょっと面倒くさくなった(おなかすいててん)}。
+      よって、$A \cap B \subset C$が分かる。
+      よって先ほどの補題より、$\PP(C) = 1$であることが分かる。
+
+      同様にすれば$(\Leftarrow)$もわかる。
+    \end{proof}
