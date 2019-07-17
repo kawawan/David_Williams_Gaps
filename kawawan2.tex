@@ -384,3 +384,113 @@
 
       同様にすれば$(\Leftarrow)$もわかる。
     \end{proof}
+
+  \subsection{116ページ'only if'パートの証明}
+    最初の三行から"$|X_n|> K$ for only finitely many $n$"が分かります。
+    ここまではいいでしょう。ここからどのようにして(BC2)を用いたのかを書きます。
+    有限個の$n$を除いて$|X_n|> K$ということは、ある番号$m$からすべて
+    $|X_n| \leq K$となっていることを表します。
+    すなわち、
+    \[
+      \PP(\liminf \{|X_n| \leq K\}) = 1
+    \]
+    です。
+    これはつまり
+    \[
+      \PP(|X_n| > K \quad i.o.) = 0
+    \]
+    を表します。
+    $\sum \PP(|X_n| > K ) = \infty$を仮定します。$X_n$は独立だから、
+    事象$\{|X_n| > K\}$は独立な事象。
+    したがって、BC2を用いることができて、
+    \[
+      \PP(|X_n| > K \quad i.o.) = 1
+    \]
+    が従います。しかしこれは矛盾。よって、
+    \[
+      \sum \PP(|X_n| > K ) < \infty
+    \]
+    となります。\footnote{$\PP(|X_n| > K \quad i.o.) = 0$がわかっているのだから、
+    その和である$\sum \PP(|X_n| > K ) < \infty$は自明なのでは？
+    という疑問がありますが、これを自明というのは早計です。
+    $i.o.$の二文字が付いてなければ確かにそうですが、
+    今回はついているのでBC2を挟まなければならないというお話です。}
+    これにより、(i)が証明できました。
+    あとは前半の証明と同様です。
+
+  \subsection{117ページ3行目}
+    収束することの定義を使ってこの不等式が得られています。
+    実際は、
+    \[
+      |v_k - v_{\infty}| < \varepsilon
+    \]
+    を変形して得られた式です。
+
+  \subsection{118ページ下から4行目}
+    $\RR$上の$\RR$値関数$h_n$を次のように定める。
+    \[
+      h_n(x) := \begin{cases}
+        x & (|x| \leq n) \\
+        0 & (|x| > n)
+    \end{cases}
+    \]
+    すると、$Y_n,Z_n$はそれぞれ$h \circ X_n, h \circ X$とかけます。
+    よって、$X,X_n$の分布を$\Lambda, \Lambda_n$と書くことにすれば
+    \footnote{同じものだけど区別のために記号を導入しました}、
+    \begin{align*}
+      \EE[Z_n] &= \EE[h \circ X] \\
+      &= \int_{\RR} h(x) \Lambda_X(dx) \\
+      &= \int_{\RR} h(x) \Lambda_{X_n}(dx) \\
+      &= \EE[h \circ X_n]\\
+      &= \EE[Y_n]
+    \end{align*}
+    となる。
+
+  \subsection{119ページ上から2,3行目について}
+    \subsubsection{二つ目の$=$}
+      $X_n,X$は同分布より。
+    \subsubsection{三つ目の$=$}\footnote{119ページ上から3行目の最初の$=$}
+      \begin{align*}
+        \sum \PP(|X| > n) &= \sum \EE[I_{\{|X| > n\}}] \\
+        &= \lim_n \EE[\sum_{k =1}^n I_{\{|X| > n\}}] \\
+        &= \EE[\lim_n \sum_{k =1}^n I_{\{|X| > n\}}] \\
+        &= \EE[\sum_{n =1}^{\infty} I_{\{|X| > n\}}]
+      \end{align*}
+      ここで、三つ目の$=$については(MON)を用いた。
+    \subsubsection{四つ目の$=$}
+      右辺の
+      \[
+        \sum_{1 \leq n < |X|}1
+      \]
+      は、
+      \[
+        \sum_{m \in \{n \in \NN \, \mid \, 1 \leq n < |X|\}}1
+      \]
+      ということ。
+      $\sum$の下に不等号で$a<n<b$のように条件が書かれているときは、
+      だいたい$a,b$は整数だったりすることが多いもんね...。わからなくなるよ...。
+
+      ここの期待値が等しいのは、関数として
+      \[
+        \sum_{n =1}^{\infty} I_{\{|X| > n\}} = \sum_{1 \leq n < |X|}1
+      \]
+      が成立しているから。$\omega$を任意に固定して
+      \[
+        \sum_{n =1}^{\infty} I_{\{|X(\omega)| > n\}} = \sum_{1 \leq n < |X(\omega)|}1
+      \]
+      であることを確認してみよう。
+
+      別の資料を調べていたらtruncationである$Y_n$の不等号の位置を逆にしたもの、
+      つまり、
+      \[
+        Y_n := \begin{cases}
+          X_n & (|X_n| < n)\\
+          0 & (|X_n| \ge n)
+      \end{cases}
+      \]
+      と定義してKolmogorov's truncation Lemmaを証明しているものを見つけました
+      \footnote{$Z_n$も同様に定義します。}。
+      この場合は$\displaystyle{\sum_{1 \leq n < |X|}}$と書かずにガウス記号
+      \footnote{このpdfでは床関数を使って書いています}を使って
+      $\displaystyle{\sum_{n = 1}^{\lfloor |X| \rfloor}}$
+      と慣れた形で計算できます。
