@@ -494,3 +494,79 @@
       \footnote{このpdfでは床関数を使って書いています}を使って
       $\displaystyle{\sum_{n = 1}^{\lfloor |X| \rfloor}}$
       と慣れた形で計算できます。
+
+  \subsection{119ページ(iii)の証明の二行目の不等式}
+    \begin{align*}
+      &\sum \frac{\Var(Y_n)}{n^2} \leq \sum \frac{\EE[Y_n^2]}{n^2} = \sum \frac{\EE[|X|^2 I_{\{|X| \leq n\}}]}{n^2} \\
+      =& \EE\left[|X|^2 \sum \frac{1}{n^2}I_{\{|X| \leq n\}}\right] = \EE\left[|X|^2 \sum_{n \ge \max(1,|X|)} \frac{1}{n^2}\right] \\
+      \leq& \EE\left[|X|^2 \frac{2}{\max(1,|X|)}\right] \leq 2\EE[|X|] < \infty
+    \end{align*}
+    二つ目の$=$はFubini、三つ目の$=$は$\EE$の中身が関数として一致していることから言える。
+    教科書のように$f$を定義すれば綺麗に書くことができますが、
+    理解のためにはこのようにしてゴリゴリに書いた方が良いと思います。
+
+  \subsection{119ページ下から二行目}
+    "we need onky show that..."のところ。
+    $Y_n,X_n$は有限個しか違わないので、$n \to \infty$とすればどうせ異なる部分は
+    $0$に収束して消えちゃうからね。
+
+  \subsection{120ページDoob decompositionについて}
+    一意性の証明どこ......ここ......？
+
+    doob分解のa.s.一意性の証明を書きます。
+    \begin{proof}
+      $X$が$X_0 + A_n + M_n, \,\, X_0 + \tilde{A}_n + \tilde{M}_n$と二通りに分解できたとする。
+      これにより、
+      \[A_n + M_n = \tilde{A}_n + \tilde{M}_n\]
+      が分かる。すべて左辺に移行して
+      \[A_n + M_n - \tilde{A}_n - \tilde{M}_n = 0\]
+      両辺$\mathcal{F}_{n-1}$で条件付き期待値を取って、
+      \[\EE[A_n + M_n - \tilde{A}_n - \tilde{M}_n \mid \mathcal{F}_{n-1}] = 0\]
+      すると、martingaleやprevisibleであることを使って、
+      \[A_n + M_{n-1} - \tilde{A}_n - \tilde{M}_{n-1} = 0\]
+      ゆえに、
+      \[A_n = - M_{n-1} + \tilde{A}_n + \tilde{M}_{n-1}\]
+      である。この$A_n$をいい感じのところに代入すると,
+      \[M_n  - \tilde{M}_n = M_0  - \tilde{M}_0 = 0 \]
+      よって、
+      \[A_n  = \tilde{A}_n\]
+      も分かる。なお、ここでの$=$にはすべてa.s.が付くが、省略している。
+    \end{proof}
+
+    \subsubsection{(b)の証明}
+      \begin{align*}
+        \EE[X_n \mid \mathcal{F}_{n-1}] &\ge X_{n-1}\\
+        X_0 + M_{n-1} + A_n &\ge X_0 + M_{n-1} + A_{n-1}\\
+        A_n &\ge A_{n-1}
+      \end{align*}
+      上から下、下から上どちらの式変形もできるから証明終了。
+
+  \subsection{122ページ(c)の証明}
+    \[\infty > \sup_n \EE[M_n^2] = \sup_n \EE[A_n] = \lim_n \EE[A_n] = \EE[A_{\infty}]\,\,\underline{< \infty}\]
+    右から見ても、左から見てもいい感じ！
+
+  \subsection{122ページ(d)の証明}
+    $\EE[M_n^2 - M_{n-1}^2 \mid \mathcal{F}_{n-1}]$の$M_n^2,M_{n-1}^2$をdoob分解の形に直して計算すると、
+    \[\EE[M_n^2 - M_{n-1}^2 \mid \mathcal{F}_{n-1}]  = A_n - A_{n-1}\]
+    が分かる。一方、
+    \begin{align*}
+      \EE[M_n^2 - M_{n-1}^2 \mid \mathcal{F}_{n-1}] &= \EE[M_n^2 + M_{n-1}^2 - 2M_{n-1}^2 \mid \mathcal{F}_{n-1}]\\
+      &= \EE[M_n^2 + M_{n-1}^2 \mid \mathcal{F}_{n-1}] - 2M_{n-1}^2 \\
+      &= \EE[M_n^2 + M_{n-1}^2 \mid \mathcal{F}_{n-1}] - 2M_{n-1}\EE[M_{n} \mid \mathcal{F}_{n-1}] \\
+      &= \EE[M_n^2 + M_{n-1}^2 \mid \mathcal{F}_{n-1}] - 2\EE[M_{n-1}M_{n} \mid \mathcal{F}_{n-1}] \\
+      &= \EE[M_n^2 + M_{n-1}^2 - 2M_{n-1}M_{n} \mid \mathcal{F}_{n-1}]\\
+      &= \EE[(M_n - M_{n-1})^2 \mid \mathcal{F}_{n-1}]
+    \end{align*}
+
+  \subsection{123ページ上から3行目}
+    \[B = \left( \bigcup_k \{S(k) = \infty\} \right) \cap \{\lim M_n \text{が存在しない}\}\]
+    とする。すると、
+    \[B \subset \{\lim M_{n \wedge S(k)} \text{が存在しない}\}\]
+    が分かるので\footnote{確かめてね}、(c)より
+    \[\PP(B) = 0\]
+    が分かる。
+
+  \subsection{123ページ上から14行目}
+    (e)と(f)から矛盾が導き出せるらしい。
+
+    
