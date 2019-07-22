@@ -568,5 +568,50 @@
 
   \subsection{123ページ上から14行目}
     (e)と(f)から矛盾が導き出せるらしい。
+    \footnote{教科書の$T(c)$という書き方も気に入らないですねえ。
+    stopping timeは確率変数だからカッコの中には$\omega$を書きたくなる。
+    $T_c$とかにしてほしいよね。}
 
-    
+    $A$はincreasing process で、$A_0 = 0$より、
+    \begin{align*}
+      A_{T(c) \wedge n}I_{\{T(c) = \infty\}} &\leq A_{T(c) \wedge n}\quad (a.s.)\\
+      A_{n}I_{\{T(c) = \infty\}} &\leq A_{T(c) \wedge n}\quad (a.s.)\\
+      \EE[A_{n}I_{\{T(c) = \infty\}}] &\leq \EE[A_{T(c) \wedge n}]\\
+      \EE[\lim_{n \to \infty}(A_{n}I_{\{T(c) = \infty\}})] &\leq (c + K)^2 \quad \text{[(MON) and (f)]}\\
+      \EE[A_{\infty}I_{\{T(c) = \infty\}}] &\leq (c + K)^2
+    \end{align*}
+    したがって、
+    \[\PP(\{T(c) = \infty\} \cap \{A_{\infty} = \infty\}) = 0\]
+    が分かる。これは(e)と矛盾する。
+
+  \subsection{123ページ下から5行目}
+    "Since $(1 + A)^{-1}$ is a bounded previsible process"の"bounded"は
+    "almost surely bounded"の意味でとりましょう。
+    ここも正しいことを言っているのに言い方が雑なせいで誤解を生んでしまったところですね。
+
+    さて、$W$がmartingaleであることは、10.7の定理を使っています。
+    しかし、10.7で出てきたprevisible processは「非負、一様有界」という条件が付いています。
+    特に「一様有界」の条件はmartingaleの可積分性の証明に用います。
+    しかし、現在の12.14の$(1 + A)^{-1}$というprevisible processは「一様有界」という条件までは
+    課していません。
+    なので、12.14の$W$がmartingaleであることを示すときに、$\EE[|W|] < \infty$
+    であることは個別に証明をした方が良いと思います。
+
+  \subsection{124ページ上から3行目}
+    $(X_n)$をi.i.d.r.v.sとし、各$X_n \in \mathcal{L}^2$とおきます。
+    $M_n = X_n - \EE[X_n]$とおけば、$(M_n)_{n \ge 0}$は$\mathcal{L}^2$-martingaleになります。
+    この$M$に対して、$\dfrac{M_n}{A_n}$に(a)を適応すれば、確かに強法則を見れます。
+
+  \subsection{124ページ下から7行目}
+    "Then (you check!)"と書かれているので確かめるぞい。
+    \begin{align*}
+      A_n &= \sum_{k=1}^n \EE\left[(M_k - M_{k-1}^2) \mid \mathcal{F}_{k-1}\right] \\
+      &= \sum_{k=1}^n \EE[(Z_k - Z_{k-1} - (Y_k - Y_{k-1}))^2 \mid \mathcal{F}_{k-1}]\\
+      &= \sum_{k=1}^n \EE[(I_{E_k} - (\xi_k))^2 \mid \mathcal{F}_{k-1}]\\
+      &= \sum_{k=1}^n \EE[I_{E_k} - 2I_{E_k}\xi_k  + \xi_k^2 \mid \mathcal{F}_{k-1}]\\
+      &= \sum_{k=1}^n \Bigl(\EE[I_{E_k} \mid \mathcal{F}_{k-1}] - \xi_k\EE[2I_{E_k} \mid \mathcal{F}_{k-1}]  + (\xi_k)^2 \mid \mathcal{F}_{k-1}] \Bigr)\\
+      &= \sum_{k=1}^n (\xi_k -2\xi_k\xi_k + \xi_k^2) \\
+      &= \sum_{k=1}^n \xi_k(1 - \xi_k) \\
+      &= \sum_{k=1}^n (\xi_k - \xi_k^2) \\
+      &= Y_n - \sum_{k=1}^n \bigl( \PP(E_n \mid \mathcal{F}_{k-1}) \bigr)^2 \leq Y_n - 0 = Y_n
+    \end{align*}
