@@ -1,3 +1,4 @@
+% Chapter11から
 \section{Chapter 11}
   ここは本当に素晴らしい章。
   しかし若干直観的に示している部分もあるのでそこだけ補足。
@@ -223,3 +224,394 @@
         \lim_{r \to \infty} \EE[(M_{n+r} - M_n)^2] = \EE[(M_{\infty} - M_n)^2]
       \]
       が成立するから。なおこの式が成立するのはノルムは連続関数だから。あ
+
+  \subsection{112ページNotationの$A_n$の定義について}
+    $A_n$は分散の和なので、実数列。確率変数列じゃないよ！
+  \subsection{112ページ(*)の式の二つ目の$=$}
+    分散を計算。
+  \subsection{113ページ上から8行目}
+    $N$がmaritingaleになることは計算しましょう。
+    ここまでの議論で
+    \[\sigma_k^2 = \EE[M_k^2 \mid \mathcal{F}_{k-1}] - M_{k-1}^2\]
+    がalmost surelyで成り立つことが分かっている。
+    この等式を用いて、
+    \[\EE[N_m \mid \mathcal{F}_{m-1}] = N_{m-1}\]
+    がalmost surelyで成り立つことを証明しよう。
+  \subsection{113ページ上から12行目}
+    $N^T$はmartingaleだからTower Propertyを用いれば、
+    \[\EE[N_n^T \mid \mathcal{F}_0] = N_0 = 0\]
+    が分かる。
+  \subsection{113ページ(b)の証明の最後の三行}
+    ここは不親切。"bounded"の意味を取り違えないように。
+    翻訳すれば、
+    「しかしながら、$\sum X_n$がa.s.で収束するから、任意の部分和$\sum_{k=1}^n X_k$
+    も上に有界である。したがって、うまく実数$c$をとれば、$\PP(T= \infty) > 0$
+    とすることができる。このことと、(**)の式により、
+    $A_{\infty} := \sum \sigma_k^2 < \infty$であることが分かる。」
+    のようになる。
+    (この部分の日本語訳の本を見てみましたが、あまり訳がうまくないとおもいます。
+    逐語訳を意識しすぎているのと、学術的な言いまわしに凝りすぎていて日本語として意味が
+    掴みにくいです。)
+
+    さて、「部分和が上に有界」とは、次のような意味です。
+    \begin{center}
+      $\omega$を一つ固定するごとに、$n$に関する数列
+      $\{\sum_{k=1}^n X_k(\omega)\}$は上に有界である。
+    \end{center}
+    次のような意味ではないことに気を付けてください\footnote{このような誤解を生んでしまうような書き方は避けるべきだと思います。
+    丁寧に「$\omega$を任意に一つ固定すれば」という文言を付け足せば、
+    それだけで悲しい誤解を生まなくて済むのに。}。
+    \begin{center}
+      関数列$\{\sum_{k=1}^n X_k\}_{n \in \NN}$は一様有界である。すなわち、
+      \[\exists K ,\forall \omega, \forall n, \quad |\sum_{k=1}^n X_k(\omega)| \leq K\]
+    \end{center}
+
+    \subsubsection{$\PP(T= \infty) > 0$について}
+      $Y$を次のように置きます。
+      \[Y(\omega) := \sup_n \left|\sum_{k=1}^n X_k(\omega) \right|\]
+      先ほど言ったように、$Y(\omega) < \infty$です。
+      よって、$Y(\omega) < c$となるような実数$c$があります。
+      \[\PP(Y < c) \rightarrow 1 \quad (c \rightarrow \infty)\]
+      測度の単調性から$c$を大きくしていけばいつしか$\PP(Y < c)$は$0$を超えます。
+      だからそのような$c$をとれば、$T_c := \inf\{r \mid |M_r| > c\}$について
+      \[\PP(T_c = \infty) > 0\]
+      となります。
+
+    \subsubsection{証明の完成}
+      さきほどとった$\PP(T_c = \infty) > 0$となるような$c$について次のような式が成り立ちます。
+      \begin{align*}
+        \EE[A_{T \wedge n}] \leq& (K + c)^2 \\
+        \EE[\sum_{k = 1}^{T_c \wedge n}\Var(X_k)] =& \left( \sum_{k=1}^n \Var(X_k)\right) \PP(T_c > n)\\
+        &+ \left( \sum_{k=1}^{T_c} \Var(X_k)\right) \PP(T_c \leq n)\\
+        (K + c)^2 \ge& \left( \sum_{k=1}^n \Var(X_k)\right) \PP(T_c > n)\\
+        (K + c)^2 \ge& \left( \sum_{k=1}^{\infty} \Var(X_k)\right) \PP(T_c = \infty)\\
+        \sum_{k=1}^{\infty} \Var(X_k) \leq& \frac{(K + c)^2}{\PP(T_c = \infty)}
+      \end{align*}
+
+  \subsection{114ページ2行目}
+    "only if"の方、つまり
+    \[\sum \varepsilon_n a_n \quad \text{converges(a.s.)} \Rightarrow \sum a_n^2 < \infty\]
+    はここの文章に書かれている以上の条件がいります。
+    それは、$\{\varepsilon_n a_n\}_{n \in \NN}$が一様有界であることです。
+    つまり数列$\{a_n\}_{n \in \NN}$が有界であるという条件が必要です。
+
+  \subsection{114ページ4行目}
+    もう8章も前のことなので、影が薄いですが、「確率変数列の和が各点収束する」
+    という事象は末尾$\sigma$-alg.の事象です。
+    つまり、この事象が起こる確率はコルモゴロフの0－1法則より、
+    1か0です。このことに注意しましょう。
+
+  \subsection{115ページ下から14行目}
+    (12.2.a)を適用しているのは$(X_n - \EE[X_n])$に使っています。
+    使うからにはこれが独立確率変数の列であることと、
+    各$n$について平均が0で分散が有限であることを確かめることを忘れずに。
+
+  \subsection{116ページ証明の5行目}
+    "... for all but finitely many $n$"という文章は直観的でパット見分かりやすいですが、
+    数式で書いた方がよいと思います。そうでないと扱い方が分かりません。
+    (BC1)で従うのは、
+    \[
+      \PP(\limsup \{|X_n| > K\}) = 0
+    \]
+    であること。$\limsup\{\text{事象}F\}$は、「事象$F$が無限回起こること」
+    を意味している。
+    これは、「有限個の$n$を除いて事象$F$が起こる」ことではない\footnote{実質無限回起きてるけど}。
+    文学的な表現だけを用いて証明を進めると
+    このように意味が分からなくなってしまうので、
+    数式を書くべきところではちゃんとするべきだと思いました。
+    $i.o.$や$e.v.$という用語も直観的に議論を進めるためには大いに重要だと思います。
+    しかし、数式に戻してちゃんと議論をしたいときには
+    その数式を証明に明記しておかないと分かりにくいと思います。
+    こういうことが多いからこの本嫌いなんだよ。
+    \footnote{"for all but finitely mayn $n$"という表現もここが初出じゃないの？BC1を証明した時点で$i.o.$や$e.v.$という用語を導入しているのだから、そっちを使ってほしい。}
+
+    というわけで、どのようにして証明5行目の式が得られたかを書きます。
+    (BC1)より、$\PP(\limsup\{|X_n| > K\}) = 0$が得られた。
+    この集合の補集合を考える。
+    \begin{align*}
+      1 &= \PP((\limsup\{|X_n| > K\})^c) \\
+      &= \PP(\liminf\{|X_n| \leq K\})) \\
+      &= \PP(\liminf\{X_n^K = X_n\})\\
+      &= \PP(X_n^K \neq X_n \quad e.v.)\\
+      &= \PP\left(\bigcup_m \bigcap_{n \ge m}\{X_n^K = X_n\}\right)
+    \end{align*}
+
+  \subsection{116ページ証明の6行目}
+    "It is therefore clear that we need only show that ...;"のところ。
+    $\omega$を固定するごとに有限個の$n$しか$X_n(\omega) \neq X_n^K(\omega)$
+    とならない。だから直観的には$\sum X_n^K$がalmost surely で収束することを
+    示せば良さそうです。じつは、
+    \[
+      \sum X_n \text{が収束}(a.s) \Leftrightarrow \sum X_n^K \text{が収束}(a.s.)
+    \]
+    です。
+    これを示すためのちょっとした補題。
+    \begin{lem*}
+      $\PP$を確立測度とする。$A,B$は確率$1$の事象とする。
+      このとき、$\PP(A \cap B) = 1$である。
+    \end{lem*}
+    \begin{proof}
+      $\PP((A \cap B)^c) = \PP(A^c \cup B^c) = 0$であることが仮定よりわかる。
+    \end{proof}
+    先ほどの同値命題の証明です。
+    \begin{proof}
+      \begin{gather*}
+        A = \bigcup_m \bigcap_{n \ge m}\{X_n^K = X_n\} \\
+        B = \{\sum X_n \text{が収束}\} \\
+        C =\{\sum X_n^K \text{が収束}\}
+      \end{gather*}
+      とおく。
+
+      ($\Rightarrow$)
+
+      $\omega \in A \cap B$をとる
+      \footnote{$A \cap B \neq \emptyset$は確認してください}。
+      このとき、ある$n_{\omega}$が存在して、すべての$n \ge n_{\omega}$
+      にたいして、$X_n^K(\omega) = X_n (\omega)$になる。
+      このとき、
+      \begin{align*}
+        \sum X_n^K(\omega) &= \sum_{k=1}^{n_{\omega}-1} X_k^K(\omega) + \sum_{k\ge n_{\omega}} X_k^K(\omega) \\
+        &=\sum_{k=1}^{n_{\omega}-1} X_k^K(\omega) + \sum_{k\ge n_{\omega}} X_k(\omega)
+      \end{align*}
+      また、
+      \[
+        \sum X_n(\omega) = \sum_{k=1}^{n_{\omega}-1} X_k(\omega) + \sum_{k\ge n_{\omega}} X_k(\omega)
+      \]
+      であり、$\omega \in B$であることに気を付ければ$\omega \in C$であることがわかる
+      \footnote{ここちょっと面倒くさくなった(おなかすいててん)}。
+      よって、$A \cap B \subset C$が分かる。
+      よって先ほどの補題より、$\PP(C) = 1$であることが分かる。
+
+      同様にすれば$(\Leftarrow)$もわかる。
+    \end{proof}
+
+  \subsection{116ページ'only if'パートの証明}
+    最初の三行から"$|X_n|> K$ for only finitely many $n$"が分かります。
+    ここまではいいでしょう。ここからどのようにして(BC2)を用いたのかを書きます。
+    有限個の$n$を除いて$|X_n|> K$ということは、ある番号$m$からすべて
+    $|X_n| \leq K$となっていることを表します。
+    すなわち、
+    \[
+      \PP(\liminf \{|X_n| \leq K\}) = 1
+    \]
+    です。
+    これはつまり
+    \[
+      \PP(|X_n| > K \quad i.o.) = 0
+    \]
+    を表します。
+    $\sum \PP(|X_n| > K ) = \infty$を仮定します。$X_n$は独立だから、
+    事象$\{|X_n| > K\}$は独立な事象。
+    したがって、(BC2)を用いることができて、
+    \[
+      \PP(|X_n| > K \quad i.o.) = 1
+    \]
+    が従います。しかしこれは矛盾。よって、
+    \[
+      \sum \PP(|X_n| > K ) < \infty
+    \]
+    となります。\footnote{$\PP(|X_n| > K \quad i.o.) = 0$がわかっているのだから、
+    その和である$\sum \PP(|X_n| > K ) < \infty$は自明なのでは？
+    という疑問がありますが、これを自明というのは早計です。
+    $i.o.$の二文字が付いてなければ確かにそうですが、
+    今回はついているのでBC2を挟まなければならないというお話です。}
+    これにより、(i)が証明できました。
+    あとは前半の証明と同様です。
+
+  \subsection{117ページ3行目}
+    収束することの定義を使ってこの不等式が得られています。
+    実際は、
+    \[
+      |v_k - v_{\infty}| < \varepsilon
+    \]
+    を変形して得られた式です。
+
+  \subsection{118ページ下から4行目}
+    $\RR$上の$\RR$値関数$h_n$を次のように定める。
+    \[
+      h_n(x) := \begin{cases}
+        x & (|x| \leq n) \\
+        0 & (|x| > n)
+    \end{cases}
+    \]
+    すると、$Y_n,Z_n$はそれぞれ$h \circ X_n, h \circ X$とかけます。
+    よって、$X,X_n$の分布を$\Lambda, \Lambda_n$と書くことにすれば
+    \footnote{同じものだけど区別のために記号を導入しました}、
+    \begin{align*}
+      \EE[Z_n] &= \EE[h \circ X] \\
+      &= \int_{\RR} h(x) \Lambda_X(dx) \\
+      &= \int_{\RR} h(x) \Lambda_{X_n}(dx) \\
+      &= \EE[h \circ X_n]\\
+      &= \EE[Y_n]
+    \end{align*}
+    となる。
+
+  \subsection{119ページ上から2,3行目について}
+    \subsubsection{二つ目の$=$}
+      $X_n,X$は同分布より。
+    \subsubsection{三つ目の$=$}\footnote{119ページ上から3行目の最初の$=$}
+      \begin{align*}
+        \sum \PP(|X| > n) &= \sum \EE[I_{\{|X| > n\}}] \\
+        &= \lim_n \EE[\sum_{k =1}^n I_{\{|X| > n\}}] \\
+        &= \EE[\lim_n \sum_{k =1}^n I_{\{|X| > n\}}] \\
+        &= \EE[\sum_{n =1}^{\infty} I_{\{|X| > n\}}]
+      \end{align*}
+      ここで、三つ目の$=$については(MON)を用いた。
+    \subsubsection{四つ目の$=$}
+      右辺の
+      \[
+        \sum_{1 \leq n < |X|}1
+      \]
+      は、
+      \[
+        \sum_{m \in \{n \in \NN \, \mid \, 1 \leq n < |X|\}}1
+      \]
+      ということ。
+      $\sum$の下に不等号で$a<n<b$のように条件が書かれているときは、
+      だいたい$a,b$は整数だったりすることが多いもんね...。わからなくなるよ...。
+
+      ここの期待値が等しいのは、関数として
+      \[
+        \sum_{n =1}^{\infty} I_{\{|X| > n\}} = \sum_{1 \leq n < |X|}1
+      \]
+      が成立しているから。$\omega$を任意に固定して
+      \[
+        \sum_{n =1}^{\infty} I_{\{|X(\omega)| > n\}} = \sum_{1 \leq n < |X(\omega)|}1
+      \]
+      であることを確認してみよう。
+
+      別の資料を調べていたらtruncationである$Y_n$の不等号の位置を逆にしたもの、
+      つまり、
+      \[
+        Y_n := \begin{cases}
+          X_n & (|X_n| < n)\\
+          0 & (|X_n| \ge n)
+      \end{cases}
+      \]
+      と定義してKolmogorov's truncation Lemmaを証明しているものを見つけました
+      \footnote{$Z_n$も同様に定義します。}。
+      この場合は$\displaystyle{\sum_{1 \leq n < |X|}}$と書かずにガウス記号
+      \footnote{このpdfでは床関数を使って書いています}を使って
+      $\displaystyle{\sum_{n = 1}^{\lfloor |X| \rfloor}}$
+      と慣れた形で計算できます。
+
+  \subsection{119ページ(iii)の証明の二行目の不等式}
+    \begin{align*}
+      &\sum \frac{\Var(Y_n)}{n^2} \leq \sum \frac{\EE[Y_n^2]}{n^2} = \sum \frac{\EE[|X|^2 I_{\{|X| \leq n\}}]}{n^2} \\
+      =& \EE\left[|X|^2 \sum \frac{1}{n^2}I_{\{|X| \leq n\}}\right] = \EE\left[|X|^2 \sum_{n \ge \max(1,|X|)} \frac{1}{n^2}\right] \\
+      \leq& \EE\left[|X|^2 \frac{2}{\max(1,|X|)}\right] \leq 2\EE[|X|] < \infty
+    \end{align*}
+    二つ目の$=$はFubini、三つ目の$=$は$\EE$の中身が関数として一致していることから言える。
+    教科書のように$f$を定義すれば綺麗に書くことができますが、
+    理解のためにはこのようにしてゴリゴリに書いた方が良いと思います。
+
+  \subsection{119ページ下から二行目}
+    "we need onky show that..."のところ。
+    $Y_n,X_n$は有限個しか違わないので、$n \to \infty$とすればどうせ異なる部分は
+    $0$に収束して消えちゃうからね。
+
+  \subsection{120ページDoob decompositionについて}
+    一意性の証明どこ......ここ......？
+
+    doob分解のa.s.一意性の証明を書きます。
+    \begin{proof}
+      $X$が$X_0 + A_n + M_n, \,\, X_0 + \tilde{A}_n + \tilde{M}_n$と二通りに分解できたとする。
+      これにより、
+      \[A_n + M_n = \tilde{A}_n + \tilde{M}_n\]
+      が分かる。すべて左辺に移行して
+      \[A_n + M_n - \tilde{A}_n - \tilde{M}_n = 0\]
+      両辺$\mathcal{F}_{n-1}$で条件付き期待値を取って、
+      \[\EE[A_n + M_n - \tilde{A}_n - \tilde{M}_n \mid \mathcal{F}_{n-1}] = 0\]
+      すると、martingaleやprevisibleであることを使って、
+      \[A_n + M_{n-1} - \tilde{A}_n - \tilde{M}_{n-1} = 0\]
+      ゆえに、
+      \[A_n = - M_{n-1} + \tilde{A}_n + \tilde{M}_{n-1}\]
+      である。この$A_n$をいい感じのところに代入すると,
+      \[M_n  - \tilde{M}_n = M_0  - \tilde{M}_0 = 0 \]
+      よって、
+      \[A_n  = \tilde{A}_n\]
+      も分かる。なお、ここでの$=$にはすべてa.s.が付くが、省略している。
+    \end{proof}
+
+    \subsubsection{(b)の証明}
+      \begin{align*}
+        \EE[X_n \mid \mathcal{F}_{n-1}] &\ge X_{n-1}\\
+        X_0 + M_{n-1} + A_n &\ge X_0 + M_{n-1} + A_{n-1}\\
+        A_n &\ge A_{n-1}
+      \end{align*}
+      上から下、下から上どちらの式変形もできるから証明終了。
+
+  \subsection{122ページ(c)の証明}
+    \[\infty > \sup_n \EE[M_n^2] = \sup_n \EE[A_n] = \lim_n \EE[A_n] = \EE[A_{\infty}]\,\,\underline{< \infty}\]
+    右から見ても、左から見てもいい感じ！
+
+  \subsection{122ページ(d)の証明}
+    $\EE[M_n^2 - M_{n-1}^2 \mid \mathcal{F}_{n-1}]$の$M_n^2,M_{n-1}^2$をdoob分解の形に直して計算すると、
+    \[\EE[M_n^2 - M_{n-1}^2 \mid \mathcal{F}_{n-1}]  = A_n - A_{n-1}\]
+    が分かる。一方、
+    \begin{align*}
+      \EE[M_n^2 - M_{n-1}^2 \mid \mathcal{F}_{n-1}] &= \EE[M_n^2 + M_{n-1}^2 - 2M_{n-1}^2 \mid \mathcal{F}_{n-1}]\\
+      &= \EE[M_n^2 + M_{n-1}^2 \mid \mathcal{F}_{n-1}] - 2M_{n-1}^2 \\
+      &= \EE[M_n^2 + M_{n-1}^2 \mid \mathcal{F}_{n-1}] - 2M_{n-1}\EE[M_{n} \mid \mathcal{F}_{n-1}] \\
+      &= \EE[M_n^2 + M_{n-1}^2 \mid \mathcal{F}_{n-1}] - 2\EE[M_{n-1}M_{n} \mid \mathcal{F}_{n-1}] \\
+      &= \EE[M_n^2 + M_{n-1}^2 - 2M_{n-1}M_{n} \mid \mathcal{F}_{n-1}]\\
+      &= \EE[(M_n - M_{n-1})^2 \mid \mathcal{F}_{n-1}]
+    \end{align*}
+
+  \subsection{123ページ上から3行目}
+    \[B = \left( \bigcup_k \{S(k) = \infty\} \right) \cap \{\lim M_n \text{が存在しない}\}\]
+    とする。すると、
+    \[B \subset \{\lim M_{n \wedge S(k)} \text{が存在しない}\}\]
+    が分かるので\footnote{確かめてね}、(c)より
+    \[\PP(B) = 0\]
+    が分かる。
+
+  \subsection{123ページ上から14行目}
+    (e)と(f)から矛盾が導き出せるらしい。
+    \footnote{教科書の$T(c)$という書き方も気に入らないですねえ。
+    stopping timeは確率変数だからカッコの中には$\omega$を書きたくなる。
+    $T_c$とかにしてほしいよね。}
+
+    $A$はincreasing process で、$A_0 = 0$より、
+    \begin{align*}
+      A_{T(c) \wedge n}I_{\{T(c) = \infty\}} &\leq A_{T(c) \wedge n}\quad (a.s.)\\
+      A_{n}I_{\{T(c) = \infty\}} &\leq A_{T(c) \wedge n}\quad (a.s.)\\
+      \EE[A_{n}I_{\{T(c) = \infty\}}] &\leq \EE[A_{T(c) \wedge n}]\\
+      \EE[\lim_{n \to \infty}(A_{n}I_{\{T(c) = \infty\}})] &\leq (c + K)^2 \quad \text{[(MON) and (f)]}\\
+      \EE[A_{\infty}I_{\{T(c) = \infty\}}] &\leq (c + K)^2
+    \end{align*}
+    したがって、
+    \[\PP(\{T(c) = \infty\} \cap \{A_{\infty} = \infty\}) = 0\]
+    が分かる。これは(e)と矛盾する。
+
+  \subsection{123ページ下から5行目}
+    "Since $(1 + A)^{-1}$ is a bounded previsible process"の"bounded"は
+    "almost surely bounded"の意味でとりましょう。
+    ここも正しいことを言っているのに言い方が雑なせいで誤解を生んでしまったところですね。
+
+    さて、$W$がmartingaleであることは、10.7の定理を使っています。
+    しかし、10.7で出てきたprevisible processは「非負、一様有界」という条件が付いています。
+    特に「一様有界」の条件はmartingaleの可積分性の証明に用います。
+    しかし、現在の12.14の$(1 + A)^{-1}$というprevisible processは「一様有界」という条件までは
+    課していません。
+    なので、12.14の$W$がmartingaleであることを示すときに、$\EE[|W|] < \infty$
+    であることは個別に証明をした方が良いと思います。
+
+  \subsection{124ページ上から3行目}
+    $(X_n)$をi.i.d.r.v.sとし、各$X_n \in \mathcal{L}^2$とおきます。
+    $M_n = X_n - \EE[X_n]$とおけば、$(M_n)_{n \ge 0}$は$\mathcal{L}^2$-martingaleになります。
+    この$M$に対して、$\dfrac{M_n}{A_n}$に(a)を適応すれば、確かに強法則を見れます。
+
+  \subsection{124ページ下から7行目}
+    "Then (you check!)"と書かれているので確かめるぞい。
+    \begin{align*}
+      A_n &= \sum_{k=1}^n \EE\left[(M_k - M_{k-1}^2) \mid \mathcal{F}_{k-1}\right] \\
+      &= \sum_{k=1}^n \EE[(Z_k - Z_{k-1} - (Y_k - Y_{k-1}))^2 \mid \mathcal{F}_{k-1}]\\
+      &= \sum_{k=1}^n \EE[(I_{E_k} - (\xi_k))^2 \mid \mathcal{F}_{k-1}]\\
+      &= \sum_{k=1}^n \EE[I_{E_k} - 2I_{E_k}\xi_k  + \xi_k^2 \mid \mathcal{F}_{k-1}]\\
+      &= \sum_{k=1}^n \Bigl(\EE[I_{E_k} \mid \mathcal{F}_{k-1}] - \xi_k\EE[2I_{E_k} \mid \mathcal{F}_{k-1}]  + (\xi_k)^2 \mid \mathcal{F}_{k-1}] \Bigr)\\
+      &= \sum_{k=1}^n (\xi_k -2\xi_k\xi_k + \xi_k^2) \\
+      &= \sum_{k=1}^n \xi_k(1 - \xi_k) \\
+      &= \sum_{k=1}^n (\xi_k - \xi_k^2) \\
+      &= Y_n - \sum_{k=1}^n \bigl( \PP(E_n \mid \mathcal{F}_{k-1}) \bigr)^2 \leq Y_n - 0 = Y_n
+    \end{align*}
