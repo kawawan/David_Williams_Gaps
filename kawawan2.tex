@@ -609,7 +609,7 @@
       &= \sum_{k=1}^n \EE[(Z_k - Z_{k-1} - (Y_k - Y_{k-1}))^2 \mid \mathcal{F}_{k-1}]\\
       &= \sum_{k=1}^n \EE[(I_{E_k} - (\xi_k))^2 \mid \mathcal{F}_{k-1}]\\
       &= \sum_{k=1}^n \EE[I_{E_k} - 2I_{E_k}\xi_k  + \xi_k^2 \mid \mathcal{F}_{k-1}]\\
-      &= \sum_{k=1}^n \Bigl(\EE[I_{E_k} \mid \mathcal{F}_{k-1}] - \xi_k\EE[2I_{E_k} \mid \mathcal{F}_{k-1}]  + (\xi_k)^2 \mid \mathcal{F}_{k-1}] \Bigr)\\
+      &= \sum_{k=1}^n \Bigl(\EE[I_{E_k} \mid \mathcal{F}_{k-1}] - \xi_k\EE[2I_{E_k} \mid \mathcal{F}_{k-1}]  + \EE[(\xi_k)^2 \mid \mathcal{F}_{k-1}] \Bigr)\\
       &= \sum_{k=1}^n (\xi_k -2\xi_k\xi_k + \xi_k^2) \\
       &= \sum_{k=1}^n \xi_k(1 - \xi_k) \\
       &= \sum_{k=1}^n (\xi_k - \xi_k^2) \\
@@ -618,3 +618,108 @@
 
 \section{Chapter 13}
   この章あんまり書くことない。
+  \subsection{126ページの補題の主張について}
+    論理式で書いたらこんな感じ。
+    \[\forall X \in \mathcal{L}^1 \Rightarrow \bigr(\forall \varepsilon > 0, \exists \delta > 0 \quad s.t.\quad \forall F \in \mathcal{F} , \PP(F) < \delta \Rightarrow \EE[|X| ; F] < \varepsilon \bigl)\]
+
+  \subsection{129ページ下から3行目}
+    $X_n \rightarrow X \quad (a.s.)$ならば$\PP(|X_n - X|> \varepsilon \quad i.o.) = 0$
+    なのか？
+    $X_n \rightarrow X \quad (a.s.)$なので、
+    \[
+      \PP \Bigr(\{\omega \mid \forall \varepsilon > 0, \exists N \in \NN, \forall n \ge N, |X_n(\omega) - X(\omega)| < \varepsilon\}\Bigl) = 1
+    \]
+    である。表記の簡略化のために
+    \[F := \{\omega \mid \forall \varepsilon > 0, \exists N \in \NN, \forall n \ge N, |X_n(\omega) - X(\omega)| < \varepsilon\}\]
+    とする。
+    さて、今$\varepsilon^{\prime} > 0$を一つ固定する。$\omega \in F$をとると、
+    定義からある$N_{\varepsilon^{\prime}} \in \NN$が存在して、任意の$n \ge N_{\varepsilon^{\prime}}$
+    について
+    \[|X_n(\omega) - X(\omega)| < \varepsilon^{\prime}\]
+    であるから、
+    \[\omega \in \{\omega \mid \exists N \in \NN, \forall n \ge N, |X_n(\omega) - X(\omega)| \leq \varepsilon^{\prime}\} =: G\]
+    したがって、
+    \[F \subset G\]
+    である。$G$の定義に注目すると、
+    \[G = \bigcup_n \bigcap_{m \ge n} \Bigl\{ |X_m - X| \leq \varepsilon^{\prime} \Bigr\} = \liminf_{n \to \infty}\Bigl\{ |X_m - X| \leq \varepsilon^{\prime} \Bigr\} \]
+    よって、
+    \[1 = \PP(F) \leq \PP(G) = \PP(|X_m - X| \leq \varepsilon^{\prime} \quad e.v.)\]
+    以上により、
+    \[\PP(|X_m - X| > \varepsilon^{\prime} \quad i.o.) = 0\]
+
+    \subsection{131ページ下から11行目}
+      "we can choose $K$ so that ..."とある。
+      が、UIであることを用いたときの$K$と13.1.(b)を用いたときの$K$は異なるかもしれない。
+      よって、前者の$K$を$K_{UI}$、後者の$K$を$K_{(b)}$と書くことにすれば\footnote{添え字のセンスがゴミだな自分}、
+      \[K = \max\{K_{UI}, K_{(b)}\}\]
+      とすればよい。
+
+    \subsection{132ページ上の3行}
+      前節の$K$に関する注意と同様の注意。
+      "we can choose $\delta > 0$ such that whenever ..."とあるが、
+      今回も$X_n$および、$X$ごとに$\delta$の値が変わってくる。
+      全部で$N+1$個とれる$\delta$のうち最小のものを選べばよい。
+
+    \subsection{$\mathcal{L}^p$(-bounded) $[p \ge 1]$とUIの関係}
+      図に書いたよ。
+
+\section{Chapter 14}
+  この章は少し大変かもしれない。
+  \subsection{135ページ上から3行目}
+    $M_{\infty}$が$\mathcal{F}_{\infty}$なことについて。
+    $M_n \in \mathcal{F}_{\infty} \, (\forall n)$だから。
+
+  \subsection{135ページ上から7行目}
+    "However, for each $n$, $\eta$ is $\mathcal{T}_n$ measurable,
+     and hence (see Remark below) is independent of $\mathcal{F}_n$."
+    のところ。
+    下の"Remark"によくわからない文書が書かれていますが、要するに14.3の証明でも
+    4章の証明で示したことを利用してますよってこと。
+    それがこの部分。
+
+    $\eta$\footnote{ここはわざわざ$\eta$を導入するよりも、$I_F$のまま計算を進めたほうが絶対に分かりやすい。}
+    は$\mathcal{T}_n$可測より、$\sigma(\eta) \subset \mathcal{T}_n$になる。
+    よって、$\eta$と$\mathcal{F}_n$が独立。
+
+  \subsection{136ページ:14.4の証明について}
+    後ろ向きのマルチンゲールは見慣れないですが、定義通りに計算すれば大丈夫。
+    \subsubsection{$\{\mathcal{G}_{-n}\}$はfiltrationになっているか}
+      filtrationは、
+      \[\mathcal{G}_{k} \subset \mathcal{G}_{k+1} \,\, (\forall k)\]
+      が成立していればいい。$n >0$とすると、
+      \[\mathcal{G}_{-n} \subset \mathcal{G}_{-n+1}\]
+      は仮定より成立している。
+
+    \subsubsection{マルチンゲールの性質は満たしているか}
+      $n > 0$とすると、Tower Propertyを用いれば
+      \[\EE[M_{-n} \mid \mathcal{G}_{-n - 1}] = M_{-n - 1}\]
+      と計算できるのでマルチンゲール。
+
+    \subsubsection{$\mathcal{L}^1$-boundedであるか}
+      $n>0$を任意に一つ固定する。$M_{-n}$の定義より、
+      \[\EE[|M_{-n}|] = \EE[|\EE[\gamma \mid \mathcal{G}_{-n}]|] \leq \EE[\EE[|\gamma| \mid \mathcal{G}_{-n}]] = \EE[|\gamma|] < \infty\]
+      よって、
+      \[\{M_{-n} \mid n > 0\}\]は$\mathcal{L}^1$-bounded martingaleになる。
+
+    \subsubsection{残り}
+      $-r \leq -n < 0$とする。$G \in \mathcal{G}_{\infty} \subset \mathcal{G}_{-r} \subset \mathcal{G}_{-n}$とする。
+      あとはおなじだ～がんばれ～。
+
+  \subsection{137ページ上から7行目}
+    \begin{align*}
+      L = \limsup_n \frac{S_n}{n} &= \limsup_n \frac{S_{n+k}}{(n+k)} \\
+      &= \limsup_n \left(\frac{X_1 + \cdots + X_k}{n+k} + \frac{X_{k+1} + \cdots + X_{k+n}}{k+n}\right)\\
+      &= \limsup_n \left(\frac{X_{k+1} + \cdots + X_{k+n}}{n} \times \frac{n}{n+k}\right)\\
+      &= \limsup_n \left(\frac{X_{k+1} + \cdots + X_{k+n}}{n} \right)
+    \end{align*}
+
+  \subsection{137ページExercise}
+    Scheffe使えるのかこれ......？それの証明は分からなかったけど、別解をご用意しました。
+
+    $X_1 \in \mathcal{L}^1$より、$\{\EE[X_1 \mid \mathcal{G}_{-1}] ; n \ge 1\}$
+    はUI。
+    \[\frac{S_n}{n} \rightarrow \mu \,\,(a.s.)\]
+    より、
+    \[\frac{S_n}{n} \rightarrow \mu \,\,(\text{in prob.})\]
+     したがって、
+     \[\frac{S_n}{n} \rightarrow \mu \,\,(\text{in }\mathcal{L}^1)\]
