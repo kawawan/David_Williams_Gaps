@@ -723,3 +723,104 @@
     \[\frac{S_n}{n} \rightarrow \mu \,\,(\text{in prob.})\]
      したがって、
      \[\frac{S_n}{n} \rightarrow \mu \,\,(\text{in }\mathcal{L}^1)\]
+
+  \subsection{140ページ下から2行目}
+    感覚的にはそんな感じがしますが、
+    \[
+      \frac{1}{\sqrt{2\pi}}\left( y + \frac{1}{y} \right)^{-1}\exp\left( -\frac{y^2}{2}\right)
+    \]
+    をちゃんと不等式評価しましょう。
+
+    \subsubsection{$\exp (-\frac{y^2}{2})$について}
+      \begin{align*}
+        \exp\left(-\frac{y^2}{2}\right) &= \exp\left(-(1-\varepsilon)^2 2\log\log(N^{n+1} - N^n)\times\frac{1}{2}\right)\\
+        &= \frac{1}{\exp\bigl((1-\varepsilon)^2\log\log (N^{n+1} - N^n)\bigr)}\\
+        &\ge \frac{1}{\exp\bigl((1-\varepsilon)^2\log\log N^{n+1}\bigr)}\\
+        &= \frac{1}{\bigl(\exp(\log\log N^{n+1})\bigr)^{(1-\varepsilon)^2}}\\
+        &= \frac{1}{((n+1)\log N)^{(1-\varepsilon)^2}}\\
+        &\ge \frac{1}{(2n\log N)^{(1-\varepsilon)^2}}\\
+        &= \frac{1}{(2\log N)^{(1-\varepsilon)^2}} \times \frac{1}{n^{(1-\varepsilon)^2}}\\
+        &\ge \frac{1}{(2\log N)^{(1-\varepsilon)^2}} \times \frac{1}{n}\\
+      \end{align*}
+
+      なお、この式のうち、下から三行目の$\ge$は
+      \[(n+1) \log N \leq 2n\log N\]
+      が$n\ge1$で成り立つことを用いている。実際、$n\ge1$において、
+      \begin{align*}
+        2n\log N - (n+1) \log N &= n\log N - \log N\\
+        &= (n-1)\log N \\
+        &\ge 0
+      \end{align*}
+      である。
+
+    \subsubsection{$\left( y + \frac{1}{y} \right)^{-1}$について}
+      $x \in \RR$とするとき、もし$x \ge 3$ならば、
+      \[\frac{x}{x^2 + 1} \ge \frac{1}{2x}\]
+      が成り立つ。実際、$x\ge3$ならば、
+      \[\frac{2x^2}{x^2 + 1} \ge 1\]
+      であることが分かるから。
+
+      $y\ge 3$のときを考えてこの評価を用いたい。$y \ge 3$とはすなわち、
+      \begin{align*}
+        (1 - \varepsilon)\sqrt{2\log\log(N^{n+1} - N^n)} &\ge 3\\
+        \log\log N^n(N-1) &\ge \frac{9}{2(1- \varepsilon)^2}\\
+        \log\Bigl(n\log N + \log(N-1) \Bigr) &\ge \frac{9}{2(1- \varepsilon)^2}\\
+        n\log N +\log(N-1) &\ge \exp\left(\frac{9}{2(1- \varepsilon)^2}\right) \\
+        n &\ge \frac{1}{\log N} \exp\left(\frac{9}{2(1- \varepsilon)^2}\right) - \frac{\log(N-1)}{\log N}
+      \end{align*}
+      すなわち、
+      \[n \ge \left[ \frac{1}{\log N} \exp\left(\frac{9}{2(1- \varepsilon)^2}\right) \right] =\colon \alpha(>0)\]
+      のときは$y \ge 3$が成立する。ただし、ここで$[\quad]$はガウス記号を表している。
+
+      $y \ge 3$のとき、つまり$n \ge \alpha$のとき、
+      \begin{align*}
+        \left( y + \frac{1}{y} \right)^{-1} \ge \frac{1}{2y} &= \frac{1}{2(1 - \varepsilon)\sqrt{2\log\log(N^{n+1} - N^n)}}\\
+        &= \frac{1}{2(1 - \varepsilon)\sqrt{2}}\times \frac{1}{\sqrt{\log (n\log N + \log (N-1))}}\\
+        &\ge \frac{1}{2(1 - \varepsilon)\sqrt{2}}\times \frac{1}{\sqrt{\log(2n\log N) }}\\
+        &= \frac{1}{2(1 - \varepsilon)\sqrt{2}}\times \frac{1}{\sqrt{\log2 + \log n + \log\log N}}\\
+        &= \frac{1}{2(1 - \varepsilon)\sqrt{2}}\times \frac{1}{\sqrt{\log n + \log (2\log N)}}\\
+      \end{align*}
+      ここで、下から三行目の$\ge$について、全ての$n \ge 1$について、
+      \[ n\log N + \log (N-1) \leq 2n\log N\]
+      が成り立つことを用いている。実際、
+      \begin{align*}
+        2n\log N - n\log N - \log (N-1) &= n\log N - \log (N-1)\\
+        &\ge 0
+      \end{align*}
+      である。
+
+      加えて、$\beta \colon = [2\log N]$とすると、$n \ge \beta$のとき、
+      \[\log n + \log 2\log N \leq 2\log n\]
+      が成立する。実際、
+      \begin{align*}
+        2\log n - \log n - \log (2\log N) &= \log n - \log (2\log N)\\
+        &\ge \log (2\log N) - \log (2\log N) \\
+        &= 0
+      \end{align*}
+
+      したがって、$n \ge \max\{\alpha, \beta\} =\colon \gamma$のとき、続けて以下のように評価できる。
+      \begin{align*}
+        \left( y + \frac{1}{y} \right)^{-1} &\ge \frac{1}{2(1 - \varepsilon)\sqrt{2}}\times \frac{1}{\sqrt{\log n + \log 2\log N}}\\
+        &\ge \frac{1}{2(1 - \varepsilon)\sqrt{2}}\times \frac{1}{\sqrt{2\log n }}\\
+        &= \frac{1}{4(1 - \varepsilon)} \times \frac{1}{\sqrt{\log n }}\\
+        &\ge \frac{1}{4(1 - \varepsilon)} \times \frac{1}{\log n}
+      \end{align*}
+      とできる。
+
+      以上により、$n \ge \gamma$のとき、
+      \[
+        \frac{1}{\sqrt{2\pi}}\left( y + \frac{1}{y} \right)^{-1}\exp\left( -\frac{y^2}{2}\right) \ge \frac{1}{\sqrt{2\pi}} \frac{1}{4(1 - \varepsilon)}  \frac{1}{\log n} \frac{1}{(2\log N)^{(1-\varepsilon)^2}}  \frac{1}{n}
+      \]
+      $n$と関係がない部分をまとめて$C$と書くことにすると結局、
+      \[
+        \frac{1}{\sqrt{2\pi}}\left( y + \frac{1}{y} \right)^{-1}\exp\left( -\frac{y^2}{2}\right) \ge C \times \frac{1}{n\log n}
+      \]
+      と評価できる。
+
+      よって、
+      \begin{align*}
+        &\sum_{n=1}^{\infty} \PP(F_n)\\
+        \ge & \sum_{n=1}^{\infty} \frac{1}{\sqrt{2\pi}}\left( y + \frac{1}{y} \right)^{-1}\exp\left( -\frac{y^2}{2}\right)\\
+        \ge & \sum_{n=1}^{\gamma - 1} \frac{1}{\sqrt{2\pi}}\left( y + \frac{1}{y} \right)^{-1}\exp\left( -\frac{y^2}{2}\right) + C \sum_{n=\gamma}^{\infty} \frac{1}{n\log n}\\
+        = & \infty
+      \end{align*}
