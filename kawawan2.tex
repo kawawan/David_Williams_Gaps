@@ -724,6 +724,54 @@
      したがって、
      \[\frac{S_n}{n} \rightarrow \mu \,\,(\text{in }\mathcal{L}^1)\]
 
+  \subsection{139ページ下から8行目}
+    \[
+      \EE[e^{\theta S_n}] = e^{\frac{1}{2}\theta^2 n}
+    \]
+    であることがはよく知られていますが、
+    この本ではまともに標準正規分布について扱っていません。
+    なのでちゃんとガウス積分をして確かめるべきです。
+
+  \subsection{140ページ上から1行目}
+    $\theta = \frac{c}{n}$と置いた理由。139ページの最後の行で、
+    \[
+      e^{-\theta c}e^{\frac{1}{2}\theta^2n}
+    \]
+    が得られている。$e$の指数を$\theta$に関して平方完成すると、
+    $\theta = \frac{c}{n}$とした場合に、最小になることが分かる。
+
+  \subsection{140ページ上から8行目}
+    \[
+      \sup_{k \leq K^n}S_k \leq c_n
+    \]
+    が a.s. で成立すると書いてあるが、地味に注意が必要。
+    BC1で得られるのは
+    \[
+      \PP\Bigl(\Bigl\{\sup_{k \leq K^n}S_k < c_n \Bigr\} \quad e.v\Bigl) = 1
+    \]
+    といこと。ここで、
+    \[
+      \Bigl\{\sup_{k \leq K^n}S_k < c_n \Bigr\} \subset \Bigl\{\sup_{k \leq K^n}S_k \leq c_n \Bigr\}
+    \]
+    となっている\footnote{多くの場合この二つの集合は等しくなりますが......}ので、測度の単調性より、
+    \[
+      1 = \PP\Bigl(\Bigl\{\sup_{k \leq K^n}S_k < c_n \Bigr\} \quad e.v\Bigl) \leq \PP\Bigl(\Bigl\{\sup_{k \leq K^n}S_k \leq c_n \Bigr\} \quad e.v\Bigl)
+    \]
+
+  \subsection{140ページ上から5行目}
+    14.8(b)を使っているが、使うための条件は満たしているのだろうか。
+    $F_n$の中身の式を変形すると、
+    \begin{align*}
+      S_{N^{n+1}} - S_{N^n} &> (1 - \varepsilon)\sqrt{2}\sqrt{N^{n+1} - N^n}\sqrt{\log\log(N^{n+1} - N^n)} \\
+      \frac{S_{N^{n+1}} - S_{N^n}}{\sqrt{N^{n+1} - N^n}} &> (1 - \varepsilon)\sqrt{2}\sqrt{\log\log(N^{n+1} - N^n)}
+    \end{align*}
+    とできる。ここで、各$n$に対して$X_n \sim \mathcal{N}(0,1)$だから、
+    $(S_{N^{n+1}} - S_{N^n}) \sim \mathcal{N}(0,N^{n+1} - N^n)$であり、
+    \[
+      \frac{S_{N^{n+1}} - S_{N^n}}{\sqrt{N^{n+1} - N^n}} \sim \mathcal{N}(0,1)
+    \]
+    である。よって、14.8(b)を適用することができる。
+
   \subsection{140ページ下から2行目}
     感覚的にはそんな感じがしますが、
     \[
@@ -824,3 +872,401 @@
         \ge & \sum_{n=1}^{\gamma - 1} \frac{1}{\sqrt{2\pi}}\left( y + \frac{1}{y} \right)^{-1}\exp\left( -\frac{y^2}{2}\right) + C \sum_{n=\gamma}^{\infty} \frac{1}{n\log n}\\
         = & \infty
       \end{align*}
+
+  \subsection{141ページ上から4行目}
+    Step2. で得られた式は
+    \[
+      \frac{S_k}{h(k)} \leq K
+    \]
+    であること。$(S_k)$はマルチンゲールであればよい。
+    そこで$(-S_k)$というmartingale\footnote{$S_k$はmartingaleだから$-S_k$もmartingaleになる。}に$K=2$としてStep2.の結果を適用する。
+
+  \subsection{141ページ上から8行目}
+    \[
+      \sup_{m \ge n}a_m \ge \sup_{m \ge n}a_{N^{m+1}}
+    \]
+    だから、
+    \[
+      \inf_{n}\sup_{m \ge n}a_m \ge \inf_{n}\sup_{m \ge n}a_{N^{m+1}}
+    \]
+    がなりたつ。
+    \[a_n = \frac{S_k}{h(k)}\]
+    と思えば、
+    \[
+      \limsup_n \frac{S_n}{h(n)} \ge \limsup_n \frac{S_{N^{n+1}}}{h(N^{n+1})}
+    \]
+
+  \subsection{141ページ上から9行目}
+    \[
+      \limsup_n \frac{S_{N^{n+1}}}{h(N^{n+1})} \ge \limsup_n \frac{(1 - \varepsilon)h(N^{n+1} - N^n) - 2h(N^n)}{h(N^{n+1})}
+    \]
+    である。
+    \begin{align*}
+      \limsup_n \frac{h(N^{n+1} - N^n)}{h(N^{n+1})} &= \limsup_n \sqrt{\frac{2(N^{n+1} - N^n)\log\log (N^{n+1} - N^n)}{2N^{n+1} \log\log N^{n+1}}}\\
+      &= \limsup_n \sqrt{\left(1 - \frac{1}{N} \right)} \sqrt{\frac{\log\log (N^{n+1} - N^n)}{\log\log N^{n+1}}}\\
+      &= \sqrt{\left(1 - \frac{1}{N} \right)} \limsup_n \sqrt{\frac{\log\log N^n(N-1)}{\log (n+1)\log N}}\\
+      &= \sqrt{\left(1 - \frac{1}{N} \right)} \limsup_n \sqrt{\frac{\log (n\log N + \log (N-1))}{\log (n+1) + \log\log N}}\\
+      &\ge \sqrt{\left(1 - \frac{1}{N} \right)} \limsup_n \sqrt{\frac{\log (n\log N )}{\log (n+1) + \log\log N}}\\
+      &= \sqrt{\left(1 - \frac{1}{N} \right)} \limsup_n \sqrt{\frac{\log n + \log\log N }{\log (n+1) + \log\log N}}\\
+      &\ge \sqrt{\left(1 - \frac{1}{N} \right)} \lim_n \sqrt{\frac{\log n + \log\log N }{\log (n+1) + \log\log N}}\\
+      &= \sqrt{\left(1 - \frac{1}{N} \right)}
+    \end{align*}
+    最後の極限はロピタルの定理を用いた。一方、同様にすると、
+    \begin{align*}
+      \limsup_n \frac{h(N^n)}{h(N^{n+1})} &= \limsup_n \sqrt{\frac{2N^n\log\log N^n}{2N^{n+1} \log\log N^{n+1}}}\\
+      &= \sqrt{\frac{1}{N}}\limsup_n \sqrt{\frac{\log\log N^n}{\log\log N^{n+1}}}\\
+      &\ge \sqrt{\frac{1}{N}}
+    \end{align*}
+
+  \subsection{141ページ:14.8の命題の主張にある記号}
+    この命題において$\varphi$と$\Phi$が用いられているが、
+    $\varphi$は確率密度関数
+    \[
+      \varphi(x) = \frac{1}{\sqrt{2\pi}}e^{-\frac{1}{2}x^2}
+    \]
+    で、$\Phi$は累積分布関数である、すなわち、
+    \[
+      \Phi(x) = \int_{-\infty}^{x} \varphi(y) dy
+    \]
+
+  \subsection{141ページ下から2行目}
+    \[
+      \int_x^{\infty}y\varphi(y) dy = \int_x^{\infty}\Bigl(-\varphi^{\prime}(y)\Bigl) dy = - \int_x^{\infty}\varphi^{\prime}(y) dy =\varphi(x)
+    \]
+    であり、一方、
+    \[
+      \int_x^{\infty}y\varphi(y) dy \ge x\int_x^{\infty}\varphi(y) dy
+    \]
+    である。(b)も同様にできる。
+
+  \subsection{142ページ下から2行目}
+    仮定より
+    \[
+      c\PP(X\ge c) \leq \EE[Y;X\ge c]
+    \]
+    なので、この両辺に$pc^{p-2}$をかける。
+    その後、両辺を$c$に関して積分すると教科書のような式が得られる。
+
+  \subsection{143ページ上から7行目}
+    "Suppose that $||Y||_p < \infty$"とあるが、$||Y||_p = \infty$の場合は明らかに主張の式は成立する。
+    $||X||_q$の値についても考えなければならないが、ここでは$X$についても
+    $||X||_q < \infty$と仮定して話を進めている。
+    一般の$X$については証明の最後の三行で述べられる。
+
+  \subsection{144ページ(a)の証明最後二行}
+    条件付き期待値のイェンゼンの不等式より、
+    \begin{align*}
+      \EE[Z_r^p \mid \mathcal{F}_{r-1}] &\ge (\EE[Z_r \mid \mathcal{F}_{r-1}])^p\\
+      &\ge (Z_{r-1})^p\\
+      \EE[Z_r^p] &\ge \EE[Z_{r-1}^p]\\
+      ||Z_r||_p &\ge ||Z_{r-1}||_p
+    \end{align*}
+    が得られるので、$||Z_r||_p$は$r$に関してa.s.で単調増加。
+    $\mathcal{L}^p$収束しているので
+    \[
+      ||Z_{\infty}||_p = \lim_{r \to \infty}||Z_r||_p
+    \]
+    単調増加であることより、
+    \[
+      \lim_{r \to \infty}||Z_r||_p = \sup_r ||Z_r||_p
+    \]
+
+    (b)の証明は(a)を適用すればいい。
+
+  \subsection{145ページ上1行目}
+    "That $a_n \leq 1 $ follows from Jensen's inequality."
+    とあるが、使い方に注意が必要。
+    \[
+      1 = \EE[X_n] = \EE \left[(\sqrt{X_n})^2 \right] \ge \EE \left[\sqrt{X_n} \right]^2 = a_n^2
+    \]
+
+  \subsection{145ページ上から7行目から11行目まで}
+    \[
+      \EE[N_n^2] \leq \frac{1}{\Pi a_n}^2 < \infty
+    \]
+    が得られたが、これにより、$\displaystyle{\left(\frac{1}{\Pi a_n}\right)^2}$
+    が上界であることが分かるので、
+    \[
+      \sup \EE[N_n^2] < \infty
+    \]
+    が導かれるという話。
+
+    Doob's $\mathcal{L}^p$不等式を$p=2$で適用し両辺を二乗すると、
+    \[
+      \EE[\sup N_n^2] \leq 4\sup\EE[N_n^2] < \infty
+    \]
+    が得られ、一方で$N_n^2,M_n$の定義から各$n$について
+    \[
+      M_n \leq N_n^2
+    \]
+    なので、
+    \[
+      \EE[\sup M_n] \leq \EE[\sup N_n^2]
+    \]
+    したがって合わせて
+    \[
+      \EE[\sup M_n] \leq 4\sup\EE[N_n^2] < \infty
+    \]
+    がわかる。
+
+    あとは13.3(b),13.7より、$(iii),(ii),(i)$の順で命題が証明できる。
+
+  \subsection{14.12 $(v) \Rightarrow (iv)$の証明について}
+    40ページ一番下のExcerciseをみて。
+  \subsection{14.12 $(i) \Rightarrow (iv)$の証明について}
+    背理法。$(i)$かつ$(iv)$ではないと仮定する。
+    $(i)$が成り立つことより、
+    \[
+      \EE[M_{\infty}] = 1 = \lim\EE[M_n]
+    \]
+    すなわち、
+    \[
+      \EE[M_{\infty}] = \lim\EE[M_n]
+    \]
+    が成立する。すると、
+    \[
+      \Pi a_n = 0
+    \]
+    なので、独立性と上で示したことより、
+    \[
+      \EE \left[ \sqrt{M_{\infty}} \right] = 0
+    \]
+    と書き換えることができる。
+    よって、$M_{\infty} = 0$でなければならない。しかしこれは$(i)$に反する。
+
+  \subsection{146ページ証明中の(b)について}
+    この命題は論理式で書くと
+    \[
+      \forall \varepsilon >0, \exists \delta >0, \,\,s.t.\,\,\forall F \in \mathcal{F}, \PP(F) < \delta \Rightarrow \mathbb{Q}(F)<\varepsilon
+    \]
+    これは背理法で示す。否定命題
+    \[
+      \exists \varepsilon >0, \forall \delta >0, \,\,s.t.\,\,\exists F \in \mathcal{F}, \PP(F) < \delta \text{かつ} \mathbb{Q}(F)\ge\varepsilon
+    \]
+    を仮定する。
+    この否定命題によって存在が保証されている$\varepsilon_0$を一つ選んで固定する。
+    $\varepsilon_0$と$\frac{1}{2}$に対してある集合$F_1$が取れる。
+    再び、$\varepsilon_0$と$\frac{1}{2^2}$に対してある集合$F_2$が取れる。
+    繰り返すが、$\varepsilon_0$と$\frac{1}{2^3}$に対してある集合$F_3$が取れる。
+    このようにして、ある集合列$(F_n)$があって、
+    \[
+      \PP(F_n) < \frac{1}{2^n} \text{かつ} \mathbb{Q}(F_n) \ge \varepsilon_0
+    \]
+    となる。
+    \[
+      \sum\PP(F_n) \leq \sum\frac{1}{2^n} < \infty
+    \]
+    より、(BC1)が使えて、
+    \[
+      \PP(\limsup F_n) =0
+    \]
+    であることが分かる。一方絶対連続性より、$\mathbb{Q}(\limsup F_n) = 0$
+    である。
+    しかし、$\mathbb{Q}$は有限測度だから、
+    \[
+      \mathbb{Q}(\limsup F_n) \ge \limsup\mathbb{Q}(F_n) \ge \varepsilon_0
+    \]
+    これは矛盾。
+
+  \subsection{146ページ証明の上から5行目から13行目}
+    $N =\{1,2,\cdots ,n\}$とする。$2^N =\{I_m ; 1 \leq m \leq 2^n\}$とする。
+    $1 \leq m \leq 2^n$について、
+    \[A_{n,I_m} := \left( \bigcap_{i \in I_m}F_i \right) \cap \left( \bigcap_{i \in N - I_m}F_i^c \right)\]
+    と定義する。このとき、すべての$m$について、
+    \[
+      A_{n,I_m} \in \mathcal{F}_n
+    \]
+    であり、同じくすべての$i \neq j$なる$i,j$について、
+    \[
+      A_{n,I_i} \cap A_{n,I_j} = \emptyset
+    \]
+    である。また、
+    \[
+      \bigcup_{m=1}^{2^n}A_{n,I_m} = \Omega
+    \]
+    が成立する。すなわち、集合族$\{A_{n,I_m} \mid 1 \leq m \leq 2^n\}$は
+    $\Omega$の有限分割になっている。
+    実際、$\omega \in \Omega$を取ってみると、すべての$i \in N$について、
+    \[
+      \omega \in F_i \quad\text{または}\quad \omega \in F_i^c
+    \]
+    である。そこで、
+    \begin{align*}
+      N_1 &= \{i \in N \mid \omega \in F_i\}\\
+      N_2 &= \{i \in N \mid \omega \in F_i^c\} = N - N_1
+    \end{align*}
+    とおくと、$N_1 \in 2^N$なので、ある$m^{\prime}$があって、
+    \[
+      N_1 = I_{m^{\prime}}
+    \]
+    とかける。
+    さて、
+    \[
+      A_{n,I_{m^{\prime}}} = \left( \bigcap_{i \in I_{m^{\prime}}}F_i \right) \cap \left( \bigcap_{i \in N - I_{m^{\prime}}}F_i^c \right) \ni \omega
+    \]
+    なので、
+    \[
+      \omega \in \bigcup_{m=1}^{2^n}A_{n,I_m}
+    \]
+    ゆえに
+    \[
+      \bigcup_{m=1}^{2^n}A_{n,I_m} \supset \Omega
+    \]
+    である。逆の包含関係は自明。
+
+    さて、ここで、$A_{n,I_1},A_{n,I_2},\cdots,A_{n,I_{2^n}}$のうちいくつかは空集合になって同じになることがある。
+    そこで空集合は省いて、空でない集合に改めて添え字をつけて
+    \[
+      A_{n,1},A_{n,2},\cdots,A_{n,r_n}
+    \]
+    とする。$r_n \leq 2^n$である。これらの集合はどの二つをとっても互いに交わらない。
+    \[
+      \mathcal{G} := \left\{ G \,\, \middle| \exists I \subset \{1,2,\cdots, r_n\}, \,\, G =\bigcup_{i \in I}A_{n,i} \right\}
+    \]
+    とする。また、表記の簡単さのために、$N_r := \{1,2,\cdots,r_n\}$とおく。
+    \begin{claim*}
+      $\mathcal{G} = \mathcal{F}_n$
+    \end{claim*}
+
+    \begin{enumerate}
+      \item[Step1.] $\mathcal{G}$がalgebraであること。
+        \begin{itemize}
+          \item $\displaystyle{\bigcup_{i=1}^{r_n} A_{n,i} = \Omega}$より、$\Omega \in \mathcal{G}$.
+          \item $G \in \mathcal{G}$とすると、$\mathcal{G}$の定義よりある$I \subset N_r$があって、
+            \[
+              G = \bigcup_{i \in I}A_{n,i}
+            \]
+            このとき、
+            \[
+              G^c = \Omega - \bigcup_{i \in I}A_{n,i} = \bigcup_{i \in (N_r - I)}A_{n,i}
+            \]
+            $(N_r - I) \subset N$なので、$G^c \in \mathcal{G}$である。
+          \item $G_1,\cdots,G_m \in \mathcal{G}$とする。
+            このとき、$\mathcal{G}$の定義より、
+            $I_1,\cdots,I_m \subset N_r$があって、
+            \[
+              G_1 = \bigcup_{i \in I_1}A_{n,i}, \cdots, G_m = \bigcup_{i \in I_m}A_{n,i}
+            \]
+            と書ける。そこで、$I = I_1 \cup \cdots \cup I_m$とおくと、
+            \[
+              \bigcup_{i=1}^m G_i = \bigcup_{i \in I}A_{n,i}
+            \]
+            と書けるので、$G \in \mathcal{G}$
+        \end{itemize}
+        以上により、$\mathcal{G}$がalgebraであることが示された。
+      \item[Step2.] $\mathcal{G} \subset \mathcal{F}_n$であること。
+        実際、各$A_{n,i}$は$A_{n,i} \in \mathcal{F}_n$である。
+        よって、$\forall G \in \mathcal{G}$は$G \in \mathcal{F}_n$である。
+      \item[Step3.] $\mathcal{F}_n \subset \mathcal{G}$であること、
+      すなわち、$F_1,\cdots,F_n \in \mathcal{G}$であること。
+      $F_1 \in \mathcal{G}$であることだけを示せばよい。
+      \[
+        F_1 = \bigcup_{I \subset N-\{1\}} \left( F_1 \cap \left( \left(\bigcap_{i \in I}F_i \right) \cap \left(\bigcap_{j \in N-I-\{1\}}F_j^c\right) \right) \right)
+      \]
+      とかける。
+      (左辺)$ \supset $(右辺)は明らか。$\omega \in F_1$を任意に取る。
+      当然、
+      \[
+        \omega \in \Omega = \bigcup A_{n,I_m}
+      \]
+      である。
+      なので、ある$I_m \in 2_N$があって、
+      \[
+        \omega  \in A_{n,I_m}
+      \]
+      とできる。
+      このとき、必ず$1 \in I_m$である。
+      もし、そうでないとすると、$1 \in I_m^c$となるので、
+      \[
+        \omega \in F_1^c
+      \]
+      が導かれてしまうので、矛盾する。
+      したがって、$I = I_m - \{ 1 \}$とすると、
+      \[
+        \omega \in  F_1 \cap \left( \left(\bigcap_{i \in I}F_i \right) \cap \left(\bigcap_{j \in N-I-\{1\}}F_j^c\right) \right)
+      \]
+      よって、$\omega \in \text{(右辺)}$。
+      よって、(左辺)$ = $(右辺)
+
+      したがって、$\mathcal{G}$の定義より$F_1 \in \mathcal{G}$
+    \end{enumerate}
+    以上により、$\mathcal{G} = \mathcal{F}_n$であることが示された。
+
+  \subsection{146ページ下から2行目}
+    "$X_n \in \mathcal{L}^1(\Omega, \mathcal{F}_n, \PP)$"とある。
+    実際に計算して確かめる。ここで$r_n$はアトムの個数である。前小節参照。
+    $X_n$の定義より、$X_n$は単関数なので可測関数。
+    $\mathbb{P}\gg\mathbb{Q}$であること、すなわち$\PP(A_{n,k}) = 0 \Rightarrow \mathbb{Q}(A_{n,k}) = 0$であることに気を付ければ、
+    \begin{align*}
+      \int_{\Omega} X_n d\PP &= \sum_{k=1,\PP(A_{n,k})\neq 0}^{r_n} \frac{\mathbb{Q}(A_{n,k})}{\PP(A_{n,k})}\PP(A_{n,k}) + \sum_{k=1,\PP(A_{n,k})= 0}^{r_n} 0 \times \PP(A_{n,k})\\
+      &= \sum_{k=1,\PP(A_{n,k})\neq 0}^{r_n} \mathbb{Q}(A_{n,k}) + 0\\
+      &= \sum_{k=1,\PP(A_{n,k})\neq 0}^{r_n} \mathbb{Q}(A_{n,k}) + \sum_{k=1,\PP(A_{n,k})= 0}^{r_n} \mathbb{Q}(A_{n,k})\\
+      &= \mathbb{Q}(\Omega) < \infty
+    \end{align*}
+    $\PP(A_{n,k})= 0$になるかどうかで計算方法が変わってくるので、注意しよう。
+
+  \subsection{146ページ一番下の行}
+    (c)の式が成り立つことの証明。
+
+    $F \in \mathcal{F}_n$を任意にとる。すると、ある$I \subset N_r$\footnote{$N_r$は二つ前の小節を参照。$N_r = \{ 1, 2, \cdots,n_r \}$}
+    が存在して、
+    \[
+      F = \bigcup_{i \in I}A_{n,i}
+    \]
+    と書ける。よって再び$\PP \gg \mathbb{Q}$であることに注意すると
+    \begin{align*}
+      \EE[X_n;F] &= \int_F X_n d\PP \\
+      &= \int_{\bigcup_{i \in I}A_{n,i}} X_n d\PP\\
+      &= \sum_{i\in I}\int_{A_{n,i}}X_n d\PP\\
+      &= \sum_{i\in I, \PP(A_{n,i})\neq0}\mathbb{Q}(A_{n,i}) + 0\\
+      &= \sum_{i\in I, \PP(A_{n,i})\neq0}\mathbb{Q}(A_{n,i}) + \sum_{i\in I, \PP(A_{n,i})=0}\mathbb{Q}(A_{n,i})\\
+      &=\mathbb{Q}(F)
+    \end{align*}
+    となる。
+
+  \subsection{147ページ上から2行目}
+    "$X$ is a martingale relative to the filtration..."のところ。
+    条件付き期待値の定義よりmartingaleであることの三つ目の条件を確かめることができる。
+    $Y$を$\EE[X_{n+1} \mid \mathcal{F}_{n}]$の一変形とする。
+    $F \in \mathcal{F}_n$をとる。$F \in \mathcal{F}_n$ならば$F \in \mathcal{F}_{n+1}$であることに気を付ければ次のように計算できる。
+    \begin{align*}
+      \int_F Y d\PP = \int_F X_{n+1} d\PP = \int_{\bigcup_{j \in J}A_{n,j}}X_{n+1}d\PP\\
+      = \mathbb{Q}(F) = \int_F X_n d\PP
+    \end{align*}
+    よって、条件付き期待値の定義から
+    \[
+      \EE[X_{n+1} \mid \mathcal{F}_{n}] = Y = X_n
+    \]
+
+  \subsection{147ページ上から12行目}
+    "$X_n \longrightarrow X \quad \text{in} \quad\mathcal{L}^1$"について。
+    概収束はしているので確率収束している。
+    これとUIであることから13.7の内容を使う。
+
+  \subsection{147ページ上から14行目}
+    14.1より、
+    \[
+      \EE[X \mid \mathcal{F}_n] = X_n
+    \]
+    がなりたつ。これに気を付けるだけ。
+
+  \subsection{ラドンニコディムの定理一意性の証明}
+    これは可分の条件が不要。
+
+    $X,Y \in \mathcal{L}^1(\Omega, \mathcal{F}, \PP)$を
+    主張を満たす確率変数とする。
+    $F \in \mathcal{F}$とすると、
+    \begin{align*}
+      \mathbb{Q}(F) = \int_F X d\PP = \EE[X;F]\\
+      \mathbb{Q}(F) = \int_F Y d\PP = \EE[Y;F]
+    \end{align*}
+    したがって、
+    \[
+      Y = \EE[X \mid \mathcal{F}]
+    \]
+    が分かる。ところでこの右辺の$X$は$\mathcal{F}$可測なので
+    $\EE[X \mid \mathcal{F}] = X$
+    よって、
+    \[
+      X = Y \quad (a.s.)
+    \]
