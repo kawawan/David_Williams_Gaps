@@ -1270,3 +1270,203 @@
     \[
       X = Y \quad (a.s.)
     \]
+
+  \subsection{ラドンニコディムの定理：一般の場合}
+    この部分は、証明をすべて書きます。教科書の証明では
+    (e)$\Rightarrow$(d)をまず証明し、その次に(e)を証明した後、
+    (d)$\Rightarrow$(II)、という流れで証明しています。
+    順番が前後しているので、このpdfでは、
+    (e),(e)$\Rightarrow$(d),(d)$\Rightarrow$(II)
+    、の順番で証明します。
+    \subsubsection{(e)が成り立つこと}
+      背理法で示す。(e)でないとする。すなわち、
+      \[
+        \exists \varepsilon > 0 ,\forall \mathcal{K} \in \mathbf{Sep},\exists \mathcal{G}_1,\exists\mathcal{G}_2 \in \mathbf{Sep} \,\, s.t. \,\, \mathcal{K} \subset \mathcal{G}_1,\mathcal{G}_2 \text{\,\,and\,\,} ||X_{\mathcal{G}_1} - X_{\mathcal{G}_2}||_1 \ge \varepsilon
+      \]
+      が成立しているとする。
+      この仮定で存在が保証されている$\varepsilon$を任意に一つ固定する。
+      $\varepsilon_0 := \frac{1}{2}\varepsilon$とする。
+      $\mathcal{K} \in \mathbf{Sep}$を任意に一つ選ぶ。
+      仮定の命題より$\mathcal{G}_1, \mathcal{G}_2 \in \mathbf{Sep}$
+      が存在して、$\mathcal{K} \subset \mathcal{G}_1,\mathcal{G}_2$であり、
+      \begin{align*}
+        ||X_{\mathcal{G}_1} - X_{\mathcal{G}_2}||_1 &\ge \varepsilon = 2\varepsilon_0\\
+        \EE[|X_{\mathcal{G}_1} - X_{\mathcal{G}_2}|] &\ge 2\varepsilon_0\\
+        \EE[|X_{\mathcal{G}_1} - X_{\mathcal{K}}|] + \EE[ X_{\mathcal{K}} - X_{\mathcal{G}_2}|] &\ge 2\varepsilon_0\\
+        ||X_{\mathcal{G}_1} - X_{\mathcal{K}}||_1 + ||X_{\mathcal{G}_2} - X_{\mathcal{K}}||_1 &\ge 2\varepsilon_0
+      \end{align*}
+      したがって、
+      \[
+        \max \{||X_{\mathcal{G}_1} - X_{\mathcal{K}}||_1, ||X_{\mathcal{G}_2} - X_{\mathcal{K}}||_1\} \ge \varepsilon_0
+      \]
+      そこで、
+      \[
+        \mathcal{K}(1) := \text{arg max}_{\mathcal{G}_1,\mathcal{G}_2} \{||X_{\mathcal{G}_1} - X_{\mathcal{K}}||_1, ||X_{\mathcal{G}_2} - X_{\mathcal{K}}||_1\}
+      \]
+      とする。\footnote{argmaxのコマンドは編集の都合上用意しませんでした。数式環境の中でtextコマンドを使っています。}
+      つまり、$\mathcal{K}(1)$は
+      $||X_{\mathcal{G}_1} - X_{\mathcal{K}}||_1, ||X_{\mathcal{G}_2} - X_{\mathcal{K}}||_1$
+      の二つのノルムのうち、値が大きくなる方の$\mathcal{G}$をえらんでいる。
+      $\mathcal{K}(1)$に対してもう一度同じ操作を行うと$\mathcal{K}(2)$が取れる。
+      当然$\mathcal{K}(2)$は、$\mathcal{K}(1) \subset \mathcal{K}(2)$であり、
+      $||X_{\mathcal{K}(2)} - X_{\mathcal{K}(1)}||_1 \ge \varepsilon_0$を満たしている。
+      この手続きを繰り返せば、可分な$\sigma$-alg.
+      の増大列$\mathcal{K}(1) \subset \mathcal{K}(2) \subset \cdots$で
+      全ての$n \in \NN$に対して
+      \[
+        ||X_{\mathcal{K}(n+1)} - X_{\mathcal{K}(n)}||_1 > \frac{1}{2}\varepsilon_0
+      \]
+      を満たしているものの存在が分かる。
+
+      さて、こうして得られた$\sigma$-alg.の列$(\mathcal{K}(n))_{n \in \NN}$
+      をフィルトレーションとする。
+      このとき、$(X_{\mathcal{K}(n)})_{n \in \NN}$は
+      このフィルトレーションに関してUI martingaleになる。
+      martingaleになることは易しい。adopted processであることと可積分であることは、
+      ラドンニコディムの定理より$X_{\mathcal{K}(n)} \in \mathcal{L}^1(\Omega, \mathcal{K}(n), \PP)$
+      であることから分かる。
+      martingaleであることの三つ目の条件はラドンニコディム微分である$X_{\mathcal{K}(n)}$の性質を用いる。
+      つまり、$F \in \mathcal{K}(n)$を任意にとると、
+      $F \in \mathcal{K}(n+1)$であることから、
+      $X_{\mathcal{K}(n+1)}$を$F$上で積分することができるようになる。
+      そこで実際に計算を行おうとすると次のようなことが分かる。
+      \begin{align*}
+        \EE[X_{\mathcal{K}(n+1)} ; F] = \int_F X_{\mathcal{K}(n+1)}d\PP = \mathbb{Q}(F)\\
+        \EE[X_{\mathcal{K}(n)} ; F] = \int_F X_{\mathcal{K}(n)}d\PP = \mathbb{Q}(F)
+      \end{align*}
+      したがって、条件付き期待値の定義より、
+      \[
+        \EE[X_{\mathcal{K}(n+1)} \mid \mathcal{K}(n)] = X_{\mathcal{K}(n)}
+      \]
+      であることが分かる。
+      UIであることは13.1(a)の命題を使う。
+      $\varepsilon > 0$を任意に一つ選ぶ。
+      13.1(a)より$\delta > 0$が存在して、
+      \[
+        \PP(F) < \delta \Rightarrow E[X;F] < \varepsilon
+      \]
+      となる。そこで、$K\mathbb{Q}(\Omega) < \delta$となる$K$をとると、
+      \[
+        \PP(X_{\mathcal{K}(n)} > K) \leq \frac{1}{K} \EE[X_{\mathcal{K}(n)}] = \frac{1}{K}\mathbb{Q}(\Omega) < \delta
+      \]
+
+      以上により、$(X_{\mathcal{K}(n)})_{n \in \NN}$はある$X$に$\mathcal{L}^1$収束することが分かる。
+      しかし、これが「$(e)$でない」という仮定に矛盾する。
+      実際、$(e)$でないことより、ある正の数$\varepsilon_0$が存在して
+      \[
+        ||X_{\mathcal{K}(n)} - X_{\mathcal{K}(n+1)}||_1 > \varepsilon_0
+      \]
+      となる$\mathbf{Sep}$の増大列$(\mathcal{K}(n))_{n \in \NN}$がとれる。
+      しかし、$(X_{\mathcal{K}(n)})_{n \in \NN}$が
+      $\mathcal{L}^1$収束することから、この$\varepsilon_0$に対して
+      ある自然数$N_{\varepsilon_0}$が存在して
+      すべての$n (\ge N_{\varepsilon_0})$について
+      \[
+        ||X - X_{\mathcal{K}(n)}||_1 < \frac{\varepsilon_0}{2}
+      \]
+      となる。
+      よって次の計算ができる。
+      \begin{align*}
+        ||X_{\mathcal{K}(N_{\varepsilon_0} + 1)} - X_{\mathcal{K}(N_{\varepsilon_0})}||_1 > \varepsilon_0\\
+        ||X_{\mathcal{K}(N_{\varepsilon_0} + 1)} - X||_1 +  ||X - X_{\mathcal{K}(N_{\varepsilon_0})}||_1 > \varepsilon_0\\
+        2 \times \frac{\varepsilon_0}{2} > \varepsilon_0
+      \end{align*}
+      よって矛盾が生じる。
+
+    \subsubsection{(e)$\Rightarrow$(d)がなりたつこと}
+      (e)が成り立つ。
+      $\mathcal{K}_n \in \mathbf{Sep}$を
+      \[
+        \mathcal{K}_n \subset \forall \mathcal{G}_1, \forall \mathcal{G}_2 \in \mathbf{Sep} \Rightarrow ||X_{\mathcal{G}_1} - X_{\mathcal{G}_2}||_1 < 2^{-(n+1)}
+      \]
+      を満たすものとする。これは(e)成立しているから実際にそのような$\mathcal
+      {K}_n$を選ぶことができる。
+
+      さて、$\mathcal{H}(n) = \sigma(\mathcal{K}(1), \cdots, \mathcal{K}(n))$とする。
+      $\mathcal{H}(n) \in \mathbf{Sep}$である。
+      このとき、$X := \lim_{n \to \infty}X_{\mathcal{H}(n)}$が
+      a.s.の意味でも$\mathcal{L}^1$の意味でも存在する。
+      このことの証明は教科書の6.10(a)に倣(なら)う。
+
+      数列$(k_n)_{n \in \NN}$を単調増加で$k_n \longrightarrow \infty$であり、すべての$n$について$k_n \ge n$であるようなものとする。
+      $r,s \ge k_n$とすると、$r,s \ge n$となるため、
+      $\mathcal{H}(r),\mathcal{H}(s) \supset \mathcal{H}(n)$となる。
+      したがって、
+      \[
+        ||X_{\mathcal{H}(r)} - X_{\mathcal{H}(s)}||_1 < 2^{-(n+1)}
+      \]
+      が成立する。特に$r = k_{n+1}, s = k_n$と思えば
+      \[
+        ||X_{\mathcal{H}(k_{n+1})} - X_{\mathcal{H}(k_n)}||_1 < 2^{-(n+1)}
+      \]
+      左辺を定義によって書き換えると、
+      \[
+        \EE[|X_{\mathcal{H}(k_{n+1})} - X_{\mathcal{H}(k_n)}|] < 2^{-(n+1)}
+      \]
+      (MON)より、
+      \[
+        \EE\left[\sum_{n=1}^{\infty}|X_{\mathcal{H}(k_{n+1})} - X_{\mathcal{H}(k_n)}|\right] < \sum_{n=1}^{\infty}2^{-(n+1)} < \infty
+      \]
+      よって、$\displaystyle{\sum_{n=1}^{\infty}|X_{\mathcal{H}(k_{n+1})} - X_{\mathcal{H}(k_n)}|}$
+      はa.s.で有限である。
+      ここで、
+      \[
+        \mathcal{N} = \left\{\omega \;\middle|\; \sum_{n=1}^{\infty}|X_{\mathcal{H}(k_{n+1})}(\omega) - X_{\mathcal{H}(k_n)}(\omega)| = \infty \right\}
+      \]
+      とする。当然$\PP(\mathcal{N}) = 0$である。
+      確率変数$X$を次のように定義する。
+      \[
+        X(\omega)= \begin{cases}
+          X_{\mathcal{H}(k_1)}(\omega) + \sum_{n=1}^{\infty} \left(X_{\mathcal{H}(k_{n+1})}(\omega) - X_{\mathcal{H}(k_n)}(\omega) \right) & [\text{if}\quad\omega \in \mathcal{N}^c]\\
+          0 & [\text{if}\quad\omega \in \mathcal{N}]
+      \end{cases}
+      \]
+      すると明らかに
+      \[
+        \lim_{n \to \infty}X_{\mathcal{H}(n)} = X \quad \text{(a.s.)}
+      \]
+      である。
+
+      次に$\mathcal{L}^1$の意味でも$X$に収束することを示す。
+      $\varepsilon >0$を任意に一つ固定する。
+      自然数$N_{\varepsilon}$を$\displaystyle{\frac{1}{2^{N_{\varepsilon}+1}} < \varepsilon \leq \frac{1}{2^{N_{\varepsilon}}}}$を満たすものとする。
+      このとき、$n,m \ge N_{\varepsilon}$なら、
+      $\mathcal{H}(n),\mathcal{H}(m) \supset \mathcal{H}(N_{\varepsilon})$
+      なので、
+      \[
+        ||X_{\mathcal{H}(n)} - X_{\mathcal{H}(m)}||_1 < 2^{-(N_{\varepsilon}+1)} < \varepsilon
+      \]
+      となる。$r (\ge N_{\varepsilon})$を一つ固定すると、
+      \begin{align*}
+        \EE[|X_{\mathcal{H}(r)} - X|] &= \EE[\lim_{n \to \infty}|X_{\mathcal{H}(r)} - X_{\mathcal{H}(k_n)}|]\\
+        &= \EE[\liminf_{n \to \infty}|X_{\mathcal{H}(r)} - X_{\mathcal{H}(k_n)}|]\\
+        &\leq \liminf_{n \to \infty}\EE[|X_{\mathcal{H}(r)} - X_{\mathcal{H}(k_n)}|]\\
+        &= \liminf_{n \to \infty}||X_{\mathcal{H}(r)} - X_{\mathcal{H}(k_n)}||_1 \\
+        &< \varepsilon
+      \end{align*}
+      よって、$\mathcal{L}^1$の意味でも収束する。これで(d)を証明することができある。
+      全ての$n(\ge N_{\varepsilon})$と$(\mathcal{H}(n) \subset \;)\mathcal{G} \in \mathbf{Sep}$について、
+      \begin{align*}
+        ||X_{\mathcal{G}} - X||_1 &\leq ||X_{\mathcal{G}} - X_{\mathcal{H}(n)}||_1 + ||X_{\mathcal{H}(n)} - X||_1\\
+        &< 2^{-(N_{\varepsilon} + 1)} + 2^{-(N_{\varepsilon} + 1)}\\
+        &< 2\varepsilon
+      \end{align*}
+    \subsubsection{(d)$\Rightarrow$(II)がなりたつこと}
+      (d)が成立する。$\varepsilon > 0 $を固定。
+      (d)より、ある$\mathcal{K} \in \mathbf{Sep}$が存在して、
+      全ての$(\mathcal{K} \subset \;)\mathcal{G} \in \mathbf{Sep}$
+      について
+      \[||X_{\mathcal{G}} - X||_1 < \varepsilon\]
+      となる。
+      いま、$F \in \mathcal{F}$を任意にとる。
+      この$F$について当然$\sigma(\mathcal{K},F) \in \mathbf{Sep}$
+      であり、$\mathcal{K} \subset \sigma(\mathcal{K},F)$だから
+      $||X - X_{\sigma(\mathcal{K},F)}||_1 < \varepsilon $である
+      一方、
+      \begin{align*}
+        |\EE[X;F] - \mathbb{Q}(F)| &= |\EE[X - \mathbb{Q}(F) ; F]\\
+        &\leq \EE[|X - \mathbb{Q}(F)| ; F]\\
+        &\leq ||X - X_{\sigma(\mathcal{K},F)}||_1\\
+        &< \varepsilon
+      \end{align*}
+      $\varepsilon \rightarrow 0$とすれば定理が証明される。
