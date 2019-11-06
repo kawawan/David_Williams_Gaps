@@ -1470,3 +1470,127 @@
         &< \varepsilon
       \end{align*}
       $\varepsilon \rightarrow 0$とすれば定理が証明される。
+
+  \subsection{149ページ下から7行目}
+    "We say that $Y$ is (a version of)..." の$Y$はおそらく$X$の誤植。そうじゃないと話が通じない。
+  \subsection{149ページ下から7,8行目}
+    "Then $\PP$ is absolutely continuous to $\mathbb{Q}$ if and only if $\PP(X>0) = 1$,
+    and then $X^{-1}$ is a version of $d\PP/d\mathbb{Q}$ "について。
+
+    \begin{proof}
+      ($\Rightarrow$) $\QQ \gg \PP$ とする。
+      仮定より、$\PP \gg \QQ$なので、
+      \[
+        \PP(F) = 0 \Rightarrow \QQ(F) = 0
+      \]
+      $\QQ \gg \PP$なので、
+      \[
+        \QQ(F) = 0 \Rightarrow \PP(F) = 0
+      \]
+      したがって、
+      $\PP(F) = 0 \Leftrightarrow \QQ(F) = 0$である。
+
+      $\QQ(F) = \EE[X; F]$なので、
+      \[
+        \QQ(\{X \leq 0\}) = \EE[X; X \leq 0]
+      \]
+      $\QQ$は測度より、
+      \[
+        0 \leq \QQ(\{X \leq 0\}) = \EE[X; X \leq 0]
+      \]
+      一方、
+      \[
+        X1_{\{X \leq 0\}} \leq 0
+      \]
+      なので、
+      \[
+        \QQ(\{X \leq 0\}) = \EE[X; X \leq 0] \leq 0
+      \]
+      よって、
+      \[
+        \QQ(X \leq 0) = 0
+      \]
+      よって、$\PP(X \leq 0) = 0$となるから、$\PP(X > 0) = 1$である。
+
+      ($\Leftarrow$) $\PP(X>0) = 1$とする。
+      $F \in \mathcal{F}$で$\QQ(F) = 0$とする。
+      \[
+        \PP(F) = \PP(F \cap \{X \leq 0\}) + \PP(F \cap \{X>0\})
+      \]
+      だが、仮定より$\PP(X \leq 0) = 0$なので、
+      $F \cap \{X \leq 0 \} \subset \{X \leq 0\}$より、
+      \[
+        \PP(F \cap \{X \leq 0\}) = 0
+      \]
+      したがって、
+      \[
+        \PP(F) = \PP(F \cap \{X > 0\})
+      \]
+      一方、$\QQ(F) = 0$より、$\QQ(F \cap \{X > 0\}) = 0$である。
+      よって、
+      \[
+        \int X1_{F \cap \{X > 0\}} d\PP = 0
+      \]
+      $X1_{F \cap \{X > 0\}} > 0$であり、その積分の値が$0$であるから、
+      \[
+        \PP(F \cap \{X > 0\}) = 0
+      \]
+      よって、$\PP(F) = 0$。したがって、$\QQ \gg \PP$
+
+      さて、$\PP(X > 0) = 1$のとき、
+      \[
+      Y(\omega) = \begin{cases}
+        \frac{1}{X(\omega)} & (X(\omega) > 0)\\
+        0 & (X(\omega) \leq 0)
+      \end{cases}\]
+      とすると、$Y \in (m\mathcal{F})^+$である。
+      ラドンニコディムの定理より、$\QQ = X\PP$とできて、
+      5.14(d)より
+      \[
+        Y\QQ = Y(X\PP)
+      \]
+      仮定より、これはalmost surelyで以下のように変形できる。
+      \begin{align*}
+        Y\QQ &= \frac{1}{X}\QQ \quad (a.s.)\\
+        Y(X\PP) &= \frac{1}{X}(X\PP) \quad (a.s.)\\
+        &= (\frac{1}{X}X)\PP \quad (a.s.)\\
+        &=\PP \quad (a.s.)
+      \end{align*}
+      よって、almost surely で
+      \[
+        \frac{1}{X}\QQ = \PP
+      \]
+      である。
+    \end{proof}
+
+  \subsection{150ページ下から13行目}
+    全ての$F \in \mathcal{F}_n$について
+    $\QQ(F) = \EE[Y_1Y_2\cdots Y_n;F]$を言えばよい。
+    しかし、$\mathcal{F}$上で一致することを言うのは困難なので、
+    $\pi$-system上で考える。
+    つまり、$\bigcup_{n=1}^{\infty}\mathcal{F}_n$上で
+    一致することを言えばよい。それは即ち、
+    任意の$n$について$\mathcal{F}_n$上で一致することを言えばよいことになる。
+    これを言うためには$\mathcal{F}_n$を生成する$\pi$-systemである、
+    $\{(\infty,a] \mid a \in \RR\}$上で一致することを言えばよい。
+    $F\in \{(\infty,a_1] \times \cdots \times (\infty,a_n] \mid a \in \RR\}$を任意にとると、
+    \begin{align*}
+      \text{(右辺)} &= \EE[Y_1Y_2\cdots Y_n ;F]\\
+      &= \EE[I_F r_1(X_1)r_2(X_2)\cdots r_n(X_n)]\\
+      &= \int_{\RR}\cdots \int_{\RR} I_F(\omega_1,\omega_2,\cdots ,\omega_n)r_1(X_1(\omega_1,\omega_2,\cdots ,\omega_n))\cdots r_n(X_n(\omega_1,\omega_2,\cdots ,\omega_n))d\omega_n \cdots d\omega_1 \\
+      &= \int_{\RR}\cdots \int_{\RR} I_F(\omega_1,\omega_2,\cdots ,\omega_n)g_1(\omega_1)\cdots g_n(\omega_n)d\omega_n \cdots d\omega_1 \\
+      &= \QQ(F)
+    \end{align*}
+
+  \subsection{151ページ上から11行目}
+    "in which case $\PP = \QQ$."について。
+
+    $f = g$(a.e)の時密度関数がalmost surelyで等しいので、
+    全ての$n \in \NN$について
+    $F \in \{(\infty,a_1] \times \cdots \times (\infty,a_n] \mid a \in \RR\}$をとると、
+    \begin{align*}
+      \PP(F) &= \int_{\RR}\cdots \int_{\RR}I_F(\omega_1,\cdots ,\omega_n)f(\omega_1,\cdots \omega_n)d\omega_1 \cdots d\omega_n\\
+      &= \int_{\RR} \cdots \int_{\RR}I_F(\omega_1,\cdots ,\omega_n)g(\omega_1,\cdots \omega_n)d\omega_1 \cdots d\omega_n\\
+      &= \QQ(F)
+    \end{align*}
+    よって、$\pi$-system上で一致したので、結局$\PP = \QQ$となる。
