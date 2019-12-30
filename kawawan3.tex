@@ -1,0 +1,632 @@
+\section{Chapter 16}
+  \subsection{175ページ上から4行目}
+    分布関数の不連続な点は実は可算個しかない。
+
+    $j = 1,2,\cdots$に対して
+    \[
+      J_j = \left\{ a \in \RR \mid F(a+) - F(a-) \ge \frac{1}{j} \right\}
+    \]
+    とする。
+    このとき、すべての$j$に対して$|J_j| \leq j$である。
+    もし、$j+1$この要素があるとすると、$\frac{1}{j}$以上の差が開く点が
+    $j+1$箇所あるので、
+    \[
+      \left(\lim_{x \to \infty}F(x) - \lim_{x \to -\infty}F(x)\right) \ge \frac{j+1}{j}
+    \]
+    となり、矛盾する。
+
+    ここで、$F$の不連続点の集まりは
+    \[
+      \bigcup_{j=1}^{\infty}J_j
+    \]
+    と等しい。
+
+  \subsection{分布関数の一意性}
+    "(Check that the theorem does imply that ... ... ,then $F = G$)"のところ。
+
+    次を証明したい。
+    \[
+      F(x) = G(x) \quad \forall x \in \RR
+    \]
+    なお、$X$の分布関数は$F$、分布は$\mu_X$であらわし、
+    $Y$の分布関数は$G$、分布は$\mu_Y$で表すことにする。
+
+    $x \in \RR$を任意に固定したとき、次の四つの場合が考えられる。
+    \begin{enumerate}
+      \item $x$が$F$の連続点
+        \begin{enumerate}
+          \item $x$が$G$の連続点
+          \item $x$が$G$の不連続点
+        \end{enumerate}
+      \item $x$が$F$の不連続点
+        \begin{enumerate}
+          \item $x$が$G$の連続点
+          \item $x$が$G$の不連続点
+        \end{enumerate}
+    \end{enumerate}
+    このうち、1.(b),2.(a)は$F$か$G$かの視点を変えれば同じ話なので1.(b)のみ考える。
+    \begin{description}
+      \item[1.(a)について]
+        $y ( < x )$を$F,G$の連続点とする。
+        レヴィの反転公式から、
+        \[
+          F(x) - F(y) = G(x) - G(y)
+        \]
+        である。$y \downarrow -\infty$とすれば、分布関数の性質より、
+        \[
+          F(x) = G(x)
+        \]
+        を得る。
+      \item[1.(b)について]
+        $y ( < x )$を$F,G$の連続点とする。
+        反転公式から
+        \[
+          \mu_X (y,x) = \frac{1}{2}\mu_Y(\{x\}) + \mu_Y(y,x)
+        \]
+        であるが、$y \uparrow x$とすると\footnote{この操作は$y$や$x$が$\RR$の元であることと、不連続点が可算個だからできる。}、
+        \begin{align*}
+          \text{(左辺)} &= \mu_X(\emptyset) = 0\\
+          \text{(右辺)} &= \frac{1}{2}\mu_Y(\{x\}) + \mu_Y(\emptyset) = \frac{1}{2}\mu_Y(\{x\})
+        \end{align*}
+        である。しかし、今$x$は$G$の不連続点だから、$\mu_Y(\{x\}) > 0$である。したがって矛盾。
+        このような場合はあり得ない。
+      \item[2.(b)について]
+        $y ( < x )$を$F,G$の連続点とする。
+        反転公式から
+        \[
+          \mu_X(y,x) + \frac{1}{2}\mu_X(\{x\}) = \mu_Y(y,x) + \frac{1}{2}\mu_Y(\{x\})
+        \]
+        である。数列$\{a_n\}$を非減少で$a_n \uparrow x$となるもので、各$n$について$F,G$の
+        連続点であるようなものとして取る。
+        測度の(MON)より、
+        \[
+          \lim_{n \to \infty}\mu_X(y,a_n) + \frac{1}{2}\mu_X(\{x\}) = \lim_{n \to \infty}\mu_Y(y,a_n) + \frac{1}{2}\mu_Y(\{x\})
+        \]
+        である。$y \downarrow -\infty$とすれば、
+        \[
+          \lim_{y \to -\infty}\lim_{n \to \infty}\mu_X(y,a_n) + \frac{1}{2}\mu_X(\{x\}) = \lim_{y \to -\infty}\lim_{n \to \infty}\mu_Y(y,a_n) + \frac{1}{2}\mu_Y(\{x\})
+        \]
+        であり、少し確認すればこの極限は交換可能で\footnote{(MON)より、
+        $\lim_{y \to -\infty}\lim_{n \to \infty}\mu_X(y,a_n) = \lim_{y \to -\infty}\mu_X(y,x) = \mu_X(-\infty, x)$であり、
+        もう一方は同じく(MON)より、
+        $\lim_{n \to \infty}\lim_{y \to -\infty}\mu_X(y,a_n) = \lim_{n \to \infty}\mu_X(-\infty, a_n) = \mu_X(-\infty, x)$
+        }
+        \[
+          \lim_{n \to \infty}\lim_{y \to -\infty}\mu_X(y,a_n) + \frac{1}{2}\mu_X(\{x\}) = \lim_{n \to \infty}\lim_{y \to -\infty}\mu_Y(y,a_n) + \frac{1}{2}\mu_Y(\{x\})
+        \]
+        となる。これはすなわち、
+        \[
+          \lim_{n \to \infty}F(a_n) + \frac{1}{2}\mu_X(\{x\}) = \lim_{n \to \infty}G(a_n) + \frac{1}{2}\mu_Y(\{x\})
+        \]
+        ということである\footnote{$a_n$は$F$の連続点であるということに気を付ければ$\lim_{y \to -\infty}\mu_X(y,a_n) = \mu_X(-\infty, a_n) = \mu_X(-\infty, a_n] = F(a_n)$となるから。}。1.(a)より、$F(a_n) = G(a_n)$なので、
+        \[
+          \frac{1}{2}\mu_X(\{x\}) = \frac{1}{2}\mu_Y(\{x\})
+        \]
+        が残り、結局
+        \[
+          F(x) = \mu_X(-\infty, x) = \mu_Y(-\infty, y) =F(x)
+        \]
+        がわかる。
+    \end{description}
+
+  \subsection{176ページ(e)の話}
+    「$C_T < \infty$が成り立つと(つまり可積分である)と分かれば、フビニの定理が
+    使えて、(e)式のような式変形ができますよ。」
+    という話の流れ。
+
+  \subsection{176ページ下から8行目}
+    "Next, we can exploit the evenness..."のところ。
+    ここちょっとミスリードな感じがする。
+    $\sin \theta ,\cos \theta$はそれぞれ奇関数、偶関数だが、
+    $\displaystyle{\frac{\sin\theta}{\theta}, \frac{\cos\theta}{\theta}}$はそれぞれ偶関数、奇関数になる。
+    よって、計算をして消えるのは$\cos$の方。
+
+    奇関数を消した後は$y = |x-a|\theta$などと置換する。
+    絶対値の兼ね合いで sgn が出現する。
+
+  \subsection{177ページ上から3行目}
+    "see Exercise E16.1"のところ。
+    こんなところを見るよりお手持ちの複素関数の教科書を見てくれ。
+
+  \subsection{177ページ上から5行目}
+    (f)の式は左辺を見ると$1$で押さえられますね？有界です。
+
+  \subsection{177ページ上から11行目から16行目まで}
+    よくわからない。$F$がすべての点で連続であることについて別の証明を書きました。
+    Rick Durretの"Probability"を参照しました。
+
+    \begin{align*}
+      \left|\frac{e^{-i\theta a} - e^{-i\theta b}}{i\theta} \right| =
+      \left| \int_a^b e^{-i\theta y} dy \right| \leq |b - a|
+    \end{align*}
+    なので、
+    \begin{align*}
+      \frac{e^{-i\theta a} - e^{-i\theta b}}{i\theta}\varphi(\theta)
+      &\leq \left| \frac{e^{-i\theta a} - e^{-i\theta b}}{i\theta}\varphi(\theta) \right|\\
+      &\leq |b - a||\varphi(\theta)|\\
+      &< \infty
+    \end{align*}
+    であるから、
+    \[
+      \frac{1}{2\pi} \int_{-\infty}^{\infty} \frac{e^{-i\theta a} - e^{-i\theta b}}{i\theta}\varphi(\theta) d\theta
+    \]
+    と書いてよい。\footnote{この積分がちゃんと収束するよって言ってる}
+    (a)の結果より、任意の$a,b \in \RR, a<b$について
+    \begin{align*}
+      \frac{1}{2}\mu(\{a\}) + \mu(a,b) + \frac{1}{2}\mu(\{b\})
+      &= \frac{1}{2\pi} \int_{-\infty}^{\infty} \frac{e^{-i\theta a} - e^{-i\theta b}}{i\theta}\varphi(\theta) d\theta\\
+      &\leq \frac{(b - a)}{2\pi}\int_{-\infty}^{\infty}|\varphi(t)|dt
+    \end{align*}
+    である。
+    今、$a,b$は$a<b$であり、任意だから$b \to a$とすると、
+    \[
+      \mu(\{a\}) \leq 0
+    \]
+    となる。したがって、$\mu$はアトムを持つことはない。
+    したがって、$F$は全ての点で連続である。
+
+  \subsection{16.7について}
+    冬休みに確認できたら確認します...
+
+\section{Chapter 17}
+  \subsection{180ページ(e)の証明}
+    これ(d)の方が簡単だからこっちを演習問題にした方がよかったのでは...？
+
+    \begin{lem*}
+      $X_n \longrightarrow X$ in prob. ならば、適当な部分列$\{n_k\}$をとって
+      $X_{n_k} \longrightarrow X$ a.s. とすることができる。
+    \end{lem*}
+    \begin{proof}
+      確率収束しているので$k =1,2,\cdots$に対し、$n_k \in \NN$が存在し、
+      \[
+        \PP(|X_{n_k} - X| \ge 2^{-k}) \leq 2^{-k}
+      \]
+      とできる。ここで、この式の右辺の無限級数は有限なので、(BC1)を適用できる。
+      したがって、
+      \[
+        \PP(|X_{n_k} - X| \ge 2^{-k} \quad i.o.) = 0
+      \]
+      である。したがって、
+      \[
+        \PP(|X_{n_k} - X| < 2^{-k} \quad e.v.) = 1
+      \]
+      が成り立つ。つまり、
+      "$k_0$が存在して、$k \ge k_0 \Rightarrow |X_{n_k} - X| < 2^{-k}$ (a.s.)"
+      が成立している。
+
+      $\varepsilon > 0$を任意にとる。するとある$k_1$が存在し、
+      $k \ge k_1$について$2^{-k} < \varepsilon$となる。
+      そこで$K = \max\{k_0,k_1\}$とすれば、
+      $k \ge K$に対して
+      \[
+        |X_{n_k}(\omega) - X(\omega)| < \varepsilon
+      \]
+      が成立する。
+    \end{proof}
+
+    この補題により、$\{X_n\}$の部分列$\{X_{n^{\prime}}\}$をとると、
+    $X_{n^{\prime}} \longrightarrow X$ (a.s.) とすることができる。
+    そこで(d)を適用すると、$h \in C_b(\RR)$に対して、
+    \[
+      \EE[h(X_{n^{\prime}})] \longrightarrow \EE[h(X)]
+    \]
+    となる。ここで、収束先の$\EE[h(X)]$は部分列の取り方によらない
+    (全く同じ議論により結局$\EE[h(X)]$へと収束してしまう)ため、
+    これは部分列を取らなくても
+    \[
+      \EE[h(X_n)] \longrightarrow \EE[h(X)]
+    \]
+    を意味する。したがって、分布関数は弱収束する。
+
+  \subsection{181ページ下から6行目}
+    "In similar fashion, ..."のところ。
+    \[
+      g(y) = \begin{cases}
+        1 & (\text{if} \quad y \leq \delta - x)\\
+        1 - \frac{1}{\delta}(y+\delta - x)  & (\text{if}\quad x -\delta < y < x)\\
+        0 & (\text{if}\quad y \ge x)
+    \end{cases}
+    \]
+    と定義する。
+    図を描いたら明らかであるが、次の式がそれぞれ成立する。
+    \begin{align*}
+      F_n(x-) \ge \mu_n(x-)\\
+      \mu(g) \ge F(x - \delta)
+    \end{align*}
+    したがって、
+    \begin{align*}
+      \liminf_{n \to \infty} F_n(x-) &\ge \liminf_{n \to \infty} \mu_n(g)\\
+      &= \mu(g)\\
+      &\ge F(x - \delta)
+    \end{align*}
+    であるから、$\delta \downarrow 0$とすることで、
+    \[
+      \liminf_{n \to \infty}F_n(x-) \ge F(x-) \quad \forall x \in \RR
+    \]
+    がわかる。
+
+    $x$が$F$の連続点ならば$F(x) = F(x -)$となるので、
+    \[
+      \limsup_{n \to \infty}F_n(x) \leq F(x) = F(x-)
+      \leq \liminf_{n \to \infty} F_n(x-)
+      \leq \liminf_{n \to \infty} F_n(x)
+    \]
+    とできる。ただし、最後の不等号については分布関数の単調性を用いた。
+
+  \subsection{182ページ証明上から9行目}
+    "and hence, for large $n$, $F_n(z) > \omega$"のところ。
+    $z$は$F$の連続点だから定理の仮定を用いることができる。
+  \subsection{182ページ証明下から3行目}
+    "and by similar arguments,"のところ。
+    $z$を$F$の連続点で$z \leq X^-(\omega)$とする。
+    $F(z) \leq F(X^-(\omega)), \omega \leq F(X^-(\omega))$より、
+    $z \leq \omega$である。
+    仮定より、十分大きな$n$について$F_n(z) \leq \omega$となる。
+    したがって、
+    \[
+      z \leq X_n^-(\omega)
+    \]
+    あとは同様にすると、
+    \[
+      X^-(\omega) \leq \liminf_{n\to \infty}X_n^-(\omega)
+    \]
+    である。
+  \subsection{182ページ証明最後の行}
+    ほぼ明らかだけどちゃんと書いたら長いからちゃんと書こうね。
+    \[
+      \limsup_{n \to \infty}X_n(\omega) \leq X_n^+(\omega) = X_n^-(\omega) \leq \liminf_{n \to \infty}X_n^-(\omega)
+    \]
+    がa.s.で成立する。
+    そこで、
+    \begin{align*}
+      X(\omega) = \begin{cases}
+        X^-(\omega) & (X^-(\omega) = X^+(\omega))\\
+        0 & (\text{otherwise})
+      \end{cases}
+      ,
+      X_n(\omega) = \begin{cases}
+      X_n^-(\omega) & (X_n^-(\omega) = X_n^+(\omega))\\
+      0 & (\text{otherwise})
+    \end{cases}
+    \end{align*}
+    とおけば、
+    \begin{align*}
+      \limsup_{n \to \infty}X_n(\omega) = \limsup_{n \to \infty}X_n^+(\omega) \leq X^+(\omega) = X(\omega)\\
+      \liminf_{n \to \infty}X_n(\omega) = \liminf_{n \to \infty}X_n^-(\omega) \ge X^-(\omega) = X(\omega)
+    \end{align*}
+    がa.s.で成立。
+    よって
+    \[
+      \limsup_{n \to \infty}X_n(\omega) \leq X(\omega) \leq \liminf_{n \to \infty}X_n(\omega)
+    \]
+    なので、
+    \[
+      \lim_{n\to \infty}X_n = X
+    \]
+    がa.s.で成立する。
+
+  \subsection{17.3の別証明}
+    17.3は17.2の補題のif partの証明に当たるが、このif partの証明は別のものがある。
+    \begin{proof}
+      $\varepsilon > 0$ を固定し、$a,b \in \RR$を$F$の連続点で$a < b$
+      であり、かつ、$F(a) \leq \varepsilon, 1-F(b) \leq \varepsilon $
+      となるようにとる。$F$はDFなので
+      $\lim_{x \to -\infty}F(x) = 0,\lim_{x \to \infty}F(x) = 1$
+      だからこのようなもの達は取れる。
+      仮定より、$a,b$においては
+      \[
+        \lim_{n \to \infty}F_n(a) = F(a)
+      \]
+      なので($b$と書いてももちろん成立)、十分大きな$n$については
+      \[
+        F_n(a) \leq 2 \varepsilon, 1 - F_n(b) \leq 2\varepsilon
+      \]
+      とすることができる。
+
+      次に、$\delta>0 ,f \in C_b(\RR)$が任意に与えられたとする。
+      $N= N_{\delta}$と点列$\{a = a_1 < a_2 < \cdots < a_{N+1} = b\}$
+      を、
+      \begin{itemize}
+        \item 各$a_i$($i = 2,3,\cdots,N$)は$F$の連続点
+        \item $1 \leq i \leq N$に対して、$\max_{a_i \leq x \leq a_{i+1}}|f(x) - f(a_i)| \leq \delta$
+      \end{itemize}
+      が成り立つように取る。
+      二つ目の条件は$f \in C_b(\RR)$であることより閉区間$[a,b]$上では
+      一様連続になることからこのような点列は取れる。
+      さて、
+      \[
+        g(x) \equiv g^{\delta,N,\{a_i\}}(x) = \sum_{i = 1}^N 1_{(a_i,a_{i+1}]}(x)
+      \]
+      とおく。$n$が十分大きければ
+      \begin{align*}
+        \left| \int_{\RR} f(x) \mu_n(dx) - \int_{\RR} g(x) \mu_n(dx) \right| \leq & \int_{[-\infty,a)} |f(x) - g(x)| \mu_n(dx)　+ \int_{[(a,b]} |f(x) - g(x)| \mu_n(dx)\\
+        & + \int_{(b,\infty)} |f(x) - g(x)| \mu_n(dx)\\
+         \leq &  F_n(a) \times ( \sup_{x \in \RR} |f(x)| ) + ( 1 - F_n(b) ) \times ( \sup_{x \in \RR}|f(x)| )\\
+        & +\int_{(b,\infty)} |f(x) - g(x)| \mu_n(dx)\\
+         \leq & ( 2 \varepsilon + 2 \varepsilon ) ( \sup_{x \in \RR} |f(x)| ) + \delta
+      \end{align*}
+      同様にすることで(同じように積分範囲を変えるとよい)
+      \[
+        \left| \int_{\RR} f(x)\mu(dx) - \int_{\RR} g(x)\mu(dx)\right| \leq (\varepsilon + \varepsilon) + \sup_{x \in \RR}|f(x)| + \delta
+      \]
+      である。ところが、仮定より各$a_i$について$\lim_{n \to \infty}F_{n}(a_i) = F(a_i)$
+      なので、$n \longrightarrow \infty$とすれば、
+      \begin{align*}
+        \int_{\RR}g(x) \mu_n(dx) =& \sum_{i=1}^N f(a_i)(F_n(a_{i+1}) - F_n(a_i))\\
+        \longrightarrow & \sum_{i=1}^N f(a_i)(F(a_{i+1}) - F(a_i))\\
+        =& \int_{\RR} g(x) \mu(dx)
+      \end{align*}
+
+      よって、三角不等式を用いると、
+
+      \begin{align*}
+        \left| \int_{\RR} f(x)\mu_n(dx) - \int_{\RR} f(x)\mu(dx)\right| \leq & \left| \int_{\RR} f(x)\mu_n(dx) - \int_{\RR} g(x)\mu(dx)\right|\\
+        & + \left| \int_{\RR} g(x)\mu_n(dx) - \int_{\RR} g(x)\mu(dx)\right|\\
+        & + \left| \int_{\RR} f(x)\mu_n(dx) - \int_{\RR} g(x)\mu(dx)\right|
+      \end{align*}
+      と評価ができて、これまでの結果より$n \longrightarrow \infty$とすれば
+      \footnote{$||f||_{\infty} = \sup_{x \in \RR}|f(x)|$}
+      \[
+        \limsup_{n \to \infty} \left| \int_{\RR} f(x)\mu_n(dx) - \int_{\RR} f(x)\mu(dx)\right| \leq \delta  + 4||f||_{\infty} + \delta  + 2||f||_{\infty} + 0
+      \]
+      $\varepsilon, \delta$は任意だからこれらを$0$に近づけて、
+      $\mu_n \longrightarrow \mu$すなわち、$F_n \longrightarrow F$と弱収束することが分かる。
+    \end{proof}
+
+  \subsection{183ページ証明の対角線論法について}
+    たとえば$c_1 \in C$を代入したとき、列$(F_n(c_1))_{n \in \NN}$
+    は有界な実数列なので、収束部分列$(F_{n(1,j)}(c_1))$がとれる。\footnote{ボルツァノワイエルシュトラスの定理}
+    この収束先($j \longrightarrow \infty$)を$H(c_1)$とする。
+    さて、いま取った部分列$\{n(1,j)\}_j$について、関数列$\{ F_{n(1,j)}(\cdot)\}$に関しても同様の議論を適用することができる。
+    $c_2 \in C$を代入するとボルツァノワイエルシュトラスの定理より、
+    収束部分列$\{ F_{n(2,j)}(c_2) \}$が取れる。
+    この収束先を$H(c_2)$とおく。
+    なお、この部分列は$\{ F_{n(1,j)}(\cdot)) \}$の部分列なので、
+    $F_{n(2,j)}(c_1) \longrightarrow H(c_1)$となることに注意しよう。(*)
+
+    さてこのようにして部分列を繰り返し手に入れていく。$n_i = n(i,i)$とおく。
+    すると、(*)に書いた注意書きより、
+    \[
+      H(c) := \lim_{i \to \infty}F_{n_i}(c)
+    \]
+    がすべての$c \in C$に対して存在することが分かる。
+
+  \subsection{184ページ$F$の定義}
+    $\RR$上の関数$F$を
+    \[
+      F(x) = \inf \{H(y) \mid y \in C, y > x \}
+    \]
+    とおく。
+    \begin{prop*}
+      次が成立。
+      \begin{enumerate}
+        \item $F$は右連続
+        \item $F$の連続点において、$\lim_{i \to \infty}F_{n_i}(x) = F(x)$が成立する
+      \end{enumerate}
+    \end{prop*}
+    \begin{proof}
+      \begin{enumerate}
+        \item $x \in \RR$として$x_k \downarrow x$となる$C$の列をとる。
+        この操作は$C$が稠密な可算集合だから可能である。$\QQ$を思い浮かべて。
+        \[
+          d := \lim_{k \to \infty}F(x_k)
+        \]
+        とする。
+        $F$の単調性より、全ての$k$について$F(x) \leq F(x_k)$だから、
+        \[
+          F(x) \leq \lim_{k \to \infty}F(x_k) =d
+        \]
+        そこで、$F(x) < d$と仮定して矛盾を導く。
+        $F$の定義($\inf$の定義)より、ある$y \in C$で$y > x$かつ、$H(y) < d$なるものが存在する。
+        $x_k \downarrow x$より、大きな$k$に対しては$x < x_k < y$となる。
+        よって、
+        \[
+          F(x_k) \leq F(y) \leq H(y) < d
+        \]
+        なので、
+        \[
+          \lim_{k \to \infty}F(x_k) < d
+        \]
+        これは矛盾である。
+        \item $x$を$F$の連続点とする。
+        $\varepsilon > 0$とする。
+        $x$は$F$の連続点で$C$は稠密なので、$x$に十分近い点$z_1,z_2,z_3 \in C$
+        で、$z_1< z_2 < x < z_3$かつ、
+        \[
+          F(x) - \varepsilon < F(z_1) \leq F(z_2) \leq F(x) \leq F(z_3) <F(x) + \varepsilon
+        \]
+        となるようなものが取れる。
+        ここで、$i \longrightarrow \infty$とするとき、
+        \begin{align*}
+          F_{n_i}(z_2) &\longrightarrow H(z_2) \ge F(z_1) = \inf\{H(y) \mid y \in C ,y > z_1 \}\\
+          F_{n_i}(z_3) &\longrightarrow H(z_3) \leq F(z_3) = \inf\{H(y) \mid y \in C ,y > z_3 \}
+        \end{align*}
+        なので、$i$が十分大きいと、
+        \[
+          F(x) - \varepsilon < F(z_1) \leq F_{n_i}(z_2) \leq F_{n_i}(x) \leq F_{n_i}(z_3) \leq F(x) + \varepsilon
+        \]
+        となることが分かる。ここで、左から二つ目と三つ目の$\leq$は$F_{n_i}$が分布関数であることからわかる。
+        この不等式はすなわち、
+        \[
+          |F_{n_i}(x) - F(x)| < \varepsilon
+        \]
+        を表している。
+      \end{enumerate}
+    \end{proof}
+
+  \subsection{184ページtightnessの定義}
+    たぶんミスプリント。
+    \begin{def*}
+      $(F_n)$の列が緊密であるとは、すべての$\varepsilon > 0$に対してある$K > 0$
+      が存在し、すべての$n$について
+      \[
+        \mu_n[-K, K] = F_n(K) - F_n(-K) > 1 - \varepsilon
+      \]
+      となることを言う。
+    \end{def*}
+
+  \subsection{184ページLemmaの証明}
+    easyではないが？
+    \begin{proof}
+      \begin{description}
+        \item[(a)] $(F_n)$は緊密ではないとする。
+        この仮定によって存在が保証される$\varepsilon > 0$を一つ選んで固定する。
+        $K > 0$を任意に一つ固定する。表記の簡単さのために$G_K := (-K, K)$とする。
+        さて、$m \ge K$なるすべての$m$について、すべての$n \in \NN$に対して
+        \[
+          \mu_n(G_K) \leq \mu_n[-m,m]
+        \]
+        が成立する。この$m$について背理法の仮定からある$N_m \in \NN$が存在し、
+        \[
+          \mu_{N_m}[-m,m] \leq 1 - \varepsilon
+        \]
+        である。もちろん、
+        \[
+          \mu_n (G_K) \leq \mu_{N_m}[-m,m] \quad \forall n
+        \]
+        が成立している。$F_n$は$F$に弱収束するから、対応する収束先の測度を$\mu$で表すことにすると、
+        \[
+          \mu(G_K) \leq \liminf_{n \to \infty}\mu_n(G_K)
+        \]
+        が成立する(この不等式の確認は後述)。したがって、
+        \[
+          \mu(G_K) \leq \liminf_{n \to \infty}\mu_n(G_K) \leq \mu_{N_m}[-m,m] \leq 1 - \varepsilon
+        \]
+        である。$K$は任意より、$K \longrightarrow \infty$とすると、
+        \[
+          1 = \mu(\RR) \leq 1 - \varepsilon
+        \]
+        となり矛盾する。
+        \item[(b)] Helly-Brayの補題よりある部分列$(F_{n_k})$と$F$が存在し、
+        $F$の連続点においては$\lim_{k \to \infty}F_{n_k}(x) = F(x)$である。
+        この$F$は単調性と$0\leq F \leq 1$であることと、右連続性はすでに示してあるので、
+        \[
+          \lim_{x \to - \infty}F(x) = 0, \lim_{x \to \infty}F(x) = 1
+        \]
+        を示せばよい。
+
+        今、$(F_n)$は緊密なので部分列$(F_{n_k})$も緊密になる。
+        したがって、ある$K > 0$が存在し、$x < -K$なら$F(x) < \varepsilon$とできる。
+        実際、$F(K) - F(-K) > 1 - \varepsilon$より、
+        \begin{align*}
+          0 \leq F(-K-) &< F(K) - 1 + \varepsilon\\
+          &= \varepsilon - ( 1 - F(K)) < \varepsilon
+        \end{align*}
+        だからである。これはつまり。
+        \[
+          |F(x) - 0| < \varepsilon
+        \]
+        なので、$\lim_{x \to -\infty}F(X) = 0$を表している。
+        一方、$x > K$ならば、$F(x) > 1 - \varepsilon$とできる。実際、
+        \begin{align*}
+          F(K) - F(-K-) &> 1 - \varepsilon\\
+          F(K) &> (1 - \varepsilon) + F(-K-) > 1 - \varepsilon
+        \end{align*}
+        最後の不等式は$\ge$にならないことに注意しよう。
+        これはつまり
+        \[
+          1 - F(x) < \varepsilon
+        \]
+        なので、$\lim_{x \to \infty}F(x) = 1$
+        を表している。
+      \end{description}
+    \end{proof}
+
+    \subsubsection{後述と書いたところの確認}
+      \begin{lem*}
+        $\mu_n$が$\mu$に弱収束するとき、任意の$\RR$の開集合$G$について、
+        \[
+          \liminf_{n \to \infty}\mu_n(G) \ge \mu(G)
+        \]
+        が成立する\footnote{実は同値条件}。
+      \end{lem*}
+      \begin{proof}
+        $C$を$\RR$の任意の閉集合とする。いまから、
+        \[
+          \mu(C) \ge \limsup_{n \to \infty}\mu_n(C)
+        \]
+        を証明する。そうすれば定理の主張は補集合を取ることで確かめられる。
+        \[
+          \text{dist}(x,C) = \inf\{|x - y| \mid y \in C\}
+        \]
+        とおく。
+        \[
+          h_n(x) = \frac{1}{( 1 + \text{dist}(x,C) )^n}
+        \]
+        とおく。
+        すると、各$n$ごとに$h_n \in C_b(\RR)$であり、$h_n(x) \longrightarrow I_C(x)$
+        と各点収束する。
+        よって(BDD)より、
+        \[
+          \lim_{n \to \infty}\int_{\RR}h_n(x) \mu(dx) = \int_{\RR} \lim_{n \to \infty}h_n(x) \mu(dx) = \mu(C)
+        \]
+        一方、弱収束することより、
+        \[
+          \lim_{n \to \infty}\int_{\RR}h_k(x) \mu_n(dx) = \int_{\RR}h_k(x) \mu(dx)
+        \]
+        である。したがって、次のような計算ができる。
+        \begin{align*}
+          h_n(x) &\ge I_C(x)\\
+          \int_{\RR} h_n(x) \mu_k(dx) &\ge \mu_k(C)\\
+          \limsup_{k \to \infty}\int_{\RR} h_n(x) \mu_k(dx) &\ge \limsup_{k \to \infty}\mu_k(C)\\
+          \lim_{n \to \infty}\lim_{k \to \infty}\int_{\RR} h_n(x) \mu_k(dx) &\ge \lim_{n \to \infty}\limsup_{k \to \infty}\mu_k(C)\\
+          \mu(C) &\ge \limsup_{k \to \infty}\mu_k(C)
+        \end{align*}
+        これにより、$G$を開集合とすると$G^c$は閉集合になるので、
+        \begin{align*}
+          \mu(G^c) &\ge \limsup_{k \to \infty}\mu_k(C)\\
+          1 - \mu(G) &\ge 1 + \limsup_{k \to \infty}(- \mu_k(G))\\
+          -\mu(G) &\ge -\liminf_{k \to \infty}\mu_k(G)\\
+          \mu(G) &\leq \liminf_{k \to \infty}\mu_k(G)
+        \end{align*}
+      \end{proof}
+
+\section{Chapter18}
+  17章で頑張ったので簡単。
+  \subsection{185ページ最後の行}
+    "Thus $g = \varphi_F$"のところ。微積のちょっとしたアレ。
+    $\theta$を代入するごとに実数列になることに気を付ければ
+    \[
+      g(\theta) = \lim_{n \to \infty}\varphi_n(\theta) = \lim_{k \to \infty}\varphi_{n_k}(\theta) = \varphi_F(\theta)
+    \]
+    である。
+  \subsection{187ページ積分順序を交換したところ}
+    理由としては$|1 - e^{i\theta x}| \leq 2$であるからとしている。
+    これは直積測度$dF_n \times d\theta$で積分したときに可積分になるから、積分の順序交換が可能になると言っている。
+  \subsection{188ページ(b)}
+    ここの$z$は複素数。複素数のとき、$\log$は多価関数になるので主値(principal value)を取っているんですね。
+  \subsection{189証明下から6行目}
+    "But now, using (18.3.c)"のところ。不等式なのに等式の変形するのやめてくれ。
+    \[
+      z_n = -\frac{1}{2}\frac{\theta^2}{n} + o\left(\frac{\theta^2}{n}\right)
+    \]
+    とおくと、$z_n^2$は$\frac{1}{n^2}$か、それより収束が早い項しか含まれないので、
+    $|z_n|^2 = o(\frac{1}{n})$である。よって、
+    \begin{align*}
+      -|z_n|^2 \leq \log(1 + z_n) - z_n \leq |z_n|^2\\
+      o\left( \frac{1}{n} \right) \leq \log(1 + z_n) - z_n \leq o\left( \frac{1}{n} \right)\\
+      o\left( \frac{1}{n} \right) + z_n \leq \log(1 + z_n) \leq o\left( \frac{1}{n} \right) + z_n
+    \end{align*}
+    なので、教科書のような変形ができる\footnote{ここの式変形うまく書けなかった}。
+  \subsection{190ページ上から9行目}
+    \[
+      \varphi_{N_n}(t) = \prod_{k = 1}^n \varphi_{X_k}(t)
+    \]
+    の$X_k$は$I_{E_k}$を表している。
+
+  \subsection{190ページ上から11行目からの式変形}
+    まず初めに、左辺は$\log (\varphi_{G_n}(\theta))$の書き間違い。
+
+    二つ目の$=$はテイラー展開。三つ目の$=$は(18.3.c)の近似。
+    $O$の項は$\frac{1}{k}(it - \frac{1}{2}t^2 + o(t^2))$を二乗したときに最も収束が
+    遅い項は$\frac{t^2}{k^2}$の項。それの和の分だけ余っている\footnote{ここの説明微妙だ}。
+    $O$の項は$\log(1+x)$をテイラー展開したときの剰余項と見てもよい。
+    四つ目の$=$は「オイラー定数$=$調和級数$- \log n$」であることを使う。
+    $O(1)$は$\sum \frac{1}{k^2}$はそもそも定数に収束するので、$O(1)$となる。
+    五つ目の$=$は、四つ目の$=$で得られた式を展開すると分かる。
+    それぞれの項を見ると$-\frac{1}{2}\theta^2$以外の項は$0$へ収束していくことが分かる。
+
+    \subsubsection{18.5について}
+      この例を見ると、中心極限定理は同分布の確率変数でないものに対しても成り立っているように見える。
+      しかし、よく考えると、この例は同分布がない代わりにかなり強い仮定を課している\footnote{$\PP(E_n) = \frac{1}{n}$}。
+      それでも独立性は外せない。組ごとに独立くらいにゆるめると中心極限定理はどうなるのでしょうか？
